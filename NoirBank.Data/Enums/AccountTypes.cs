@@ -1,11 +1,12 @@
 ﻿using System;
 namespace NoirBank.Data.Enums
 {
-    public class AccountTypes
+    public enum AccountTypes
     {
-        public AccountTypes()
-        {
-        }
+        Standard,
+        Saving,
+        Business,
+        Credit
     }
 }
 

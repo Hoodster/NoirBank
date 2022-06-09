@@ -37,6 +37,10 @@ namespace NoirBank
                 .Entity<Operation>()
                 .Property(e => e.OperationType)
                 .HasConversion<string>();
+            modelBuilder
+                .Entity<Account>()
+                .Property(e => e.AccountType)
+                .HasConversion<string>();
 
             base.OnModelCreating(modelBuilder);
         }
