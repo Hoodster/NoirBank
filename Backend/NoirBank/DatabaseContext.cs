@@ -13,6 +13,7 @@ namespace NoirBank
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Operation> Operations { get; set; }
         public DbSet<SessionLog> SessionLogs { get; set; }
+        public DbSet<Address> Addresses { get; set; }
 
         public DatabaseContext(DbContextOptions options) : base(options)
         {
