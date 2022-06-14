@@ -1,7 +1,22 @@
+import RegistrationSlide from "../components/RegistrationSlide"
+import RegistrationSlider from "../components/RegistrationSlider"
+
 function RegistrationScene() {
     return (
-        <form>
-            <h1>Welcome to NoirBank</h1>
+        <div>
+            <RegistrationSlider slides={[
+                {
+                    index: 1,
+                    form: <RegistrationSlide number={1}></RegistrationSlide>
+                },
+                {
+                    index: 2,
+                    form: <RegistrationSlide number={2}></RegistrationSlide>
+                }
+        ]}>
+
+            </RegistrationSlider>
+            {/* <h1>Welcome to NoirBank</h1>
             <div>
                 <h2>Part 1</h2>
                 <input name='userFName' placeholder='first name'></input>
@@ -35,8 +50,8 @@ function RegistrationScene() {
                 <h2>Part5</h2>
                 <input name='userPsswd' type='password' placeholder='password'></input>
                 <input type='submit' value='Create new account'></input>
-            </div>
-        </form>
+            </div> */}
+        </div>
     )
 }
 
