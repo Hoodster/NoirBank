@@ -5,7 +5,7 @@ export const registerSlice = createSlice({
     initialState: {
         toUpdate: false,
         currentSlide: 1,
-        numberOfSlides: 2,
+        numberOfSlides: 4,
         userData: {}
     },
     reducers: {
@@ -22,9 +22,12 @@ export const registerSlice = createSlice({
             action.payload.userData.forEach(chunk => {
                 state.userData[chunk.name] = chunk.value
             })
+        },
+        reset: (state) => {
+            state = this.initialState
         }
     }
 })
 
-export const { nextSlide, prevSlide, update } = registerSlice.actions
+export const { nextSlide, prevSlide, update, reset } = registerSlice.actions
 export default registerSlice.reducer

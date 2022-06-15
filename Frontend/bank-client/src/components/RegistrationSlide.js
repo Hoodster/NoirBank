@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { update } from "../redux/reducers/registerReducer"
@@ -9,10 +8,13 @@ export default function RegistrationSlide(props) {
 
     useEffect(() => {
         if (shouldUpdate) {
-          //  dispatch(disableUpdate())
+            //  dispatch(disableUpdate())
             dispatch(update({ userData: [] }))
         }
-    }, [])
+    })
 
-    return <div>{props.number}</div>
+    return (
+        <div>
+            {props.formSlice}
+        </div>)
 }

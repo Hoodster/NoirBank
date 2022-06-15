@@ -7,12 +7,30 @@ function RegistrationSlider(props) {
     const currentSlide = register.currentSlide
     const dispatch = useDispatch()
 
+    function nSlide(e) {
+        e.preventDefault()
+        dispatch(nextSlide())
+    }
+
+    function pSlide(e) {
+        e.preventDefault()
+        dispatch(prevSlide())
+    }
+
+    function submitRegistration(e) {
+        e.preventDefault()
+        console.log(e)
+    }
+
     return (
-        <div>
+        <form name="reg-f">
             {
                 props.slides.map(slide => {
                     if (slide.index === currentSlide)
-                        return slide.form
+                        return (<div key={`f-${slide.index}`}>
+                            <h3>{slide.title}</h3>
+                            {slide.form}
+                        </div>)
                     return null
                 })
             }
@@ -20,16 +38,16 @@ function RegistrationSlider(props) {
                 {
                     currentSlide === 1
                         ? null
-                        : <button onClick={() => dispatch(prevSlide())}>Previous</button>
+                        : <button onClick={(e) => pSlide(e)}>Previous</button>
                 }
                 {
-                    
+
                     currentSlide !== numberOfSlides
-                        ? <button onClick={() => dispatch(nextSlide())}>Next</button>
-                        : <button onClick={() => console.log(1)}>Register new account</button>
+                        ? <button onClick={(e) => nSlide(e)}>Next</button>
+                        : <input type='submit' onClick={(e) => submitRegistration(e)}></input>
                 }
             </div>
-        </div>
+        </form>
     )
 }
 
