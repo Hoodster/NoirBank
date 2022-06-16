@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import RegistrationScene from './scenes/RegistrationScene';
 
@@ -8,7 +7,6 @@ function App() {
       <header className="App-header">
         <RegistrationScene></RegistrationScene>
       </header>
-
     </div>
   );
 }

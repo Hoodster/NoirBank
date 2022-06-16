@@ -7,9 +7,10 @@ export default function RegistrationSlide(props) {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        if (shouldUpdate) {
+        if (props.inputs && shouldUpdate) {
+            console.log(document.getElementsByName(props.inputs[0]))
             //  dispatch(disableUpdate())
-            dispatch(update({ userData: [] }))
+            dispatch(update({ userData: props.inputs.map(element => ({name: element, value: document.getElementsByName(element).value})) }))
         }
     })
 
