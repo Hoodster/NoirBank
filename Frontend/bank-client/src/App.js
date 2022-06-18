@@ -3,10 +3,8 @@ import RegistrationScene from './scenes/RegistrationScene';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <RegistrationScene></RegistrationScene>
-      </header>
+    <div className="App client-body">
+      <RegistrationScene></RegistrationScene>
     </div>
   );
 }

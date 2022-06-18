@@ -1,75 +1,77 @@
 import { Fragment } from "react"
-import RegistrationSlide from "../components/RegistrationSlide"
 import RegistrationSlider from "../components/RegistrationSlider"
 
 function RegistrationScene() {
-    const firstStage = ['usrFN', 'usrLN'], secondStage = ['usrID', 'usrIDNum'], thirdStage=['usrAddrStreet', 'usrAddrBuilding', 'usrAddrApartment', 'usrAddrPostal', 'usrAddrCity', 'usrAddrCountry'], fourthStage=['usrEmail', 'usrPwd']
     return (
-        <div>
             <RegistrationSlider slides={[
                 {
                     index: 1,
                     title: '1. First and last name',
-                    inputs: firstStage,
-                    form: <RegistrationSlide inputs={firstStage} formSlice={
+                    formSlice: 
                         <Fragment>
-                            <input name={firstStage[0]} placeholder='first name'></input>
-                            <input name={firstStage[1]} placeholder='last name'></input>
-                        </Fragment>
-                    }></RegistrationSlide>
+                            <input name={RegInputs.rFirstName} placeholder='first name'></input>
+                            <input name={RegInputs.rLastName} placeholder='last name'></input>
+                        </Fragment>          
                 },
                 {
                     index: 2,
                     title: '2. Identification',
-                    inputs: secondStage,
-                    form: <RegistrationSlide formSlice={
+                    formSlice: 
                         <Fragment>
-                            <input name={secondStage[0]} placeholder='id number'></input>
-                            <input name={secondStage[1]} placeholder='id card number'></input>
-                        </Fragment>
-                    }></RegistrationSlide>
+                            <input name={RegInputs.rID} placeholder='id number'></input>
+                            <input name={RegInputs.rPersonalID} placeholder='id card number'></input>
+                        </Fragment>            
                 },
                 {
                     index: 3,
                     title: '3. Home address',
-                    inputs: thirdStage,
-                    form: <RegistrationSlide formSlice={
+                    formSlice: 
                         <Fragment>
                             <div>
-                                <input name={thirdStage[0]} placeholder='street'></input>
+                                <input name={RegInputs.rAddressStreet} placeholder='street'></input>
                             </div>
                             <div>
-                                <input name={thirdStage[1]} placeholder='building'></input>
-                                <input name={thirdStage[2]} placeholder='apartment'></input>
+                                <input name={RegInputs.rAddressBuilding} placeholder='building'></input>
+                                <input name={RegInputs.rAddressApartment} placeholder='apartment'></input>
                             </div>
                             <div>
-                                <input name={thirdStage[3]} placeholder='postal code'></input>
-                                <input name={thirdStage[4]} placeholder='city'></input>
+                                <input name={RegInputs.rAddressPostalCode} placeholder='postal code'></input>
+                                <input name={RegInputs.rAddressCity} placeholder='city'></input>
                             </div>
-                            <input name={thirdStage[5]} placeholder='country'></input>
-                        </Fragment>
-                    }></RegistrationSlide>
+                            <input name={RegInputs.rAddressCountry} placeholder='country'></input>
+                        </Fragment>                
                 },
                 {
                     index: 4,
                     title: '4. Credentials',
-                    inputs: fourthStage,
-                    form: <RegistrationSlide formSlice={
+                    formSlice: 
                         <Fragment>
                             <div>
-                                <input name={fourthStage[0]} type='email' placeholder='email'></input>
+                                <input name={RegInputs.rEmail} type='email' placeholder='email'></input>
                             </div>
                             <div>
-                                <input name={fourthStage[1]} type='password' placeholder='password'></input>
+                                <input name={RegInputs.rPassword} type='password' placeholder='password'></input>
                             </div>
-                        </Fragment>
-                    }></RegistrationSlide>
+                        </Fragment>         
                 }
             ]}>
-
             </RegistrationSlider>
-        </div>
     )
 }
 
 export default RegistrationScene
+export const RegInputs = 
+{
+    rFirstName: 'usrFN',
+    rLastName: 'usrLN',
+    rID: 'usrID',
+    rPersonalID: 'usrIDNum',
+    rAddressStreet: 'usrAddrStreet',
+    rAddressBuilding: 'usrAddrBuilding',
+    rAddressApartment: 'usrAddrApartment',
+    rAddressPostalCode: 'usrAddrPostal',
+    rAddressCity: 'usrAddrCity',
+    rAddressCountry: 'usrAddrCountry',
+    rEmail: 'usrEmail',
+    rPassword: 'usrPswd'
+}
