@@ -10,13 +10,6 @@ function RegistrationSlider(props) {
 
     function nSlide(e) {
         e.preventDefault()
-        // console.log(slide.form.target[slide.inputs[0]])
-        // console.log(slide)
-        // slide.inputs.map(element => console.log(e.target[element]))
-
-        // dispatch(update({ userData: 
-        //    // ({ name: element, value: e.target[element].value })
-        //     ) }))
         dispatch(nextSlide())
     }
 
@@ -27,7 +20,7 @@ function RegistrationSlider(props) {
 
     function submitRegistration(e) {
         e.preventDefault()
-        const data = {
+        const userRegistrationData = {
             firstName: e.target[RegInputs.rFirstName].value,
             lastName: e.target[RegInputs.rLastName].value,
             email: e.target[RegInputs.rEmail].value,

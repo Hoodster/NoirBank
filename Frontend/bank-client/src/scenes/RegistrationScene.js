@@ -1,4 +1,5 @@
 import { Fragment } from "react"
+import { wordNoNumPattern, docIDPattern, personalIDPattern, postalCodePattern } from "../helpers/regex"
 import RegistrationSlider from "../components/RegistrationSlider"
 
 function RegistrationScene() {
@@ -9,8 +10,8 @@ function RegistrationScene() {
                     title: '1. First and last name',
                     formSlice: 
                         <Fragment>
-                            <input name={RegInputs.rFirstName} placeholder='first name'></input>
-                            <input name={RegInputs.rLastName} placeholder='last name'></input>
+                            <input name={RegInputs.rFirstName} pattern={wordNoNumPattern} placeholder='first name'></input>
+                            <input name={RegInputs.rLastName} pattern={wordNoNumPattern} placeholder='last name'></input>
                         </Fragment>          
                 },
                 {
@@ -18,8 +19,8 @@ function RegistrationScene() {
                     title: '2. Identification',
                     formSlice: 
                         <Fragment>
-                            <input name={RegInputs.rID} placeholder='id number'></input>
-                            <input name={RegInputs.rPersonalID} placeholder='id card number'></input>
+                            <input name={RegInputs.rID} pattern={docIDPattern} placeholder='id number'></input>
+                            <input name={RegInputs.rPersonalID} pattern={personalIDPattern} placeholder='id card number'></input>
                         </Fragment>            
                 },
                 {
@@ -35,7 +36,7 @@ function RegistrationScene() {
                                 <input name={RegInputs.rAddressApartment} placeholder='apartment'></input>
                             </div>
                             <div>
-                                <input name={RegInputs.rAddressPostalCode} placeholder='postal code'></input>
+                                <input name={RegInputs.rAddressPostalCode} pattern={postalCodePattern} placeholder='postal code'></input>
                                 <input name={RegInputs.rAddressCity} placeholder='city'></input>
                             </div>
                             <input name={RegInputs.rAddressCountry} placeholder='country'></input>
