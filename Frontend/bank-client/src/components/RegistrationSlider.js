@@ -1,6 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import { nextSlide, prevSlide } from "../redux/reducers/registerReducer";
 import { RegInputs } from "../scenes/RegistrationScene";
+import axios from 'axios'
+import { userAPI } from "../helpers/endpoints";
 
 function RegistrationSlider(props) {
     const register = useSelector(state => state.register)
@@ -36,6 +38,10 @@ function RegistrationSlider(props) {
                 country: e.target[RegInputs.rAddressCountry].value
             }
         }
+        axios.post(userAPI, userRegistrationData)
+        .then((success) => {
+        }, (fail) => {
+        })
     }
 
     return (
