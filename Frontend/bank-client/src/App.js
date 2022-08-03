@@ -1,10 +1,11 @@
-import './App.css';
+import './App.scss';
+import DashboardScene from './scenes/Dashboard/DashboardScene';
 import RegistrationScene from './scenes/RegistrationScene';
 
 function App() {
   return (
-    <div className="App client-body">
-      <RegistrationScene></RegistrationScene>
+    <div className="client-body">
+      <DashboardScene />
     </div>
   );
 }

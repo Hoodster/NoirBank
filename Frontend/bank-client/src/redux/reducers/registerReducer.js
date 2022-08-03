@@ -4,7 +4,7 @@ export const registerSlice = createSlice({
     name: 'register',
     initialState: {
         currentSlide: 1,
-        numberOfSlides: 4,
+        numberOfSlides: 5,
     },
     reducers: {
         nextSlide: (state) => {

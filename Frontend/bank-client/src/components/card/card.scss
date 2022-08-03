@@ -1,0 +1,64 @@
+$heightBase: 130px;
+$widthBase: 220px;
+
+.nb-card {
+    height: $heightBase;
+    width: $widthBase;
+    border-radius: 3.18mm;
+    border-width: 1.5px;
+    border-color: black;
+    border-style: solid;
+    background-size: cover;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    cursor: pointer;
+
+    &-row-last {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    span {
+        font-size: 13px;
+        color: white;
+        margin: 5px 6px;
+        user-select: none;
+    }
+
+    span.nb-cardType {
+        font-weight: bold;
+    }
+
+    &:hover {
+        filter: grayscale(50%);
+    }
+}
+
+.card-md {
+    height: $heightBase * 1.5;
+    width: $widthBase * 1.5;
+}
+
+.card-lg {
+    height: $heightBase * 2;
+    width: $widthBase * 2;
+}
+
+.card1 {
+    background-image: url(../../assets/cards/card1.svg);
+}
+
+.card2 {
+    background-image: url(../../assets/cards/card2.svg);
+}
+
+.card3 {
+    background-image: url(../../assets/cards/card3.svg);
+}
+
+.card4 {
+    background-image: url(../../assets/cards/card4.svg);
+}

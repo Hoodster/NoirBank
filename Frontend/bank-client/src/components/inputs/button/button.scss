@@ -1,0 +1,36 @@
+@import '../../../variables.scss';
+
+.nb-button {
+    border-radius: 20px;
+    background-color: $primary-color;
+    color: white;
+    border: 0;
+    padding: 7px 20px;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    cursor: pointer;
+
+    .nb-ico {
+        margin-right: 8px;
+    }
+
+    &:hover {
+        filter: brightness(90%);
+    }
+}
+
+.main {
+    padding: 14px 20px;
+    border-radius: 12px;
+    font-size: 14pt;
+}
+
+.secondary {
+    background-color: $secondary-color;
+}
+
+.accent {
+    background-color: white;
+    color: black;
+}

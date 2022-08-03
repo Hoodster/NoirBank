@@ -11,3 +11,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.disabled > div:nth-child(n) > input:nth-child(n),
+.disabled > input:nth-child(n) {
+  pointer-events: none;
+}

@@ -1,0 +1,16 @@
+// contants
+$primary-color: #363062;
+$secondary-color: #D8B9C3;
+
+$background-theme: #f1f0f5;
+$font-color: black;
+
+@media (prefers-colors-scheme: light) {
+    $background-theme: #f1f0f5;
+    $font-color: black;
+}
+
+@media (prefers-colors-scheme: dark) {
+    $background-theme: #282c34;
+    $font-color: white;
+}

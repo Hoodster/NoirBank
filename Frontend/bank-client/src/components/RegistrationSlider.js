@@ -48,9 +48,9 @@ function RegistrationSlider(props) {
         <form name='reg-f' onSubmit={(e) => submitRegistration(e)}>
             {
                 props.slides.map(slide => {
-                    const isCurrentSlide = slide.index === currentSlide
+                    const isCurrentSlide = slide.index === currentSlide || currentSlide === 5
                     return (
-                        <div key={`f-${slide.index}`} style={!isCurrentSlide ? { display: 'none'} : null}>
+                        <div className={currentSlide === 5 ? 'disabled' : null} key={`f-${slide.index}`} style={!isCurrentSlide ? { display: 'none'} : null}>
                             <h3>{slide.title}</h3>
                             {slide.formSlice}
                         </div>
