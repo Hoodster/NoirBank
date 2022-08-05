@@ -4,7 +4,7 @@ import './others-container.scss'
 
 function OthersContainer() {
 	return <div className="othersContainer">
-		<Button type="main" text="Payment history"></Button>
+		<Button type="main" text="Billing history"></Button>
 		<Button type='main' text="Make a transfer"></Button>
 	</div>
 }
