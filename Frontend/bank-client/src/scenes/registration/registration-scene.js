@@ -1,6 +1,6 @@
 import { Fragment } from "react"
-import { wordNoNumPattern, docIDPattern, personalIDPattern, postalCodePattern } from "../helpers/regex"
-import RegistrationSlider from "../components/RegistrationSlider"
+import { wordNoNumPattern, docIDPattern, personalIDPattern, postalCodePattern } from "../../helpers/regex"
+import RegistrationSlider from "../../components/registration-slider"
 
 function RegistrationScene() {
     return (

@@ -1,4 +1,4 @@
-import './DashboardSection.scss'
+import './dashboard-section.scss'
 function DashboardSection(props) {
     return (
         <div className='nb-dash-section'>

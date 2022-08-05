@@ -1,6 +1,6 @@
 const dbDomain = 'localhost:5000'
 const endpoints = {
-    userAPI: `${dbDomain}/api/user`
+	userAPI: `${dbDomain}/api/user`
 }
 
 export const {userAPI} = endpoints

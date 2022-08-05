@@ -1,13 +1,13 @@
-import './App.scss';
-import DashboardScene from './scenes/Dashboard/DashboardScene';
-import RegistrationScene from './scenes/RegistrationScene';
+import React from 'react'
+import './App.scss'
+import DashboardScene from './scenes/dashboard/dashboard-scene'
 
 function App() {
-  return (
-    <div className="client-body">
-      <DashboardScene />
-    </div>
-  );
+	return (
+		<div className="client-body">
+			<DashboardScene />
+		</div>
+	)
 }
 
-export default App;
+export default App
