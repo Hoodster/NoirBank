@@ -1,6 +1,6 @@
 import React from 'react'
 import MainBar from '../../components/mainbar/mainbar'
-import AccountsScene from './subscenes/accounts-scene'
+import AccountsScene from './subscenes/accounts/accounts-scene'
 import CardsScene from './subscenes/cards/cards-scene'
 import OthersScene from './subscenes/others/others-scene'
 

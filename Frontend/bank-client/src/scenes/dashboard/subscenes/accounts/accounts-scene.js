@@ -1,6 +1,6 @@
 import React from 'react'
-import DashboardSection from '../../../components/dashboard-section/dashboard-section'
-import Button from '../../../components/inputs/button/button'
+import DashboardSection from '../../../../components/dashboard-section/dashboard-section'
+import Button from '../../../../components/inputs/button/button'
 
 function AccountsScene() {
 	return <DashboardSection
