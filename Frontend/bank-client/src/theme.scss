@@ -1,0 +1,53 @@
+@import './functions.scss';
+
+//#363062
+//#7969ff
+// contants
+$primary-color-internal: #363062;
+$secondary-color-internal: #D8B9C3;
+
+
+// LIGHT
+$background-theme-light: #F1F0F5;
+$font-color-light: black;
+$accent-color-light: white;
+
+
+//DARK
+$background-theme-dark: #282C34;
+$font-color-dark: white;
+$accent-color-dark: black;
+
+:root {
+    --isDark: false;
+    --primary-color: #{$primary-color-internal};
+    --secondary-color: #{$secondary-color-internal};
+    --background-theme: #{$background-theme-light};
+    --font-color: #{$font-color-light};
+
+    --primary-color-hover: #{hoverColor($primary-color-internal, false)};
+    --primary-color-focus: #{focusColor($primary-color-internal, false)};
+
+    --secondary-color-hover: #{hoverColor($secondary-color-internal, false)};
+    --secondary-color-focus: #{focusColor($secondary-color-internal, false)};
+
+    --accent-color: #{$accent-color-light};
+    --accent-color-hover: #{hoverColor($accent-color-light, false)};
+    --accent-color-focus: #{focusColor($accent-color-light, false)};
+}
+
+[data-theme='dark'] {
+    --isDark: true;
+    --background-theme: #{$background-theme-dark};
+    --font-color: #{$font-color-dark};
+
+    --primary-color-hover: #{hoverColor($primary-color-internal, true)};
+    --primary-color-focus: #{focusColor($primary-color-internal, true)};
+
+    --secondary-color-hover: #{hoverColor($secondary-color-internal, true)};
+    --secondary-color-focus: #{focusColor($secondary-color-internal, true)};
+
+    --accent-color: #{$accent-color-dark};
+    --accent-color-hover: #{hoverColor($accent-color-dark, true)};
+    --accent-color-focus: #{focusColor($accent-color-dark, true)};
+}

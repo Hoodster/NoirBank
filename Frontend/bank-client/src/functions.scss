@@ -1,0 +1,30 @@
+
+@mixin buttonEvents($color) {
+    background-color: map-get($color, 'base');
+
+    &:hover {
+        background-color: map-get($color, 'hover');
+    }
+
+    &:focus {
+        background-color: map-get($color, 'focus');
+    }
+};
+
+@function hoverColor($color, $isDark) {
+    $hoverChange: 8%;
+    @return __filterColor($color, $isDark, $hoverChange)
+};
+
+@function focusColor($color, $isDark) {
+    $focusChange: 16%;
+    @return __filterColor($color, $isDark, $focusChange)
+};
+
+@function __filterColor($color, $isDark, $filterPercentage) {
+    @if ($isDark == true) {
+        @return lighten($color, $filterPercentage);
+    } @else {
+        @return darken($color, $filterPercentage);
+    }
+};

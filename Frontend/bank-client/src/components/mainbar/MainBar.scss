@@ -1,10 +1,15 @@
 @import url("//fonts.googleapis.com/css?family=Abril+Fatface");
 
 .nb-nav {
-    width: 100%;
     display: flex;
     justify-content: space-between;
     padding: 0 8px;
+
+    .account-nav {
+        display: flex;
+        align-items: center;
+        align-content: center;
+    }
 }
 
 .nb-nav span {

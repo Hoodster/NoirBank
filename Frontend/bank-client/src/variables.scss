@@ -1,16 +1,24 @@
-// contants
-$primary-color: #363062;
-$secondary-color: #D8B9C3;
+@import './theme.scss';
 
-$background-theme: #f1f0f5;
-$font-color: black;
+$primary-color: (
+    'base': $primary-color-internal,
+    'hover': var(--primary-color-hover),
+    'focus': var(--primary-color-focus),
+);
+$secondary-color: (
+    'base': $secondary-color-internal,
+    'hover': var(--secondary-color-hover),
+    'focus': var(--secondary-color-focus),
+);
 
-@media (prefers-colors-scheme: light) {
-    $background-theme: #f1f0f5;
-    $font-color: black;
-}
+$accent-color: (
+    'base': var(--accent-color),
+    'hover': var(--accent-color-hover),
+    'focus': var(--accent-color-focus),
+);
 
-@media (prefers-colors-scheme: dark) {
-    $background-theme: #282c34;
-    $font-color: white;
-}
+$background-theme: var(--background-theme);
+
+$font-color: var(--font-color);
+
+$isDark: var(--isDark);

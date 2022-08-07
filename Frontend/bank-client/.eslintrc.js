@@ -6,7 +6,8 @@ module.exports = {
 	},
 	extends: [
 		'eslint:recommended',
-		'plugin:react/recommended'
+		'plugin:react/recommended',
+		'stylelint-config-standard-scss'
 	],
 	parserOptions: {
 		ecmaFeatures: {

@@ -1,8 +1,9 @@
 @import '../../../variables.scss';
+@import '../../../functions.scss';
 
 .nb-button {
+    @include buttonEvents($primary-color);
     border-radius: 20px;
-    background-color: $primary-color;
     color: white;
     border: 0;
     padding: 7px 20px;
@@ -14,10 +15,6 @@
     .nb-ico {
         margin-right: 8px;
     }
-
-    &:hover {
-        filter: brightness(90%);
-    }
 }
 
 .main {
@@ -27,10 +24,10 @@
 }
 
 .secondary {
-    background-color: $secondary-color;
+    @include buttonEvents($secondary-color);
 }
 
 .accent {
-    background-color: white;
-    color: black;
+    @include buttonEvents($accent-color);
+    color: $font-color;
 }
