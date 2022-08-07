@@ -6,7 +6,7 @@ function AccountsScene() {
 	return <DashboardSection
 		title='My accounts'
 		emptyChildrenText='you have no accounts yet'
-		option={<Button style='accent' icon='add' text='New account'></Button>}>
+		option={<Button style='accent' icon='add' type='general' text='New account'></Button>}>
 	</DashboardSection>
 }
 

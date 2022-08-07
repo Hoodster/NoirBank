@@ -1,13 +1,30 @@
 
 @mixin buttonEvents($color) {
-    background-color: map-get($color, 'base');
+    
+    @if map-has-key($color, 'baseStart') == true {
+        background-image: __makeGradient(map-get($color, 'baseStart'), map-get($color, 'baseEnd'));
+        transition: 0.5s;
+        background-size: 200% auto;
 
-    &:hover {
-        background-color: map-get($color, 'hover');
-    }
+        &:hover {
+            background-image: __makeGradient(map-get($color, 'hoverStart'), map-get($color, 'hoverEnd'));
+            background-position: right center;
+        }
+    
+        &:active {
+            background-image: __makeGradient(map-get($color, 'activeStart'), map-get($color, 'activeEnd'));
+        }
 
-    &:focus {
-        background-color: map-get($color, 'focus');
+    } @else {
+        background-color: map-get($color, 'base');
+
+        &:hover {
+            background-color: map-get($color, 'hover');
+        }
+    
+        &:active {
+            background-color: map-get($color, 'focus');
+        }
     }
 };
 
@@ -27,4 +44,8 @@
     } @else {
         @return darken($color, $filterPercentage);
     }
+};
+
+@function __makeGradient($colorStart, $colorEnd) {
+    @return linear-gradient(143deg, $colorStart 0%, $colorEnd 51%, $colorStart 100%);
 };

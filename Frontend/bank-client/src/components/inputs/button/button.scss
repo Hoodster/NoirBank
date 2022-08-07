@@ -2,29 +2,33 @@
 @import '../../../functions.scss';
 
 .nb-button {
-    @include buttonEvents($primary-color);
-    border-radius: 20px;
-    color: white;
     border: 0;
-    padding: 7px 20px;
     display: flex;
     align-items: center;
     font-weight: 600;
     cursor: pointer;
 
     .nb-ico {
-        margin-right: 8px;
+        margin-right: $margin-horizontal;
     }
 }
 
+// styles
 .main {
     padding: 14px 20px;
-    border-radius: 12px;
+    border-radius: $border-radius;
     font-size: 14pt;
 }
 
-.secondary {
-    @include buttonEvents($secondary-color);
+.general {
+    border-radius: 20px;
+    padding: 7px 20px;
+}
+
+// color schemes
+.primary {
+    @include buttonEvents($primary-color);
+    color: white;
 }
 
 .accent {

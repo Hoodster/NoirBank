@@ -1,5 +1,5 @@
 import React from 'react'
-import MainBar from '../../components/mainbar/mainbar'
+import MainBar from '../../components/mainbar/main-bar'
 import AccountsScene from './subscenes/accounts/accounts-scene'
 import CardsScene from './subscenes/cards/cards-scene'
 import OthersScene from './subscenes/others/others-scene'

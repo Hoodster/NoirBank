@@ -1,4 +1,6 @@
+@import '../../../../variables.scss';
+
 .cardsContainer {
     display: inline-flex;
-    gap: 8px;
+    gap: $margin-horizontal;
 }

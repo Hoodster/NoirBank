@@ -1,3 +1,5 @@
+@import '../../variables.scss';
+
 .nb-dash-section {
     margin: 40px 10%;
 
@@ -11,7 +13,7 @@
         .title {
             font-size: 30pt;
             font-weight: 600;
-            margin-right: 8px;
+            margin-right: $margin-horizontal;
         }
     }
 

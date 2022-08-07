@@ -3,7 +3,7 @@
 .nb-nav {
     display: flex;
     justify-content: space-between;
-    padding: 0 8px;
+    padding: 0 $margin-horizontal;
 
     .account-nav {
         display: flex;
