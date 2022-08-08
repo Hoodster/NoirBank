@@ -21,6 +21,13 @@ $font-color: var(--font-color);
 
 $isDark: var(--isDark);
 
-$border-radius: 20px;
+$border-radius: (
+    'card': 3.18mm,
+    'normal': 20px,
+);
+
+$fontSize: (
+    'small': 13px
+);
 
 $margin-horizontal: 8px;

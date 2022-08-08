@@ -1,9 +1,11 @@
 @import url("//fonts.googleapis.com/css?family=Abril+Fatface");
+@import '../../variables.scss';
 
 .nb-nav {
     display: flex;
     justify-content: space-between;
     padding: 0 $margin-horizontal;
+    margin-bottom: 40px;
 
     .account-nav {
         display: flex;

@@ -6,7 +6,7 @@
     display: flex;
     align-items: center;
     font-weight: 600;
-    cursor: pointer;
+    border-radius: map-get($border-radius,'normal');
 
     .nb-ico {
         margin-right: $margin-horizontal;
@@ -16,12 +16,10 @@
 // styles
 .main {
     padding: 14px 20px;
-    border-radius: $border-radius;
     font-size: 14pt;
 }
 
 .general {
-    border-radius: 20px;
     padding: 7px 20px;
 }
 

@@ -1,5 +1,13 @@
 
+@mixin withBorder($radiusMap, $width, $color) {
+    border-radius: map-get($border-radius, $radiusMap);
+    border-style: solid;
+    border-width: $width;
+    border-color: $color;
+}
+
 @mixin buttonEvents($color) {
+    cursor: pointer;
     
     @if map-has-key($color, 'baseStart') == true {
         background-image: __makeGradient(map-get($color, 'baseStart'), map-get($color, 'baseEnd'));

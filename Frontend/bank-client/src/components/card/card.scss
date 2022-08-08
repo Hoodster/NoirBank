@@ -1,13 +1,11 @@
+@import '../../variables.scss';
 $heightBase: 130px;
 $widthBase: 220px;
 
 .nb-card {
+    @include withBorder('card', 1.5px, black);
     height: $heightBase;
     width: $widthBase;
-    border-radius: 3.18mm;
-    border-width: 1.5px;
-    border-color: black;
-    border-style: solid;
     background-size: cover;
 
     display: flex;
@@ -22,7 +20,7 @@ $widthBase: 220px;
     }
 
     span {
-        font-size: 13px;
+        font-size: map-get($fontSize, 'small');
         color: white;
         margin: 5px 6px;
         user-select: none;
