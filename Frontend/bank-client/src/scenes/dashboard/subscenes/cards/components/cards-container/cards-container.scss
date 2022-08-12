@@ -1,0 +1,17 @@
+.swiper {
+    width: 100%;
+    height: 100%;
+  }
+
+.swiper-slide {
+    width: 220px
+  }
+  
+  .swiper-slide:nth-child(n) {
+    width: 240px;
+  }
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    color:white;
+  }
