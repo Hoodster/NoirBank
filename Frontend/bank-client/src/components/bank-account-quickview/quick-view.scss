@@ -1,11 +1,12 @@
 @import '../../variables.scss';
 
 .nb-account-quickview {
-    @include withBorder('card', 2.5px, $font-color);
+    @include withShadow(3px, $shadow-color);
+    @include withBorder('card', 0, $font-color);
     @include buttonEvents($accent-color);
     display: flex;
-    width: 300px;
-    height: 160px;
+    width: map-get($account-quickview, 'width');
+    height: map-get($account-quickview, 'height');
     flex-direction: column;
     justify-content: space-around;
     padding: 2px 5px;

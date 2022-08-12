@@ -1,9 +1,10 @@
 @import '../../variables.scss';
-$heightBase: 130px;
-$widthBase: 220px;
+$heightBase: map-get($card, 'height');
+$widthBase: map-get($card, 'width');
 
 .nb-card {
-    @include withBorder('card', 1.5px, black);
+    @include withShadow(4px, $shadow-color);
+    @include withBorder('card', 0, black);
     height: $heightBase;
     width: $widthBase;
     background-size: cover;
@@ -20,7 +21,7 @@ $widthBase: 220px;
     }
 
     span {
-        font-size: map-get($fontSize, 'small');
+        font-size: map-get($font-size, 'small');
         color: white;
         margin: 5px 6px;
         user-select: none;

@@ -1,3 +1,7 @@
+@mixin withShadow($size, $color) {
+    box-shadow: $size $size 16px 0px $color;
+    margin: 21px 0;
+}
 
 @mixin withBorder($radiusMap, $width, $color) {
     border-radius: map-get($border-radius, $radiusMap);

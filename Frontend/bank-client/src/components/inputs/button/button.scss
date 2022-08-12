@@ -32,4 +32,5 @@
 .accent {
     @include buttonEvents($accent-color);
     color: $font-color;
+    border-radius: map-get($border-radius,'rounded');
 }

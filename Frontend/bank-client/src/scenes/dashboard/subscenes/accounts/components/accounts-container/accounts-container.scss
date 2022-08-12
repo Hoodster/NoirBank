@@ -1,15 +1,15 @@
 @import '../../../../../../variables.scss';
 
-.cards-container {
-    width: 100%;
+.accounts-container {
     height: 100%;
+    width: 100%;
 
     .swiper-slide {
-      width: map-get($card, 'width');
+      width: map-get($account-quickview, 'width');
     }
   
     .swiper-button-prev,
     .swiper-button-next {
-      color: white;
+      color: $font-color;
     }
 }

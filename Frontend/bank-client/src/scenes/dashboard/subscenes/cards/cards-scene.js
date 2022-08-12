@@ -2,7 +2,6 @@ import React from 'react'
 import DashboardSection from '../../../../components/dashboard-section/dashboard-section'
 import Button from '../../../../components/inputs/button/button'
 
-import './cards-scene.scss'
 import CardsContainer from './components/cards-container/cards-container'
 
 function CardsScene() {
@@ -10,6 +9,7 @@ function CardsScene() {
 		<DashboardSection 
 			title='My cards' 
 			emptyChildrenText='you have no cards yet' 
+			height='sm'
 			option={<Button style='accent' type='general' icon='add' text='New card'></Button>}>
 			<CardsContainer/>
 		</DashboardSection>

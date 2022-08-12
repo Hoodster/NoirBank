@@ -23,11 +23,25 @@ $isDark: var(--isDark);
 
 $border-radius: (
     'card': 3.18mm,
-    'normal': 20px,
+    'normal': 8px,
+    'rounded': 20px,
 );
 
-$fontSize: (
+$font-size: (
     'small': 13px
 );
 
 $margin-horizontal: 8px;
+
+$shadow-color: var(--shadow);
+
+// COMPONENTS
+$account-quickview: (
+    'width': 400px,
+    'height': 230px,
+);
+
+$card: (
+    'height': 130px,
+    'width': 220px,
+);

@@ -1,33 +1,29 @@
+/* eslint-disable react/jsx-key */
 import React from 'react'
-import {Swiper, SwiperSlide} from 'swiper/react'
-import { Navigation }from 'swiper'
 import Card from '../../../../../../components/card/card'
-import 'swiper/css'
-import 'swiper/css/navigation'
 import './cards-container.scss'
+import Swipeable from '../../../../../../components/swipeable/swipeable'
 
 function CardsContainer() {
 	return (
-		<>
-			<Swiper
-				slidesPerView={'auto'}
-				spaceBetween={10}
-				navigation
-				modules={[Navigation]}>
-				<SwiperSlide><Card cardStyle="card1" cardNo="1001000000001001" expiration="10/22" type='Credit'/></SwiperSlide>
-				<SwiperSlide><Card cardStyle="card2" cardNo="0000000000000000" expiration="10/22" type='Debit'/></SwiperSlide>
-				<SwiperSlide><Card cardStyle="card3" cardNo="0000000000000000" expiration="10/22" type='Debit'/></SwiperSlide>
-				<SwiperSlide><Card cardStyle="card4" cardNo="0000000000000000" expiration="10/22" type='Credit'/></SwiperSlide>
-				<SwiperSlide><Card cardStyle="card1" cardNo="1001000000001001" expiration="10/22" type='Credit'/></SwiperSlide>
-				<SwiperSlide><Card cardStyle="card2" cardNo="0000000000000000" expiration="10/22" type='Debit'/></SwiperSlide>
-				<SwiperSlide><Card cardStyle="card3" cardNo="0000000000000000" expiration="10/22" type='Debit'/></SwiperSlide>
-				<SwiperSlide><Card cardStyle="card4" cardNo="0000000000000000" expiration="10/22" type='Credit'/></SwiperSlide>
-				<SwiperSlide><Card cardStyle="card1" cardNo="1001000000001001" expiration="10/22" type='Credit'/></SwiperSlide>
-				<SwiperSlide><Card cardStyle="card2" cardNo="0000000000000000" expiration="10/22" type='Debit'/></SwiperSlide>
-				<SwiperSlide><Card cardStyle="card3" cardNo="0000000000000000" expiration="10/22" type='Debit'/></SwiperSlide>
-				<SwiperSlide><Card cardStyle="card4" cardNo="0000000000000000" expiration="10/22" type='Credit'/></SwiperSlide>
-			</Swiper>
-		</>
+		<div className='cards-container'>
+			<Swipeable
+				space={25}
+				data={[
+					<Card cardStyle="card1" cardNo="1001000000001001" expiration="10/22" type='Credit'/>,
+					<Card cardStyle="card2" cardNo="0000000000000000" expiration="10/22" type='Debit'/>,
+					<Card cardStyle="card3" cardNo="0000000000000000" expiration="10/22" type='Debit'/>,
+					<Card cardStyle="card4" cardNo="0000000000000000" expiration="10/22" type='Credit'/>,
+					<Card cardStyle="card1" cardNo="1001000000001001" expiration="10/22" type='Credit'/>,
+					<Card cardStyle="card2" cardNo="0000000000000000" expiration="10/22" type='Debit'/>,
+					<Card cardStyle="card3" cardNo="0000000000000000" expiration="10/22" type='Debit'/>,
+					<Card cardStyle="card4" cardNo="0000000000000000" expiration="10/22" type='Credit'/>,
+					<Card cardStyle="card1" cardNo="1001000000001001" expiration="10/22" type='Credit'/>,
+					<Card cardStyle="card2" cardNo="0000000000000000" expiration="10/22" type='Debit'/>,
+					<Card cardStyle="card3" cardNo="0000000000000000" expiration="10/22" type='Debit'/>,
+					<Card cardStyle="card4" cardNo="0000000000000000" expiration="10/22" type='Credit'/>,
+				]} />
+		</div>
 	)
 }
 

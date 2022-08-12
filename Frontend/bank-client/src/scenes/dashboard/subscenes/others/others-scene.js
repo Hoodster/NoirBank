@@ -4,7 +4,7 @@ import OthersContainer from './components/others-container'
 
 function OthersScene() {
 	return(
-		<DashboardSection lowHeight={true} title='Others'>
+		<DashboardSection height='md' title='Others'>
 			<OthersContainer/>
 		</DashboardSection>
 	)

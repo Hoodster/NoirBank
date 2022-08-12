@@ -8,7 +8,9 @@ function DashboardSection(props) {
 				<span className="title">{props.title}</span>
 				{props.option ? props.option : null}
 			</div>
-			<div className={`container${!props.children ? ' container-empty' : ''} ${props.lowHeight ? ' sm' : ''}`}>
+			<div className={`container
+			${!props.children ? ' container-empty' : ''}
+			${props.height ? props.height : ''}`}>
 				{props.children 
 					? props.children 
 					: <span className='emptyMessage'>{props.emptyChildrenText}</span>}
