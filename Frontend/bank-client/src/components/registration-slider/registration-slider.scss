@@ -1,0 +1,33 @@
+@import '../../variables.scss';
+
+.action-buttons {
+    display: inline-flex;
+    justify-content: flex-end;
+    margin-top: 30px;
+}
+
+.form-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-direction: column;
+}
+
+.stepper {
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.step-title {
+    color: $font-color;
+}
+
+.Mui-active,
+.Mui-completed {
+    color: map-get($primary-color, 'baseEnd') !important;
+}
+
+h5 {
+    margin: 10px 0 5px 0;
+}

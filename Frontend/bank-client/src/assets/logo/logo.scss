@@ -1,14 +1,26 @@
+$noir-size: 23pt;
+$bank-size: 24pt;
+
 .logo {
     display: flex;
     align-items: center;
     user-select: none;
+    font-weight: bold;
 
     .noir {
         font-family: 'Abril Fatface';
-        font-size: 23pt;
+        font-size: $noir-size;
+
+        &.md {
+            font-size: $noir-size * 1.4;
+        }
     }
 
     .bank {
-        font-size: 24pt;
+        font-size: $bank-size;
+
+        &.md {
+            font-size: $bank-size * 1.4;
+        }
     }
 }

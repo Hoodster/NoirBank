@@ -30,10 +30,19 @@
             margin-top: 5px;
         }
 
+        .number {
+            font-size: 12pt;
+        }
+
         .amount {
             font-size: 30px;
             font-weight: bold;
             margin-top: 8px;
+        }
+
+        .currency {
+            font-size: 25px;
+            color: rgb(154, 154, 154)
         }
     }
 

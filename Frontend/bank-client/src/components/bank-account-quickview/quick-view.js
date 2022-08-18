@@ -7,8 +7,14 @@ function BankAccountQuickview() {
 			<div className='details'>
 				<span className='type'>Business</span>
 				<span className='name'>Sample account name</span>
-				<span className='number'>1090 1014 0000 0712 1981 2874</span>
-				<span className='amount'>4600.87 PLN</span>
+				<div>
+					<span className='number'>1090 1014 0000 0712 1981 2874</span>
+					<div>
+						<span className='amount'>4600</span>
+						<span className='amount-c'>.87</span>
+						<span className='currency'>  PLN</span>
+					</div>
+				</div>
 			</div>
 		</div>
 	)

@@ -3,12 +3,22 @@ import { createSlice } from '@reduxjs/toolkit'
 export const registerSlice = createSlice({
 	name: 'register',
 	initialState: {
-		currentSlide: 1,
-		numberOfSlides: 5,
+		currentSlide: 0,
+		data: {
+			firstName: null,
+			lastName: null,
+			address: null,
+			idNumber: null,
+			idCardNumber: null,
+		}
 	},
 	reducers: {
-		nextSlide: (state) => {
-			state.currentSlide++        
+		nextSlide: (state, payload) => {
+			state.currentSlide++,
+			state.data = {
+				...state.data,
+				payload
+			}     
 		},
 		prevSlide: (state) => {
 			state.currentSlide--
