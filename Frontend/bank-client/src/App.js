@@ -5,6 +5,7 @@ import DashboardScene from './scenes/dashboard/dashboard-scene'
 import RegistrationScene from './scenes/registration/registration-scene'
 import { Routes, Route } from 'react-router-dom'
 import LoginScene from './scenes/login/login-scene'
+import ModalBase from './components/modal/modal-base'
 
 function App() {
 	return (
@@ -14,6 +15,7 @@ function App() {
 				<Route path='/registration' element={<RegistrationScene/>}/>
 				<Route path='/login' element={<LoginScene/>}/>
 			</Routes>
+			<ModalBase/>
 		</div>
 	)
 }

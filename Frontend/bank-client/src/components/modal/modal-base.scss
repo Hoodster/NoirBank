@@ -1,0 +1,51 @@
+@import '../../variables.scss';
+
+@mixin withFullscreen() {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    top: 0;
+    right: 0;
+
+}
+
+.modal-container {
+    @include withFullscreen();
+    z-index: 30;
+    display: flex;
+    flex: 1;
+    align-items: center;
+    overflow: auto;
+    outline: 0;
+
+    .modal-background {
+        @include withFullscreen();
+        background: black;
+        opacity: 50%;
+        z-index: 31;
+    }
+
+    .modal {
+        position: relative;
+        margin: auto;
+    }
+}
+
+.modal {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    z-index: 32;
+    width: 460px;
+    max-width: 100%;
+    margin: auto;
+    padding: 15px 30px;
+    background-color: map-get($accent-color, 'base');
+    background-clip: padding-box;
+    border-radius: map-get($border-radius, 'rounded');
+    box-shadow: 0 1px 1px 1px fade-out(black, .95);
+
+    &-title {
+        margin: 0;
+    }
+}
