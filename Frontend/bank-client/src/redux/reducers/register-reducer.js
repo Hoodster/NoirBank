@@ -1,27 +1,48 @@
+/* eslint-disable no-undef */
 import { createSlice } from '@reduxjs/toolkit'
 
 export const registerSlice = createSlice({
-	name: 'register',
+	name: 'registration',
 	initialState: {
 		currentSlide: 0,
-		data: {
-			firstName: null,
-			lastName: null,
-			address: null,
-			idNumber: null,
-			idCardNumber: null,
+		form: {
+			firstName: '',
+			lastName: '',
+			email: '',
+			password: '',
+			documentID: '',
+			personalID: '',
+			address: {
+				street: '',
+				building: '',
+				apartment: '',
+				postalCode: '',
+				city: '',
+				country: '',
+			}
 		}
 	},
 	reducers: {
-		nextSlide: (state, payload) => {
-			state.currentSlide++,
-			state.data = {
-				...state.data,
-				payload
-			}     
+		nextSlide: (state) => {
+			state.currentSlide++ 
 		},
-		prevSlide: (state) => {
+		previousSlide: (state) => {
 			state.currentSlide--
+		},
+		setFormValue: (state, action) => {
+			state.form = {
+				...state.form,
+				...action.payload
+			}
+		},
+		setFormAddressValue: (state, action) => {
+			state.form = {
+				...state.form,
+				address: {
+					...state.form.address,
+					...action.payload
+				}
+			}
 		},
 		reset: (state) => {
 			// eslint-disable-next-line no-unused-vars
@@ -30,5 +51,5 @@ export const registerSlice = createSlice({
 	}
 })
 
-export const { nextSlide, prevSlide, reset } = registerSlice.actions
+export const { nextSlide, previousSlide, reset, setFormValue, setFormAddressValue } = registerSlice.actions
 export default registerSlice.reducer

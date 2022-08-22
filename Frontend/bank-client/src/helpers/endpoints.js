@@ -1,4 +1,4 @@
-const dbDomain = 'localhost:5000'
+const dbDomain = 'http://localhost:5000'
 const endpoints = {
 	userAPI: `${dbDomain}/api/user`
 }
