@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import { createSlice } from '@reduxjs/toolkit'
 
 export const registerSlice = createSlice({
@@ -24,7 +23,7 @@ export const registerSlice = createSlice({
 	},
 	reducers: {
 		nextSlide: (state) => {
-			state.currentSlide++ 
+			state.currentSlide++
 		},
 		previousSlide: (state) => {
 			state.currentSlide--

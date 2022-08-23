@@ -48,4 +48,22 @@
     &-title {
         margin: 0;
     }
+
+    .content {
+        margin: 10px 0;
+        display: flex;
+        flex-direction: column;
+
+        &[position = left] {
+            align-items: flex-start;
+        }
+
+        &[position = center] {
+            align-items: center;
+        }
+
+        &[position = right] {
+            align-items: flex-end;
+        }
+    }
 }

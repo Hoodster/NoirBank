@@ -8,28 +8,37 @@ import './registration-slider.scss'
 import Stepper from '@mui/material/Stepper'
 import Step from '@mui/material/Step'
 import StepLabel from '@mui/material/StepLabel'
-import ActionButtons from '../action-buttons/action-buttons'
-import { RegInputs } from '../../registration-scene'
 import { getCurrentSlide, getForm } from '../../selectors'
+import ActionButtons from '../../../../components/action-buttons/action-buttons'
 
 function RegistrationSlider(props) {
 	const currentSlide = getCurrentSlide()
 	const form = getForm()
 	const dispatch = useDispatch()
 
-	function nSlide() {
-		dispatch(nextSlide())
-	}
+	const isFirstSlide = (slide) => slide === 0
+	const isLastSlide = (slide) => slide === 4
 
-	function pSlide() {
-		dispatch(previousSlide())
-	}
-	
 	const submitRegistration = () => {
 		axios.post(userAPI, form)
 			.then(() => {
 			}, () => {
 			})
+	}
+
+	const createAccountActionButton = {
+		text: 'Create new account',
+		action: submitRegistration
+	}
+
+	const nextSlideActionButton = {
+		text: 'Next',
+		action: () => dispatch(nextSlide())
+	}
+
+	const previousSlideActionButton = {
+		text: 'Previous',
+		action: () => dispatch(previousSlide())
 	}
 
 	return (
@@ -42,18 +51,15 @@ function RegistrationSlider(props) {
 				))}
 			</Stepper>
 			<ActionButtons
-				className='action-buttons'
-				isFirstSlide={currentSlide === 0}
-				isLastSlide={currentSlide !== 4}
-				onPrevious={pSlide}
-				onNext={nSlide}
-				onSubmit={submitRegistration}/>
+				className='reg-action-buttons'
+				primaryActionButton={isLastSlide(currentSlide) ? createAccountActionButton : nextSlideActionButton}
+				secondaryActionButton={!isFirstSlide(currentSlide) ? previousSlideActionButton : null} />
 			<form name='reg-f' className={`${props.className ? ' ' + props.className : ''}`}>
 				{
 					props.slides.map(slide => {
 						const isCurrentSlide = slide.index === currentSlide
 						return (
-							<div className='form-content' key={`f-${slide.index}`} style={!isCurrentSlide ? { display: 'none'} : null}>
+							<div className='form-content' key={`f-${slide.index}`} style={!isCurrentSlide ? { display: 'none' } : null}>
 								{slide.formSlice}
 							</div>
 						)

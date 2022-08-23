@@ -1,9 +1,7 @@
 @import '../../../../variables.scss';
 
-.action-buttons {
-    display: inline-flex;
+.reg-action-buttons {
     justify-content: flex-end;
-    gap: 5px;
     margin-bottom: 25px;
 }
 

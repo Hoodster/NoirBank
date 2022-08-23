@@ -1,15 +1,17 @@
 import axios from 'axios'
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Logo from '../../assets/logo/logo'
 import Button from '../../components/inputs/button/button'
 import { userAPI } from '../../helpers/endpoints'
 import './login-scene.scss'
 
 function LoginScene() {
+	const navigate = useNavigate()
 
 	const signInButton = () => {
 		axios.post(userAPI).then()
+		navigate('/')
 	}
 
 	return(
