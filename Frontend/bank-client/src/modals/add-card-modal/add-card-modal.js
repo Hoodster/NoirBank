@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import ModalBase from '../../components/modal/modal-base'
+import { close } from '../../redux/reducers/modal-reducer'
 
 function AddCardModal() {
 	const dispatch = useDispatch()
@@ -16,9 +17,6 @@ function AddCardModal() {
 	}
 	return (
 		<ModalBase primaryAction={primaryActionButton} secondaryAction={secondaryActionButton} contentPosition='center' title='Add new card'>
-			<div>
-				shit
-			</div>
 		</ModalBase>
 	)
 }

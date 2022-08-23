@@ -4,12 +4,6 @@ import './action-buttons.scss'
 
 function ActionButtons(props) {
 	const additionalClass = props.className ? ' ' + props.className : ''
-	const primaryActionButton = props.primaryActionButton
-		? props.primaryActionButton
-		: {
-			text: 'Ok',
-			action: () => console.log('ok')
-		}
 
 	let primaryButtonProps = {
 		icon: ''
@@ -19,9 +13,8 @@ function ActionButtons(props) {
 		icon: ''
 	}
 
-	if (primaryActionButton.icon) {
-		console.log(primaryActionButton)
-		primaryButtonProps.icon = primaryActionButton.icon
+	if (props.primaryActionButton.icon) {
+		primaryButtonProps.icon = props.primaryActionButton.icon
 	}
 
 	const addSecondaryButton = () => {
@@ -38,7 +31,7 @@ function ActionButtons(props) {
 			{
 				addSecondaryButton()
 			}
-			<Button type='main' style='primary' text={primaryActionButton.text} onClick={primaryActionButton.action} {...primaryButtonProps} />
+			<Button type='main' style='primary' text={props.primaryActionButton.text} onClick={props.primaryActionButton.action} {...primaryButtonProps} />
 		</div>
 	)
 }

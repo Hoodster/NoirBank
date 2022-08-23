@@ -2,6 +2,7 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import DashboardSection from '../../../../components/dashboard-section/dashboard-section'
 import Button from '../../../../components/inputs/button/button'
+import { CREATE_ACCOUNT } from '../../../../modals/constants'
 import { open } from '../../../../redux/reducers/modal-reducer'
 import AccountsContainer from './components/accounts-container/accounts-container'
 
@@ -9,7 +10,7 @@ function AccountsScene() {
 	const dispatch = useDispatch()
 
 	const createAccountModal = () => {
-		dispatch(open())
+		dispatch(open(CREATE_ACCOUNT))
 	}
 
 	return <DashboardSection

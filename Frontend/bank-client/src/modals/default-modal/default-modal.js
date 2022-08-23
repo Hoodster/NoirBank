@@ -3,24 +3,19 @@ import { useDispatch } from 'react-redux'
 import ModalBase from '../../components/modal/modal-base'
 import { close } from '../../redux/reducers/modal-reducer'
 
-function CreateAccountModal() {
+function DefaultModal() {
 	const dispatch = useDispatch()
 
 	const primaryAction = {
-		text: 'Create new account',
-		action: () => alert('account created'),
-		icon: 'wallet'
-	}
-
-	const secondaryAction = {
-		text: 'Cancel',
+		text: 'Ok',
 		action: () => dispatch(close())
 	}
 
 	return (
-		<ModalBase title='Create new account' primaryAction={primaryAction} secondaryAction={secondaryAction}>
+		<ModalBase title='Error' primaryAction={primaryAction}>
+			<span>{'This action isn\'t supported or error has occured.'}</span>
 		</ModalBase>
 	)
 }
 
-export default CreateAccountModal
+export default DefaultModal
