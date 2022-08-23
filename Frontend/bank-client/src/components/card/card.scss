@@ -36,14 +36,21 @@ $widthBase: map-get($card, 'width');
     }
 }
 
-.card-md {
-    height: $heightBase * 1.5;
-    width: $widthBase * 1.5;
-}
-
-.card-lg {
-    height: $heightBase * 2;
-    width: $widthBase * 2;
+.card {
+    &-sm {
+        height: $heightBase * 0.5;
+        width: $widthBase * 0.5;
+    }
+    
+    &-md {
+        height: $heightBase * 1.5;
+        width: $widthBase * 1.5;
+    }
+    
+    &-lg {
+        height: $heightBase * 2;
+        width: $widthBase * 2;
+    }
 }
 
 .card1 {

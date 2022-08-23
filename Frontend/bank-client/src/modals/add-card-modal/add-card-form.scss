@@ -1,0 +1,60 @@
+h5 {
+	align-self: flex-start;
+}
+
+.card-type {
+	position: relative;
+
+	&>label[isSelected = false]>span {
+		display: none;
+	}
+
+	>label>.nb-ico {
+		display: none;
+
+		&[data-isEnabled=true] {
+		display: block;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-10%, -50%);
+		font-weight: bold;
+		font-size: 30pt;
+		color: lightgreen;
+		}
+
+		&[data-isEnabled=false] {
+			display: none;
+		}
+	}
+}
+
+select {
+	margin: 21px 0;
+	width: 60%;
+}
+
+.category-input:checked span {
+	background:red; /* put your image here*/
+	 height: 50px;
+	  width: 50px;
+	  position: absolute;
+	 top:0;
+	 left:0;
+	}
+
+.card-patterns {
+	display: flex;
+	gap: 10px;
+
+	.input-hidden {
+		position: absolute;
+		visibility: hidden;
+		opacity: 0;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 40;
+	}
+}
