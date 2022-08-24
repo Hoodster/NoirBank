@@ -26,10 +26,16 @@
     <None Remove="Microsoft.EntityFrameworkCore" />
     <None Remove="Microsoft.EntityFrameworkCore.SqlServer" />
     <None Remove="Microsoft.EntityFrameworkCore.Design" />
+    <None Remove="Repositories\" />
+    <None Remove="Repositories\User\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NoirBank.Data\NoirBank.Data.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Repositories\" />
+    <Folder Include="Repositories\User\" />
   </ItemGroup>
 </Project>

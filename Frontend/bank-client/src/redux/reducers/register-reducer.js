@@ -1,26 +1,28 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+const registerInitialState = {
+	currentSlide: 0,
+	form: {
+		firstName: '',
+		lastName: '',
+		email: '',
+		password: '',
+		documentID: '',
+		personalID: '',
+		address: {
+			street: '',
+			building: '',
+			apartment: '',
+			postalCode: '',
+			city: '',
+			country: '',
+		}
+	}
+}
+
 export const registerSlice = createSlice({
 	name: 'registration',
-	initialState: {
-		currentSlide: 0,
-		form: {
-			firstName: '',
-			lastName: '',
-			email: '',
-			password: '',
-			documentID: '',
-			personalID: '',
-			address: {
-				street: '',
-				building: '',
-				apartment: '',
-				postalCode: '',
-				city: '',
-				country: '',
-			}
-		}
-	},
+	initialState: registerInitialState,
 	reducers: {
 		nextSlide: (state) => {
 			state.currentSlide++
@@ -45,7 +47,8 @@ export const registerSlice = createSlice({
 		},
 		reset: (state) => {
 			// eslint-disable-next-line no-unused-vars
-			state = this.initialState
+			state.currentSlide = registerInitialState.currentSlide
+			state.form = registerInitialState.form
 		}
 	}
 })

@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { nextSlide, previousSlide } from '../../../../redux/reducers/register-reducer'
+import { nextSlide, previousSlide, reset } from '../../../../redux/reducers/register-reducer'
 import axios from 'axios'
 import { userAPI } from '../../../../helpers/endpoints'
 import './registration-slider.scss'
@@ -20,9 +20,11 @@ function RegistrationSlider(props) {
 	const isLastSlide = (slide) => slide === 4
 
 	const submitRegistration = () => {
-		axios.post(userAPI, form)
+		axios.post(`${userAPI}/register`, form)
 			.then(() => {
-			}, () => {
+				dispatch(reset())
+			}).catch(() => {
+				dispatch(reset())
 			})
 	}
 

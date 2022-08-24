@@ -12,10 +12,12 @@
     <None Remove="Entities\" />
     <None Remove="Enums\" />
     <None Remove="Microsoft.EntityFrameworkCore" />
+    <None Remove="DTO\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\" />
     <Folder Include="Enums\" />
+    <Folder Include="DTO\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.15" />
