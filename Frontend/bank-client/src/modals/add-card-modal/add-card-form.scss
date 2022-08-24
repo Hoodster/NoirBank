@@ -1,5 +1,11 @@
-h5 {
+
+.add-card-title {
 	align-self: flex-start;
+}
+
+.add-card-select {
+	margin: 21px 0;
+	width: 60%;
 }
 
 .card-type {
@@ -27,11 +33,6 @@ h5 {
 			display: none;
 		}
 	}
-}
-
-select {
-	margin: 21px 0;
-	width: 60%;
 }
 
 .category-input:checked span {

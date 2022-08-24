@@ -12,13 +12,13 @@ function AddCardForm() {
 	]
 	return (
 		<>
-			<h5>Card type</h5>
-			<select>
+			<h5 className='add-card-title'>Card type</h5>
+			<select className='add-card-select'>
 				<option value={'debit'}>Debit</option>
 				<option value={'credit'}>Credit</option>
 			</select>
-			<h5>Assigned account</h5>
-			<select>
+			<h5 className='add-card-title'>Assigned account</h5>
+			<select className='add-card-select'>
 				<option value={'1'}>Account 1</option>
 				<option value={'2'}>Account 2</option>
 				<option value={'3'}>Account 3</option>
@@ -26,7 +26,7 @@ function AddCardForm() {
 				<option value={'5'}>Account 5</option>
 				<option value={'6'}>Account 6</option>
 			</select>
-			<h5>Card design</h5>
+			<h5 className='add-card-title'>Card design</h5>
 			<div className='card-patterns'>
 				{
 					cards.map((card) => {
