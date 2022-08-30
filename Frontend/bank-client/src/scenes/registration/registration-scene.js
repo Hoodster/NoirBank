@@ -41,12 +41,12 @@ function RegistrationScene() {
 								name={RegInputs.rFirstName}
 								onChange={(e) => setValue({ firstName: e.target.value })}
 								pattern={wordNoNumPattern}
-								placeholder='first name'></input>
+								placeholder='first name'/>
 							<input
 								name={RegInputs.rLastName}
 								onChange={(e) => setValue({ lastName: e.target.value })}
 								pattern={wordNoNumPattern}
-								placeholder='last name'></input>
+								placeholder='last name'/>
 						</Fragment>
 				},
 				{
@@ -58,12 +58,12 @@ function RegistrationScene() {
 								name={RegInputs.rID}
 								onChange={(e) => setValue({ documentID: e.target.value })}
 								pattern={docIDPattern}
-								placeholder='id number'></input>
+								placeholder='id number'/>
 							<input
 								name={RegInputs.rPersonalID}
 								onChange={(e) => setValue({ personalID: e.target.value })}
 								pattern={personalIDPattern}
-								placeholder='id card number'></input>
+								placeholder='id card number'/>
 						</Fragment>
 				},
 				{
@@ -71,36 +71,38 @@ function RegistrationScene() {
 					title: 'Home address',
 					formSlice:
 						<Fragment>
-							<div>
+							<div className='field'>
 								<input
 									name={RegInputs.rAddressStreet}
 									onChange={(e) => setAddressValue({ street: e.target.value })}
-									placeholder='street'></input>
+									placeholder='street'/>
 							</div>
-							<div>
+							<div className='field'>
 								<input
 									name={RegInputs.rAddressBuilding}
 									onChange={(e) => setAddressValue({ building: e.target.value })}
-									placeholder='building'></input>
+									placeholder='building' style={{width: '23%'}} />
+								<span>/</span>
 								<input
 									name={RegInputs.rAddressApartment}
 									onChange={(e) => setAddressValue({ apartment: e.target.value })}
-									placeholder='apartment'></input>
+									placeholder='apartment (opt)' style={{width: '23%'}} />
 							</div>
-							<div>
+							<div className='field'>
 								<input name={RegInputs.rAddressPostalCode}
 									onChange={(e) => setAddressValue({ postalCode: e.target.value })}
 									pattern={postalCodePattern}
-									placeholder='postal code'></input>
+									style={{width: '23%'}}
+									placeholder='postal code' />
 								<input
 									name={RegInputs.rAddressCity}
 									onChange={(e) => setAddressValue({ city: e.target.value })}
-									placeholder='city'></input>
+									placeholder='city' />
 							</div>
 							<input
 								name={RegInputs.rAddressCountry}
 								onChange={(e) => setAddressValue({ country: e.target.value })}
-								placeholder='country'></input>
+								placeholder='country'/>
 						</Fragment>
 				},
 				{
@@ -109,10 +111,10 @@ function RegistrationScene() {
 					formSlice:
 						<Fragment>
 							<div>
-								<input name={RegInputs.rEmail} onChange={(e) => setValue({ email: e.target.value })} type='email' placeholder='email'></input>
+								<input name={RegInputs.rEmail} onChange={(e) => setValue({ email: e.target.value })} type='email' placeholder='email'/>
 							</div>
 							<div>
-								<input name={RegInputs.rPassword} onChange={(e) => setValue({ password: e.target.value })} type='password' placeholder='password'></input>
+								<input name={RegInputs.rPassword} onChange={(e) => setValue({ password: e.target.value })} type='password' placeholder='password'/>
 							</div>
 						</Fragment>
 				},

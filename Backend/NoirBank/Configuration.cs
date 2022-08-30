@@ -8,6 +8,10 @@ namespace NoirBank
     {
         public static IServiceCollection UseDependencyInjection(this IServiceCollection services)
         {
+            services.AddScoped<IAccountRepository, AccountRepository>();
+            services.AddScoped<IAdminRepository, AdminRepository>();
+            services.AddScoped<ICardRepository, CardRepository>();
+            services.AddScoped<ITransferRepository, TransferRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
 
             return services;

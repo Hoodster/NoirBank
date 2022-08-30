@@ -22,7 +22,12 @@
     flex-direction: column;
     width: 30%;
 
-    input {
+    .field {
+        display: flex;
+        justify-content: center;
+    }
+
+    & input {
         margin: 0 5px;
     }
 }
