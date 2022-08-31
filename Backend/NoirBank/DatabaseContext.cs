@@ -8,7 +8,7 @@ namespace NoirBank
 {
     public class DatabaseContext : DbContext
     {
-        public DbSet<Account> Accounts { get; set; }
+        public DbSet<BankAccount> Accounts { get; set; }
         public DbSet<Card> Cards { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Operation> Operations { get; set; }
@@ -39,7 +39,7 @@ namespace NoirBank
                 .Property(e => e.OperationType)
                 .HasConversion<string>();
             modelBuilder
-                .Entity<Account>()
+                .Entity<BankAccount>()
                 .Property(e => e.AccountType)
                 .HasConversion<string>();
 

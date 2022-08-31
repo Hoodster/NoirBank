@@ -16,6 +16,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using NoirBank.Data;
 using NoirBank.Repositories;
+using AutoMapper;
 
 namespace NoirBank
 {

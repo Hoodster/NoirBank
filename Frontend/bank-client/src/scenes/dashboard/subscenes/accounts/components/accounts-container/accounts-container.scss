@@ -6,6 +6,7 @@
 
     .swiper-slide {
       width: map-get($account-quickview, 'width');
+      margin-left: 15px;
     }
   
     .swiper-button-prev,

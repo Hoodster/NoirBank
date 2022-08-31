@@ -23,16 +23,19 @@ namespace NoirBank.Data.Entities
 		/// <summary>
 		/// In Poland: PESEL.
 		/// </summary>
-		public string PersonID { get; set; }
+		public string PersonalID { get; set; }
 		/// <summary>
 		/// ID card serial number.
 		/// </summary>
-		public string IDCardNumber { get; set; }
+		public string DocumentID { get; set; }
 		/// <summary>
 		/// Email address.
 		/// </summary>
 		public string Email { get; set; }
-
+		/// <summary>
+		/// Account number
+		/// </summary>
+		public string Login { get; set; }
 		/// <summary>
 		/// Bank accounts of a customer.
 		/// </summary>

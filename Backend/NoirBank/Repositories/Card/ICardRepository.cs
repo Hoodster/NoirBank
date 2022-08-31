@@ -6,6 +6,8 @@ namespace NoirBank.Repositories
 {
     public interface ICardRepository
     {
+        Task AddCard();
+
     }
 }
 

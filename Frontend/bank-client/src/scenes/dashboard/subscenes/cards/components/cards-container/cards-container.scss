@@ -6,6 +6,7 @@
 
     .swiper-slide {
       width: map-get($card, 'width');
+      margin-left: 10px;
     }
   
     .swiper-button-prev,

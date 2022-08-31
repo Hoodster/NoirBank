@@ -17,6 +17,8 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="AutoMapper" Version="11.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,6 +31,9 @@
     <None Remove="Microsoft.EntityFrameworkCore.Design" />
     <None Remove="Repositories\" />
     <None Remove="Repositories\User\" />
+    <None Remove="Utils\" />
+    <None Remove="AutoMapper" />
+    <None Remove="AutoMapper.Extensions.Microsoft.DependencyInjection" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NoirBank.Data\NoirBank.Data.csproj">
@@ -39,5 +44,6 @@
     <Folder Include="Repositories\" />
     <Folder Include="Repositories\User\" />
     <Folder Include="Repositories\Transfer\" />
+    <Folder Include="Utils\" />
   </ItemGroup>
 </Project>

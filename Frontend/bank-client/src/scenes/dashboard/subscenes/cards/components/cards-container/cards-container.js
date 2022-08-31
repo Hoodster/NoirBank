@@ -14,14 +14,6 @@ function CardsContainer() {
 					<Card cardStyle="card2" cardNo="0000000000000000" expiration="10/22" type='Debit'/>,
 					<Card cardStyle="card3" cardNo="0000000000000000" expiration="10/22" type='Debit'/>,
 					<Card cardStyle="card4" cardNo="0000000000000000" expiration="10/22" type='Credit'/>,
-					<Card cardStyle="card1" cardNo="1001000000001001" expiration="10/22" type='Credit'/>,
-					<Card cardStyle="card2" cardNo="0000000000000000" expiration="10/22" type='Debit'/>,
-					<Card cardStyle="card3" cardNo="0000000000000000" expiration="10/22" type='Debit'/>,
-					<Card cardStyle="card4" cardNo="0000000000000000" expiration="10/22" type='Credit'/>,
-					<Card cardStyle="card1" cardNo="1001000000001001" expiration="10/22" type='Credit'/>,
-					<Card cardStyle="card2" cardNo="0000000000000000" expiration="10/22" type='Debit'/>,
-					<Card cardStyle="card3" cardNo="0000000000000000" expiration="10/22" type='Debit'/>,
-					<Card cardStyle="card4" cardNo="0000000000000000" expiration="10/22" type='Credit'/>,
 				]} />
 		</div>
 	)

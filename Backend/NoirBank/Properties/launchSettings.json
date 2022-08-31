@@ -20,7 +20,7 @@
     "NoirBank": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "http://localhost:31310",
+      "applicationUrl": "http://localhost:10630",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
