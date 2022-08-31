@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -17,6 +17,11 @@ using Microsoft.OpenApi.Models;
 using NoirBank.Data;
 using NoirBank.Repositories;
 using AutoMapper;
+using Microsoft.AspNetCore.Identity;
+using NoirBank.Data.Entities;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace NoirBank
 {
@@ -32,7 +37,34 @@ namespace NoirBank
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.UseDependencyInjection();
+            services.AddIdentity<User, IdentityRole<Guid>>(
+                options =>
+                {
+                    options.SignIn.RequireConfirmedAccount = false;
+                    options.Password.RequireDigit = false;
+                    options.Password.RequiredUniqueChars = 0;
+                    options.Password.RequireNonAlphanumeric = false;
+                    options.Password.RequiredLength = 1;
+                    options.Password.RequireLowercase = false;
+                    options.Password.RequireUppercase = false;
+                })
+                .AddRoles<IdentityRole<Guid>>()
+                .AddEntityFrameworkStores<DatabaseContext>();
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(x => {
+                    x.RequireHttpsMetadata = false;
+                    x.SaveToken = true;
+                    x.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = false,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration.GetValue<string>("SymmetricKey"))),
+                        ValidateIssuer = false,
+                        ValidateAudience = false
+                    };
+
+                });
+
             services.AddControllers();
 
             services.AddCors(options =>
@@ -48,6 +80,10 @@ namespace NoirBank
 
             services.AddDbContext<DatabaseContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("Default"), b => b.MigrationsAssembly("NoirBank")));
+
+            services.AddHttpContextAccessor();
+
+            services.UseDependencyInjection();
 
             services.AddSwaggerGen(c =>
             {
@@ -73,6 +109,9 @@ namespace NoirBank
             app.UseCors();
 
             app.UseRouting();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseAuthorization();
 

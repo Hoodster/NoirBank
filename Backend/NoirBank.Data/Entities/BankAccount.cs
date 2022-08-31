@@ -6,7 +6,7 @@ using NoirBank.Data.Enums;
 
 namespace NoirBank.Data.Entities
 {
-	public class Account
+	public class BankAccount
 	{
 		[Key]
 		public Guid AccountID { get; set; }
@@ -18,7 +18,8 @@ namespace NoirBank.Data.Entities
         [ForeignKey("Card")]
 		public Guid? CardID { get; set; }
 		public double Balance { get; set; }
-		public Account()
+
+		public BankAccount()
 		{
 		}
 	}

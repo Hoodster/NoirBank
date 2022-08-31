@@ -37,13 +37,25 @@ namespace NoirBank.Controllers
         ///
         /// </response>
         /// <response code="400">
-        /// Account already exists
+        /// Invalid data. Possibly missing data or bad format.
         ///
         ///     {
         ///        "status": 400
         ///        "data": {
         ///             "type": "error"
         ///             "message": "invalid_data"
+        ///        }
+        ///     }
+        ///
+        /// </response>
+        /// <response code="400">
+        /// Unhandled exception
+        ///
+        ///     {
+        ///        "status": 400
+        ///        "data": {
+        ///             "type": "error"
+        ///             "message": "unhandled_exception"
         ///        }
         ///     }
         ///
@@ -67,7 +79,7 @@ namespace NoirBank.Controllers
         {
             try
             {
-                await _userRepository.CreateAccount(account);
+                await _userRepository.CreateAccountAsync(account, Data.Enums.ApplicationRoles.Customer);
                 var content = new HTTPResponse(HttpStatusCode.OK, "account_created", false);
                 return new OkObjectResult(content);
             } catch (RecordExistsException e)
@@ -77,6 +89,10 @@ namespace NoirBank.Controllers
             } catch (InvalidDataException e)
             {
                 var content = new HTTPResponse(HttpStatusCode.BadRequest, e.Message);
+                return new BadRequestObjectResult(content);
+            } catch (Exception)
+            {
+                var content = new HTTPResponse(HttpStatusCode.BadRequest, "unhandled_exception");
                 return new BadRequestObjectResult(content);
             }
         }
@@ -92,7 +108,7 @@ namespace NoirBank.Controllers
         ///        "status": 200
         ///        "data": {
         ///             "type": "response"
-        ///             "message": "valid_credentials"
+        ///             "message": "sign_in_success" | "sign_in_fail"
         ///        }
         ///     }
         ///
@@ -116,7 +132,8 @@ namespace NoirBank.Controllers
         {
             try
             {
-                await _userRepository.CreateAccount(null);
+                var result = await _userRepository.SignInAsync(credentials);
+                var message = result ? "sign_in_success" : "sign_in_fail";
                 var content = new HTTPResponse(HttpStatusCode.OK, "valid_credentials", false);
                 return new OkObjectResult(content);
             } catch(InvalidDataException e)

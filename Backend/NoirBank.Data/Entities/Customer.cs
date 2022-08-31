@@ -12,34 +12,22 @@ namespace NoirBank.Data.Entities
 		/// </summary>
 		[Key]
 		public Guid CustomerID { get; set; }
-		/// <summary>
-		/// First name.
-		/// </summary>
-		public string FirstName { get; set; }
-		/// <summary>
-		/// Last name.
-		/// </summary>
-		public string LastName { get; set; }
-		/// <summary>
-		/// In Poland: PESEL.
-		/// </summary>
-		public string PersonalID { get; set; }
+        /// <summary>
+        /// In Poland: PESEL.
+        /// </summary>
+        public string PersonalID { get; set; }
 		/// <summary>
 		/// ID card serial number.
 		/// </summary>
 		public string DocumentID { get; set; }
-		/// <summary>
-		/// Email address.
-		/// </summary>
-		public string Email { get; set; }
-		/// <summary>
-		/// Account number
-		/// </summary>
-		public string Login { get; set; }
-		/// <summary>
-		/// Bank accounts of a customer.
-		/// </summary>
-		public IList<Account> Accounts { get; set; }
+        /// <summary>
+        /// Account number
+        /// </summary>
+        public string Login { get; set; }
+        /// <summary>
+        /// Bank accounts of a customer.
+        /// </summary>
+        public IList<BankAccount> BankAccounts { get; set; }
 		/// <summary>
 		/// SignIn session logs.
 		/// </summary>

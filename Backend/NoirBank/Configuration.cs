@@ -13,7 +13,8 @@ namespace NoirBank
             services.AddScoped<ICardRepository, CardRepository>();
             services.AddScoped<ITransferRepository, TransferRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
-
+            services.AddScoped<ISessionLogRepository, SessionLogRepository>();
+            
             return services;
         }
     }

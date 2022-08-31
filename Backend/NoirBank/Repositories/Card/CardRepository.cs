@@ -9,6 +9,11 @@ namespace NoirBank.Repositories
         public CardRepository()
         {
         }
+
+        public Task AddCard()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

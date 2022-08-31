@@ -9,6 +9,8 @@ import { useDispatch } from 'react-redux'
 import { setFormValue, setFormAddressValue } from '../../redux/reducers/register-reducer'
 import { getForm } from './selectors'
 import { Link } from 'react-router-dom'
+import { userAPI } from '../../helpers/endpoints'
+import axios from 'axios'
 
 function RegistrationScene() {
 	const dispatch = useDispatch()
@@ -22,6 +24,14 @@ function RegistrationScene() {
 		dispatch(setFormAddressValue(value))
 	}
 
+	const submitRegistration = async () => {
+		try {
+			await axios.post(`${userAPI}/register`, form)
+		} catch (e) {
+			alert('kurwa')
+		}
+	}
+
 	function SummaryData({ property, value }) {
 		return (
 			<span className='meta'><span className='meta-property'>{`${property}: `}</span>{value}</span>
@@ -31,7 +41,7 @@ function RegistrationScene() {
 	return (
 		<div className='nb-register-page'>
 			<Logo size='md' className='nb-register-logo center' />
-			<RegistrationSlider className='nb-register-form center' slides={[
+			<RegistrationSlider onSubmit={submitRegistration} className='nb-register-form center' slides={[
 				{
 					index: 0,
 					title: 'Basic informations',
@@ -41,12 +51,12 @@ function RegistrationScene() {
 								name={RegInputs.rFirstName}
 								onChange={(e) => setValue({ firstName: e.target.value })}
 								pattern={wordNoNumPattern}
-								placeholder='first name'/>
+								placeholder='first name' />
 							<input
 								name={RegInputs.rLastName}
 								onChange={(e) => setValue({ lastName: e.target.value })}
 								pattern={wordNoNumPattern}
-								placeholder='last name'/>
+								placeholder='last name' />
 						</Fragment>
 				},
 				{
@@ -58,12 +68,12 @@ function RegistrationScene() {
 								name={RegInputs.rID}
 								onChange={(e) => setValue({ documentID: e.target.value })}
 								pattern={docIDPattern}
-								placeholder='id number'/>
+								placeholder='id number' />
 							<input
 								name={RegInputs.rPersonalID}
 								onChange={(e) => setValue({ personalID: e.target.value })}
 								pattern={personalIDPattern}
-								placeholder='id card number'/>
+								placeholder='id card number' />
 						</Fragment>
 				},
 				{
@@ -75,24 +85,24 @@ function RegistrationScene() {
 								<input
 									name={RegInputs.rAddressStreet}
 									onChange={(e) => setAddressValue({ street: e.target.value })}
-									placeholder='street'/>
+									placeholder='street' />
 							</div>
 							<div className='field'>
 								<input
 									name={RegInputs.rAddressBuilding}
 									onChange={(e) => setAddressValue({ building: e.target.value })}
-									placeholder='building' style={{width: '23%'}} />
+									placeholder='building' style={{ width: '23%' }} />
 								<span>/</span>
 								<input
 									name={RegInputs.rAddressApartment}
 									onChange={(e) => setAddressValue({ apartment: e.target.value })}
-									placeholder='apartment (opt)' style={{width: '23%'}} />
+									placeholder='apartment (opt)' style={{ width: '23%' }} />
 							</div>
 							<div className='field'>
 								<input name={RegInputs.rAddressPostalCode}
 									onChange={(e) => setAddressValue({ postalCode: e.target.value })}
 									pattern={postalCodePattern}
-									style={{width: '23%'}}
+									style={{ width: '23%' }}
 									placeholder='postal code' />
 								<input
 									name={RegInputs.rAddressCity}
@@ -102,7 +112,7 @@ function RegistrationScene() {
 							<input
 								name={RegInputs.rAddressCountry}
 								onChange={(e) => setAddressValue({ country: e.target.value })}
-								placeholder='country'/>
+								placeholder='country' />
 						</Fragment>
 				},
 				{
@@ -111,10 +121,10 @@ function RegistrationScene() {
 					formSlice:
 						<Fragment>
 							<div>
-								<input name={RegInputs.rEmail} onChange={(e) => setValue({ email: e.target.value })} type='email' placeholder='email'/>
+								<input name={RegInputs.rEmail} onChange={(e) => setValue({ email: e.target.value })} type='email' placeholder='email' />
 							</div>
 							<div>
-								<input name={RegInputs.rPassword} onChange={(e) => setValue({ password: e.target.value })} type='password' placeholder='password'/>
+								<input name={RegInputs.rPassword} onChange={(e) => setValue({ password: e.target.value })} type='password' placeholder='password' />
 							</div>
 						</Fragment>
 				},

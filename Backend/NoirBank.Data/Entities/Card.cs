@@ -12,9 +12,6 @@ namespace NoirBank.Data.Entities
 		public DateTimeOffset ExpirationDate { get; set; }
 		public int CVV { get; set; }
 		public CardTypes CardType { get; set; }
-		public Card()
-		{
-		}
 	}
 }
 
