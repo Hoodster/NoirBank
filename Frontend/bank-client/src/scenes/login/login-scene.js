@@ -1,9 +1,9 @@
-import axios from 'axios'
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import Logo from '../../assets/logo/logo'
 import Button from '../../components/inputs/button/button'
+import { post } from '../../helpers/api'
 import { userAPI } from '../../helpers/endpoints'
 import { openNotification } from '../../redux/reducers/notification-reducer'
 import './login-scene.scss'
@@ -19,7 +19,7 @@ function LoginScene() {
 			accountNumber,
 			password
 		}
-		axios.post(`${userAPI}/signin`, data)
+		post(`${userAPI}/signin`, data, true)
 			.then(response => {
 				localStorage.setItem('token', response.data.data.token)
 				navigate('/')

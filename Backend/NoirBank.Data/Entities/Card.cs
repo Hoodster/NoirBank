@@ -11,6 +11,7 @@ namespace NoirBank.Data.Entities
 		public string CardNumber { get; set; }
 		public DateTimeOffset ExpirationDate { get; set; }
 		public int CVV { get; set; }
+		public string Cover { get; set; }
 		public CardTypes CardType { get; set; }
 	}
 }

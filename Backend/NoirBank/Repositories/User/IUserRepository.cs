@@ -10,6 +10,7 @@ namespace NoirBank.Repositories
     {
         Task CreateAccountAsync(NewAccount newAccount, ApplicationRoles role);
         Task<JWTToken> SignInAsync(Credentials credentials);
+        Task<Profile> GetProfileAsync();
     }
 }
 

@@ -20,7 +20,7 @@ namespace NoirBank.Utils
         public static string GenerateBankAccountNumber()
         {
             var accountNumberBase = $"{_bankDepartment}{GenerateDigitsPart()}{GenerateDigitsPart()}{GenerateDigitsPart()}{GenerateDigitsPart()}";
-            return $"{GenerateControlNumber(accountNumberBase)}{_bankCode}{accountNumberBase}";
+            return $"{GenerateBankAccountControlNumber(accountNumberBase)}{_bankCode}{accountNumberBase}";
         }
 
         public static string SplitBankAccountNumber(string bankAccountNumber)
@@ -34,12 +34,47 @@ namespace NoirBank.Utils
                 $"{bankAccountNumber.Substring(22)}";
         }
 
+        public static string GenerateBankCardNumber()
+        {
+            var cardNumberBase = $"1{_bankCode}{GenerateDigitsPart()}{GenerateDigitsPart()}{GenerateDigitsPart().Substring(1, 2)}";
+            return $"{cardNumberBase}{GenerateBankCardControlNumber(cardNumberBase)}";
+        }
+
+        public static string ShadowCardNumber(string cardNumber)
+        {
+            return $"{cardNumber.Substring(0, 4)}********{cardNumber.Substring(12)}";
+        }
+
+        public static string FormatCardNumber(string cardNumber)
+        {
+            return $"{cardNumber.Substring(0, 4)} {cardNumber.Substring(4, 4)} {cardNumber.Substring(8, 4)} {cardNumber.Substring(12)}";
+        }
+
         private static string GenerateDigitsPart()
         {
             return new Random().Next(1000, 9999).ToString();
         }
 
-        private static string GenerateControlNumber(string accountNumber)
+        private static string GenerateBankCardControlNumber(string cardNumber)
+        {
+            var sum = 0;
+
+            for (int i = 0; i < cardNumber.Length; i++)
+            {
+                var fixedPosition = i + 1;
+                var digit = int.Parse(cardNumber[i].ToString());
+                if (fixedPosition % 2 == 0)
+                {
+                    sum += digit;
+                } else
+                {
+                    sum += digit * 2;
+                }
+            }
+            return (sum % 10).ToString();
+        }
+
+        private static string GenerateBankAccountControlNumber(string accountNumber)
         {
             var controlAccountNumber = BigInteger.Parse($"{accountNumber}{_pNumberCode}{_lNumberCode}{_bankCode}");
             var controlNumber = controlAccountNumber % 97;

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Net;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NoirBank.Data.DTO;
@@ -140,6 +142,15 @@ namespace NoirBank.Controllers
                 var content = new HTTPResponse(HttpStatusCode.BadRequest, e.Message);
                 return new BadRequestObjectResult(content);
             }
+        }
+
+        [HttpGet("profile")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> GetProfile()
+        {
+            var profile = await _userRepository.GetProfileAsync();
+            var content = new HTTPResponse(HttpStatusCode.OK, profile);
+            return new OkObjectResult(content);
         }
     }
 }

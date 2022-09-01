@@ -11,8 +11,8 @@ import { setFormValue, setFormAddressValue, reset } from '../../redux/reducers/r
 import { getForm } from './selectors'
 import { Link, useNavigate } from 'react-router-dom'
 import { userAPI } from '../../helpers/endpoints'
-import axios from 'axios'
 import { openNotification } from '../../redux/reducers/notification-reducer'
+import { post } from '../../helpers/api'
 
 function RegistrationScene() {
 	const dispatch = useDispatch()
@@ -29,7 +29,7 @@ function RegistrationScene() {
 
 	const submitRegistration = async () => {
 		try {
-			await axios.post(`${userAPI}/register`, form)
+			await post(`${userAPI}/register`, form, true)
 			dispatch(reset())
 			dispatch(openNotification({
 				type: 'success',

@@ -14,6 +14,7 @@ using NoirBank.Utils;
 using NoirBank.Utils.EmailService;
 using SendGrid.Helpers.Mail;
 using static NoirBank.Utils.TransactionHelper;
+using Profile = NoirBank.Data.DTO.Profile;
 
 namespace NoirBank.Repositories
 {
@@ -124,6 +125,18 @@ namespace NoirBank.Repositories
             {
                 throw new InvalidDataException();
             }
+        }
+
+        public async Task<Profile> GetProfileAsync()
+        {
+            var user = await _authenticationService.GetCurrentUserAsync();
+            return new Profile
+            {
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Email = user.Email,
+                Login = user.UserName
+            };
         }
 
         private async Task SendUsernameEmail(string recipientEmail, string recipientName, string recipientLogin)

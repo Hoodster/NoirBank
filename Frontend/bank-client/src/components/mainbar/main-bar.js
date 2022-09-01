@@ -3,9 +3,13 @@ import { useNavigate } from 'react-router-dom'
 import Logo from '../../assets/logo/logo'
 import Button from '../inputs/button/button'
 import './main-bar.scss'
+import { getFirstName, getLastName } from './selectors'
 
 function MainBar() {
 	const navigate = useNavigate()
+
+	const firstName = getFirstName()
+	const lastName = getLastName()
 
 	const goToMainSite = () => {
 		navigate('/')
@@ -21,7 +25,7 @@ function MainBar() {
 			<Logo />
 		</span>
 		<div className='account-nav'>
-			<Button text="John Doe" type='general' style='primary' onClick={logout} icon='expand_more' />
+			<Button text={`${firstName} ${lastName}`} type='general' style='primary' onClick={logout} icon='expand_more' />
 		</div>
 	</div>)
 }
