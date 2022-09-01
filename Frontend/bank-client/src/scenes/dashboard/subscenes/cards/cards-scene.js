@@ -1,3 +1,4 @@
+/* eslint-disable no-constant-condition */
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import DashboardSection from '../../../../components/dashboard-section/dashboard-section'
@@ -20,7 +21,7 @@ function CardsScene() {
 			emptyChildrenText='you have no cards yet'
 			height='sm'
 			option={<Button style='accent' type='general' icon='add' onClick={addCardModal} text='New card'></Button>}>
-			<CardsContainer />
+			{false ? <CardsContainer /> : null}
 		</DashboardSection>
 	)
 }

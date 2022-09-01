@@ -14,9 +14,7 @@ namespace NoirBank.Data.Entities
 		[ForeignKey("Customer")]
         public Guid? CustomerID { get; set; }
 		public AccountTypes AccountType { get; set; }
-		public virtual Card Card { get; set; }
-        [ForeignKey("Card")]
-		public Guid? CardID { get; set; }
+		public IList<Card> Cards { get; set; }
 		public double Balance { get; set; }
 
 		public BankAccount()

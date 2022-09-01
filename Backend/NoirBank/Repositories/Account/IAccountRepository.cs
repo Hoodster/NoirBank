@@ -6,7 +6,7 @@ namespace NoirBank.Repositories
 {
     public interface IAccountRepository
     {
-        Task CreateAccount(NewAccount newAccount);
+        Task CreateAccount();
         Task GetAllAccounts();
         Task GetAccount(Guid accountID);
     }

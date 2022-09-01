@@ -1,17 +1,22 @@
 ﻿using System;
 using System.Threading.Tasks;
 using NoirBank.Data.DTO;
+using NoirBank.Utils;
 
 namespace NoirBank.Repositories
 {
     public class AccountRepository : IAccountRepository
     {
-        public AccountRepository()
+        private readonly IAuthenticationService _authenticationService;
+
+        public AccountRepository(IAuthenticationService authenticationService)
         {
+            _authenticationService = authenticationService;
         }
 
-        public Task CreateAccount(NewAccount newAccount)
+        public async Task CreateAccount()
         {
+            var user = await _authenticationService.GetCurrentUserAsync();
             throw new NotImplementedException();
         }
 
