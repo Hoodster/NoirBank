@@ -11,12 +11,17 @@ function MainBar() {
 		navigate('/')
 	}
 
+	const logout = () => {
+		localStorage.removeItem('token')
+		location.reload()
+	}
+
 	return (<div className='nb-nav'>
 		<span onClick={goToMainSite}>
-			<Logo/>
+			<Logo />
 		</span>
 		<div className='account-nav'>
-			<Button text="John Doe" type='general' style='primary' icon='expand_more'/>
+			<Button text="John Doe" type='general' style='primary' onClick={logout} icon='expand_more' />
 		</div>
 	</div>)
 }

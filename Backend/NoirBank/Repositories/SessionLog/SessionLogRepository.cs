@@ -16,6 +16,7 @@ namespace NoirBank.Repositories
         public async Task LogAsync(SessionLog log)
         {
             await _dbContext.SessionLogs.AddAsync(log);
+            await _dbContext.SaveChangesAsync();
         }
     }
 }

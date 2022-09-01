@@ -7,10 +7,6 @@ namespace NoirBank.Data.Entities
     {
         [Key]
         public Guid AdminID { get; set; }
-        /// <summary>
-        /// Account number
-        /// </summary>
-        public string Login { get; set; }
     }
 }
 

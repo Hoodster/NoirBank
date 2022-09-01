@@ -21,6 +21,9 @@
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.16" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.17" />
+    <PackageReference Include="SendGrid" Version="9.28.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="5.0.17" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational.Design" Version="1.1.6" />
   </ItemGroup>
 
   <ItemGroup>
@@ -39,6 +42,10 @@
     <None Remove="Microsoft.AspNetCore.Authentication.JwtBearer" />
     <None Remove="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
     <None Remove="Repositories\SessionLog\" />
+    <None Remove="Utils\AuthenticationService\" />
+    <None Remove="SendGrid" />
+    <None Remove="Microsoft.EntityFrameworkCore.Relational" />
+    <None Remove="Microsoft.EntityFrameworkCore.Relational.Design" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NoirBank.Data\NoirBank.Data.csproj">
@@ -51,5 +58,6 @@
     <Folder Include="Repositories\Transfer\" />
     <Folder Include="Utils\" />
     <Folder Include="Repositories\SessionLog\" />
+    <Folder Include="Utils\AuthenticationService\" />
   </ItemGroup>
 </Project>

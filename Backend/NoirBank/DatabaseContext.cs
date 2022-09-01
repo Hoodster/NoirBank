@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Data;
 using System.Linq;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -27,7 +28,7 @@ namespace NoirBank
         {
             foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
             {
-                relationship.DeleteBehavior = DeleteBehavior.Restrict;
+                relationship.DeleteBehavior = DeleteBehavior.Cascade;
             }
 
             modelBuilder
@@ -46,6 +47,17 @@ namespace NoirBank
                 .Entity<BankAccount>()
                 .Property(e => e.AccountType)
                 .HasConversion<string>();
+            modelBuilder.Entity<User>().ToTable<User>("Users");
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>", b =>
+            {
+                b.ToTable("Roles");
+            });
+            modelBuilder.Entity<IdentityRole<Guid>>(x => x.ToTable("Roles"));
+            modelBuilder.Entity<IdentityUserRole<Guid>>().ToTable("UserRoles");
+            modelBuilder.Entity<IdentityUserClaim<Guid>>().ToTable("UserClaims");
+            modelBuilder.Entity<IdentityUserLogin<Guid>>().ToTable("UserLogins");
+            modelBuilder.Entity<IdentityRoleClaim<Guid>>().ToTable("RoleClaims");
+            modelBuilder.Entity<IdentityUserToken<Guid>>().ToTable("UserTokens");
 
             base.OnModelCreating(modelBuilder);
         }

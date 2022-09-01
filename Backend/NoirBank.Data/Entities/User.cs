@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Identity;
 
@@ -18,6 +19,10 @@ namespace NoirBank.Data.Entities
         /// Email address.
         /// </summary>
         public override string Email { get; set; }
+        /// <summary>
+        /// SignIn session logs.
+        /// </summary>
+        public IList<SessionLog> SessionLogs { get; set; }
 
         [ForeignKey("Customer")]
         public Guid? CustomerID { get; set; }
@@ -25,7 +30,7 @@ namespace NoirBank.Data.Entities
 
         [ForeignKey("Admin")]
         public Guid? AdminID { get; set; }
-        public virtual Customer Admin { get; set; }
+        public virtual Admin Admin { get; set; }
 
 
         public User()

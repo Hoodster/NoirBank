@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 /* eslint-disable no-mixed-spaces-and-tabs */
 import React from 'react'
 import { Fragment } from 'react'
@@ -6,14 +7,16 @@ import RegistrationSlider from './components/registration-slider/registration-sl
 import Logo from '../../assets/logo/logo'
 import './registration-scene.scss'
 import { useDispatch } from 'react-redux'
-import { setFormValue, setFormAddressValue } from '../../redux/reducers/register-reducer'
+import { setFormValue, setFormAddressValue, reset } from '../../redux/reducers/register-reducer'
 import { getForm } from './selectors'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { userAPI } from '../../helpers/endpoints'
 import axios from 'axios'
+import { openNotification } from '../../redux/reducers/notification-reducer'
 
 function RegistrationScene() {
 	const dispatch = useDispatch()
+	const navigate = useNavigate()
 	const form = getForm()
 
 	const setValue = (value) => {
@@ -27,8 +30,31 @@ function RegistrationScene() {
 	const submitRegistration = async () => {
 		try {
 			await axios.post(`${userAPI}/register`, form)
+			dispatch(reset())
+			dispatch(openNotification({
+				type: 'success',
+				message: 'Account added successfully.'
+			}))
+			navigate('/login')
 		} catch (e) {
-			alert('kurwa')
+			const errorMessage = e.response.data.data.message
+			let displayMessage = ''
+			switch (errorMessage) {
+				case 'invalid_data':
+					displayMessage = 'Provided informations are invalid or incomplete.'
+					break
+				case 'record_already_exist':
+					displayMessage = 'This email is already used.'
+					break
+				case 'unhandled_exception':
+				default:
+					displayMessage = 'Registration has failed.'
+					break
+			}
+			dispatch(openNotification({
+				type: 'error',
+				message: displayMessage
+			}))
 		}
 	}
 
@@ -51,11 +77,13 @@ function RegistrationScene() {
 								name={RegInputs.rFirstName}
 								onChange={(e) => setValue({ firstName: e.target.value })}
 								pattern={wordNoNumPattern}
+								value={form.firstName}
 								placeholder='first name' />
 							<input
 								name={RegInputs.rLastName}
 								onChange={(e) => setValue({ lastName: e.target.value })}
 								pattern={wordNoNumPattern}
+								value={form.lastName}
 								placeholder='last name' />
 						</Fragment>
 				},
@@ -92,7 +120,7 @@ function RegistrationScene() {
 									name={RegInputs.rAddressBuilding}
 									onChange={(e) => setAddressValue({ building: e.target.value })}
 									placeholder='building' style={{ width: '23%' }} />
-								<span>/</span>
+								<span style={{ fontSize: '20pt' }}>/</span>
 								<input
 									name={RegInputs.rAddressApartment}
 									onChange={(e) => setAddressValue({ apartment: e.target.value })}

@@ -21,17 +21,9 @@ namespace NoirBank.Data.Entities
 		/// </summary>
 		public string DocumentID { get; set; }
         /// <summary>
-        /// Account number
-        /// </summary>
-        public string Login { get; set; }
-        /// <summary>
         /// Bank accounts of a customer.
         /// </summary>
         public IList<BankAccount> BankAccounts { get; set; }
-		/// <summary>
-		/// SignIn session logs.
-		/// </summary>
-		public IList<SessionLog> SessionLogs { get; set; }
 		/// <summary>
         /// Virtual address model.
         /// </summary>

@@ -107,8 +107,8 @@ namespace NoirBank.Controllers
         ///     {
         ///        "status": 200
         ///        "data": {
-        ///             "type": "response"
-        ///             "message": "sign_in_success" | "sign_in_fail"
+        ///             "token": "Bearer {token}"
+        ///             "expiresIn": 1231234
         ///        }
         ///     }
         ///
@@ -133,8 +133,7 @@ namespace NoirBank.Controllers
             try
             {
                 var result = await _userRepository.SignInAsync(credentials);
-                var message = result ? "sign_in_success" : "sign_in_fail";
-                var content = new HTTPResponse(HttpStatusCode.OK, "valid_credentials", false);
+                var content = new HTTPResponse(HttpStatusCode.OK, result);
                 return new OkObjectResult(content);
             } catch(InvalidDataException e)
             {

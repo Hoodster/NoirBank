@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NoirBank;
 
 namespace NoirBank.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220901190626_Fix_Names")]
+    partial class Fix_Names
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -296,6 +298,9 @@ namespace NoirBank.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("CustomerID")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<bool>("IsSuccessful")
                         .HasColumnType("bit");
 
@@ -306,6 +311,8 @@ namespace NoirBank.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("SessionID");
+
+                    b.HasIndex("CustomerID");
 
                     b.HasIndex("UserID");
 
@@ -474,8 +481,13 @@ namespace NoirBank.Migrations
 
             modelBuilder.Entity("NoirBank.Data.Entities.SessionLog", b =>
                 {
-                    b.HasOne("NoirBank.Data.Entities.User", "User")
+                    b.HasOne("NoirBank.Data.Entities.Customer", null)
                         .WithMany("SessionLogs")
+                        .HasForeignKey("CustomerID")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("NoirBank.Data.Entities.User", "User")
+                        .WithMany()
                         .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -503,10 +515,7 @@ namespace NoirBank.Migrations
             modelBuilder.Entity("NoirBank.Data.Entities.Customer", b =>
                 {
                     b.Navigation("BankAccounts");
-                });
 
-            modelBuilder.Entity("NoirBank.Data.Entities.User", b =>
-                {
                     b.Navigation("SessionLogs");
                 });
 #pragma warning restore 612, 618
