@@ -11,7 +11,8 @@ const getOptions = () => {
 }
 
 export const post = (url, data, isAnonymous = false) => {
-	return axios.post(url, data, !isAnonymous ? getOptions : null)
+	const options = getOptions()
+	return axios.post(url, data, !isAnonymous ? options : null)
 }
 
 export const get = (url, isAnonymous = false) => {

@@ -16,6 +16,9 @@ export const userSlice = createSlice({
 		addCards: (state, action) => {
 			state.cards = action.payload
 		},
+		addBankAccounts: (state, action) => {
+			state.accounts = action.payload
+		},
 		reset: (state) => {
 			state.cards = userInitialState.cards
 			state.accounts = userInitialState.accounts
@@ -24,5 +27,5 @@ export const userSlice = createSlice({
 	}
 })
 
-export const { addProfile, addCards, reset } = userSlice.actions
+export const { addProfile, addCards, addBankAccounts, reset } = userSlice.actions
 export default userSlice.reducer

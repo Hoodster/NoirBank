@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using NoirBank.Data.DTO;
+using NoirBank.Data.Entities;
+using NoirBank.Data.Enums;
 using NoirBank.Utils;
 
 namespace NoirBank.Repositories
@@ -19,9 +21,23 @@ namespace NoirBank.Repositories
             _authService = authService;
         }
 
-        public Task AddCard()
+        public async Task AddCardAsync(CardDTO card)
         {
-            throw new NotImplementedException();
+            var accountID = _databaseContext.BankAccounts
+                .Select(account => new { account.AccountID, account.AccountNumber })
+                .FirstOrDefault(account => account.AccountNumber.Equals(card.Account)).AccountID;
+
+            var newCard = new Card
+            {
+                CardNumber = BankNumbersHelper.GenerateBankCardNumber(),
+                Cover = card.Cover,
+                CardType = Enum.Parse<CardTypes>(card.Type, true),
+                ExpirationDate = new DateTime().AddYears(6),
+                CVV = new Random().Next(100, 999),
+                AccountID = accountID
+            };
+            await _databaseContext.AddAsync(newCard);
+            await _databaseContext.SaveChangesAsync();
         }
 
         public async Task<IList<BasicCard>> GetAllCustomerCards()

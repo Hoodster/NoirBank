@@ -29,6 +29,13 @@ namespace NoirBank.Controllers
            var content = new HTTPResponse(HttpStatusCode.OK, result);
            return new OkObjectResult(content);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> AddCard(CardDTO card)
+        {
+            await _cardRepository.AddCardAsync(card);
+            return Ok();
+        }
     }
 }
 

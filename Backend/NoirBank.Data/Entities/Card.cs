@@ -13,6 +13,9 @@ namespace NoirBank.Data.Entities
 		public int CVV { get; set; }
 		public string Cover { get; set; }
 		public CardTypes CardType { get; set; }
+
+		public Guid AccountID { get; set; }
+		public virtual BankAccount Account { get; set; }
 	}
 }
 

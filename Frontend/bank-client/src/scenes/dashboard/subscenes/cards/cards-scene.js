@@ -28,6 +28,7 @@ function CardsScene() {
 
 	const addCardModal = () => {
 		dispatch(open(ADD_CARD))
+		console.log(cards.length)
 	}
 
 	const hasNoCards = cards.length === 0

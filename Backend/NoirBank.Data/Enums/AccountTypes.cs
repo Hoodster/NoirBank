@@ -3,10 +3,10 @@ namespace NoirBank.Data.Enums
 {
     public enum AccountTypes
     {
-        Standard,
-        Saving,
-        Business,
-        Credit
+        STANDARD,
+        SAVING,
+        BUSINESS,
+        CREDIT
     }
 }
 

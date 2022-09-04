@@ -1,30 +1,50 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
 import CardPreview from '../../components/card/card-preview'
+import { setModalData } from '../../redux/reducers/modal-reducer'
 import './add-card-form.scss'
+import { getAccounts } from './selectors'
 
 function AddCardForm() {
+	const dispatch = useDispatch()
+
+	const accounts = getAccounts()
+
 	const [cardStyle, setCardStyle] = useState('card1')
+	const [cardType, setCardType] = useState('debit')
+	const [account, setAccount] = useState('account 1')
+
+	const setCardData = () => {
+		dispatch(setModalData({ cardStyle, cardType, account }))
+	}
+
+	useEffect(() => {
+		setCardData()
+	}, [])
+
+	useEffect(() => {
+		setCardData()
+	}, [cardStyle, cardType, account])
+
 	const cards = [
 		'card1',
 		'card2',
 		'card3',
 		'card4'
 	]
+
 	return (
 		<>
 			<h5 className='add-card-title'>Card type</h5>
-			<select className='add-card-select'>
+			<select className='add-card-select' onChange={e => setCardType(e.target.value)}>
 				<option value={'debit'}>Debit</option>
 				<option value={'credit'}>Credit</option>
 			</select>
 			<h5 className='add-card-title'>Assigned account</h5>
-			<select className='add-card-select'>
-				<option value={'1'}>Account 1</option>
-				<option value={'2'}>Account 2</option>
-				<option value={'3'}>Account 3</option>
-				<option value={'4'}>Account 4</option>
-				<option value={'5'}>Account 5</option>
-				<option value={'6'}>Account 6</option>
+			<select className='add-card-select' onChange={e => setAccount(e.target.value)}>
+				{
+					accounts.map(account => <option key={account.accountNumberNoSpace} value={account.name}>{account.name}</option>)
+				}
 			</select>
 			<h5 className='add-card-title'>Card design</h5>
 			<div className='card-patterns'>
@@ -36,7 +56,7 @@ function AddCardForm() {
 									<CardPreview cardStyle={`${card} card-sm`} />
 								</div>
 								<label htmlFor={card}>
-									<span data-isEnabled={cardStyle === card} className='nb-ico'>checkmark</span>
+									<span data-isenabled={cardStyle === card} className='nb-ico'>checkmark</span>
 								</label>
 							</div>
 						)
