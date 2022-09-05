@@ -42,7 +42,6 @@
     <None Remove="AutoMapper.Extensions.Microsoft.DependencyInjection" />
     <None Remove="Microsoft.AspNetCore.Authentication.JwtBearer" />
     <None Remove="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
-    <None Remove="Repositories\SessionLog\" />
     <None Remove="Utils\AuthenticationService\" />
     <None Remove="SendGrid" />
     <None Remove="Microsoft.EntityFrameworkCore.Relational" />
@@ -58,7 +57,6 @@
     <Folder Include="Repositories\User\" />
     <Folder Include="Repositories\Transfer\" />
     <Folder Include="Utils\" />
-    <Folder Include="Repositories\SessionLog\" />
     <Folder Include="Utils\AuthenticationService\" />
   </ItemGroup>
 </Project>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using NoirBank.Data.DTO;
 using NoirBank.Data.Enums;
@@ -11,6 +12,7 @@ namespace NoirBank.Repositories
         Task CreateAccountAsync(AccountDTO newAccount, ApplicationRoles role);
         Task<JWTToken> SignInAsync(Credentials credentials);
         Task<Profile> GetProfileAsync();
+        Task<IList<Object>> GetUserSessionLogsAsync();
     }
 }
 

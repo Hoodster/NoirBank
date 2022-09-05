@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using NoirBank.Data.DTO;
+using NoirBank.Data.Entities;
 
 namespace NoirBank.Repositories
 {
@@ -9,8 +10,8 @@ namespace NoirBank.Repositories
     {
         Task<BasicAccount> CreateAccount(BankAccountDTO accountDTO);
         Task<IList<BasicAccount>> GetAllAccounts();
-        Task GetAccount(Guid accountID);
         Task DepositToAccountAsync(DepositDTO deposit);
+        Task<IList<Object>> GetBillingHistoryAsync();
     }
 }
 

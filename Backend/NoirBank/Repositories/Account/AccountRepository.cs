@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using NoirBank.Data.DTO;
 using NoirBank.Data.Entities;
@@ -67,7 +68,8 @@ namespace NoirBank.Repositories
                 OperationDate = DateTime.UtcNow,
                 TranscationType = TransactionTypes.Income,
                 Title = $"Deposit to account {account.AccountNumber}",
-                OperationType = OperationTypes.Deposit
+                OperationType = OperationTypes.Deposit,
+                BankAccountID = account.AccountID
             };
 
             await _databaseContext.Operations.AddAsync(operation);
@@ -84,6 +86,35 @@ namespace NoirBank.Repositories
                 Balance = account.Balance,
                 Name = account.Name
             };
+        }
+
+        public async Task<IList<Object>> GetBillingHistoryAsync()
+        {
+            var currentUser = await _authenticationService.GetCurrentUserAsync();
+            var operations = _databaseContext.BankAccounts
+                .Where(x => x.CustomerID.Equals(currentUser.CustomerID))
+                .SelectMany(s => s.Operations)
+                .Include(x => x.BankAccount).ToList();
+
+            var flattenOperations = operations.OrderByDescending(x => x.OperationDate).ToList();
+
+            List<Object> returnList = new List<object>();
+
+            foreach(var transaction in flattenOperations)
+            {
+                returnList.Add(new
+                {
+                    AccountName = transaction.BankAccount.Name,
+                    OperationDate = transaction.OperationDate.ToLocalTime().ToString("dd:MM:yyyy HH:mm"),
+                    Title = transaction.Title,
+                    TransactionType = transaction.TranscationType,
+                    OperaitonType = transaction.OperationType,
+                    Amount = transaction.Amount
+            });
+                
+            }
+
+            return returnList;
         }
     }
 }

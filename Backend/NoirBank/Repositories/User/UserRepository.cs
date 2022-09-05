@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using NoirBank.Data.DTO;
 using NoirBank.Data.Email;
 using NoirBank.Data.Entities;
@@ -24,7 +25,6 @@ namespace NoirBank.Repositories
         private readonly SignInManager<User> _signInManager;
         private readonly RoleManager<IdentityRole<Guid>> _roleManager;
         private readonly DatabaseContext _db;
-        private readonly ISessionLogRepository _sessionLogRepository;
         private readonly IAuthenticationService _authenticationService;
         private readonly IEmailService _emailService;
 
@@ -33,7 +33,6 @@ namespace NoirBank.Repositories
             SignInManager<User> signInManager,
             RoleManager<IdentityRole<Guid>> roleManager,
             DatabaseContext db,
-            ISessionLogRepository sessionLogRepository,
             IAuthenticationService authenticationService,
             IEmailService emailService
             )
@@ -42,7 +41,6 @@ namespace NoirBank.Repositories
             _signInManager = signInManager;
             _roleManager = roleManager;
             _db = db;
-            _sessionLogRepository = sessionLogRepository;
             _authenticationService = authenticationService;
             _emailService = emailService;
         }
@@ -115,7 +113,7 @@ namespace NoirBank.Repositories
 
             var user = _db.Users.FirstOrDefault(x => x.UserName == credentials.AccountNumber);
             var signInResult = await _signInManager.CheckPasswordSignInAsync(user, credentials.Password, false);
-            await _sessionLogRepository.LogAsync(new SessionLog(DateTimeOffset.UtcNow, user.Id, signInResult.Succeeded));
+            await LogAsync(new SessionLog(DateTimeOffset.UtcNow, user.Id, signInResult.Succeeded));
             if (signInResult.Succeeded)
             {
                 var roles = await _userManager.GetRolesAsync(user);
@@ -138,6 +136,21 @@ namespace NoirBank.Repositories
                 Login = user.UserName
             };
         }
+
+        public async Task<IList<Object>> GetUserSessionLogsAsync()
+        {
+            var user = await _authenticationService.GetCurrentUserAsync();
+            var sessionLogs = _db.SessionLogs.Where(log => log.UserID.Equals(user.Id)).Select<SessionLog, Object>(sessionLog => new
+            {
+                SessionID = sessionLog.SessionID,
+                SessionDate = sessionLog.LoginDate.ToLocalTime().ToString("dd/MM/yyyy HH:mm:ss"),
+                IsSuccessfull = sessionLog.IsSuccessful ? "Succeed" : "Failed"
+            }).ToList();
+
+            return sessionLogs;
+        }
+
+        #region Private
 
         private async Task SendUsernameEmail(string recipientEmail, string recipientName, string recipientLogin)
         {
@@ -183,6 +196,13 @@ namespace NoirBank.Repositories
 
             return customer;
         }
+
+        private async Task LogAsync(SessionLog log)
+        {
+            await _db.SessionLogs.AddAsync(log);
+            await _db.SaveChangesAsync();
+        }
+        #endregion
     }
 }
 

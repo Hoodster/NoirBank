@@ -6,31 +6,38 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
+import { getModalData } from '../add-card-modal/selectors'
 
-function BillingHistoryContainer(props) {
+function BillingHistoryContainer() {
+	const accounts = getModalData().accounts
 	return (
 		<TableContainer component={Paper}>
 			<Table>
 				<TableHead>
 					<TableRow>
-						<TableCell>ID</TableCell>
-						<TableCell align='right'>Date</TableCell>
-						<TableCell align='right'>Succeed</TableCell>
-					</TableRow>
+						<TableCell style={{'fontWeight': 'bold'}}>Account name</TableCell>
+						<TableCell style={{'fontWeight': 'bold'}}>Title</TableCell>
+						<TableCell style={{'fontWeight': 'bold'}}>Amount</TableCell>
+						<TableCell style={{'fontWeight': 'bold'}}>Type</TableCell>
+						<TableCell style={{'fontWeight': 'bold'}}>Date</TableCell>
+					</TableRow> 
 				</TableHead>
 				<TableBody>
 					{
-						(props.logs?.length > 0) ? props.logs.map(log => {
-							<TableRow>
-								<TableCell>{log.SessionLogID}</TableCell>
-								<TableCell>{log.Date}</TableCell>
-								<TableCell>{log.IsSuccessfull === 1}</TableCell>
-							</TableRow>
+						accounts ? accounts.map(account => {
+							const isIncome = account.transactionType === 0
+							return (
+								<TableRow key={Math.random()}>
+									<TableCell style={!isIncome ? { 'color': 'red'} : null} >{account.accountName}</TableCell>
+									<TableCell  style={!isIncome ? { 'color': 'red'} : null} >{account.title}</TableCell>
+									<TableCell style={!isIncome ? { 'color': 'red'} : null} >{!isIncome?'-':''}{account.amount} PLN</TableCell>
+									<TableCell style={!isIncome ? { 'color': 'red'} : null} >{account.operationType}</TableCell>
+									<TableCell style={!isIncome ? { 'color': 'red'} : null} >{account.operationDate}</TableCell>
+								</TableRow>
+							)
 						}) : 
 							<TableRow>
-								<TableCell></TableCell>
 								<TableCell align='center'>No Data To Show</TableCell>
-								<TableCell></TableCell>
 							</TableRow>
 					}
 				</TableBody>

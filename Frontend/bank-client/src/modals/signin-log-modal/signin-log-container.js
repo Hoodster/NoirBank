@@ -6,26 +6,32 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
+import { getModalData } from './selectors'
 
-function SignInLogContainer(props) {
+function SignInLogContainer() {
+	const logs = getModalData().logs
+
 	return (
 		<TableContainer component={Paper}>
 			<Table>
 				<TableHead>
 					<TableRow>
-						<TableCell>ID</TableCell>
-						<TableCell align='right'>Date</TableCell>
-						<TableCell align='right'>Succeed</TableCell>
+						<TableCell style={{'fontWeight': 'bold'}}>ID</TableCell>
+						<TableCell style={{'fontWeight': 'bold'}}>Date</TableCell>
+						<TableCell style={{'fontWeight': 'bold'}}>Status</TableCell>
 					</TableRow>
 				</TableHead>
 				<TableBody>
 					{
-						(props.logs?.length > 0) ? props.logs.map(log => {
-							<TableRow>
-								<TableCell>{log.SessionLogID}</TableCell>
-								<TableCell>{log.Date}</TableCell>
-								<TableCell>{log.IsSuccessfull === 1}</TableCell>
-							</TableRow>
+						logs ? logs.map(log => {
+							const isSuccessfull = log.isSuccessfull === 'Succeed'
+							return (
+								<TableRow key={Math.random()}>
+									<TableCell style={!isSuccessfull ? { 'color': 'red'} : null}>{log.sessionID.substring(0,7)}</TableCell>
+									<TableCell style={!isSuccessfull ? { 'color': 'red'} : null}>{log.sessionDate}</TableCell>
+									<TableCell style={!isSuccessfull ? { 'color': 'red'} : null}>{log.isSuccessfull}</TableCell>
+								</TableRow>
+							)
 						}) : 
 							<TableRow>
 								<TableCell></TableCell>

@@ -10,7 +10,7 @@ import { useDispatch } from 'react-redux'
 import { setFormValue, setFormAddressValue, reset } from '../../redux/reducers/register-reducer'
 import { getForm } from './selectors'
 import { Link, useNavigate } from 'react-router-dom'
-import { userAPI } from '../../helpers/endpoints'
+import { customerAPI } from '../../helpers/endpoints'
 import { openNotification } from '../../redux/reducers/notification-reducer'
 import { post } from '../../helpers/api'
 
@@ -29,7 +29,7 @@ function RegistrationScene() {
 
 	const submitRegistration = async () => {
 		try {
-			await post(`${userAPI}/register`, form, true)
+			await post(`${customerAPI}/register`, form, true)
 			dispatch(reset())
 			dispatch(openNotification({
 				type: 'success',

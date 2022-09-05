@@ -1,16 +1,20 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import ModalBase from '../../components/modal/modal-base'
-import { close } from '../../redux/reducers/modal-reducer'
+import { get } from '../../helpers/api'
+import { userAPI } from '../../helpers/endpoints'
+import { close, setModalData } from '../../redux/reducers/modal-reducer'
 import SignInLogContainer from './signin-log-container'
 
 function SignInLogModal() {
-	const [logs, setLogs] = useState()
 	const dispatch = useDispatch()
-    
+
 	useEffect(() => {
-		setLogs(['a','b'])
-		console.log(logs)
+		get(`${userAPI}/sessionlogs`).then((response) => {
+			dispatch(setModalData({
+				logs: response.data.data
+			}))
+		})
 	},[])
 
 	const primaryAction = {

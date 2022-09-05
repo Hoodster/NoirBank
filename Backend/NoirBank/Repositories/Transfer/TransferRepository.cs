@@ -37,7 +37,8 @@ namespace NoirBank.Repositories
                 ? transfer.Title
                 : $"Transfer {defaultTextTransferDirection}",
                 TranscationType = isCustomerSender ? TransactionTypes.Outcome : TransactionTypes.Income,
-                OperationType = OperationTypes.Transfer
+                OperationType = OperationTypes.Transfer,
+                BankAccountID = isCustomerSender ? senderAccount.AccountID : recipientAccount.AccountID
             };
 
             await _dbContext.Operations.AddAsync(operation);
