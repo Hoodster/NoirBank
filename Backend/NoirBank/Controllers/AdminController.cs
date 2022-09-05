@@ -75,11 +75,11 @@ namespace NoirBank.Controllers
         [HttpPost("register")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status409Conflict)]
-        public async Task<IActionResult> Register([FromBody] NewBaseAccount account)
+        public async Task<IActionResult> Register([FromBody] BaseAccountDTO account)
         {
             try
             {
-                await _userRepository.CreateAccountAsync((NewAccount)account, Data.Enums.ApplicationRoles.Admin);
+                await _userRepository.CreateAccountAsync((AccountDTO)account, Data.Enums.ApplicationRoles.Admin);
                 var content = new HTTPResponse(HttpStatusCode.OK, "account_created", false);
                 return new OkObjectResult(content);
             }

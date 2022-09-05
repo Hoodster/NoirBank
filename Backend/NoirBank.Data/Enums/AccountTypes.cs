@@ -6,7 +6,8 @@ namespace NoirBank.Data.Enums
         STANDARD,
         SAVING,
         BUSINESS,
-        CREDIT
+        CREDIT,
+        INVESTMENT
     }
 }
 

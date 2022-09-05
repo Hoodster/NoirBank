@@ -3,7 +3,7 @@
 .nb-account-quickview {
     @include withShadow(3px, $shadow-color);
     @include withBorder('card', 0, $font-color);
-    @include buttonEvents($accent-color);
+    background-color: map-get($accent-color, 'base');
     display: flex;
     width: map-get($account-quickview, 'width');
     height: map-get($account-quickview, 'height');

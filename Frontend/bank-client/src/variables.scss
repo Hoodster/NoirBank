@@ -15,6 +15,12 @@ $accent-color: (
     'focus': var(--accent-color-focus),
 );
 
+$accent-color-inverted: (
+    'base': var(--accent-color-inverted),
+    'hover': var(--accent-color-inverted-hover),
+    'focus': var(--accent-color-inverted-focus),
+);
+
 $background-theme: var(--background-theme);
 
 $font-color: var(--font-color);

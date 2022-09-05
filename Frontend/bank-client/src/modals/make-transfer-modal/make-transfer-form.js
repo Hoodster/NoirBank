@@ -1,25 +1,47 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { setModalData } from '../../redux/reducers/modal-reducer'
 import './make-transfer-form.scss'
+import { getAccounts } from './selectors'
 
 function MakeTransferForm() {
+	const dispatch = useDispatch()
+	const accounts = getAccounts()
+
+	const [senderAccountNumber, setSenderAccountNumber] = useState(accounts[0].accountNumberNoSpace)
+	const [recipientAccountNumber, setRecipientAccountNumber] = useState()
+	const [amount, setAmount] = useState()
+	const [title, setTitle] = useState()
+
+	useEffect(() => {
+		dispatch(setModalData({
+			senderAccountNumber,
+			recipientAccountNumber,
+			amount,
+			title
+		}))
+	}, [senderAccountNumber, recipientAccountNumber, amount])
 	return (
 		<>
 			<h5 className='make-transfer-title'>From</h5>
-			<select>
-				<option value={'1'}>Account 1</option>
-				<option value={'2'}>Account 2</option>
-				<option value={'3'}>Account 3</option>
-				<option value={'4'}>Account 4</option>
-				<option value={'5'}>Account 5</option>
-				<option value={'6'}>Account 6</option>
+			<select onChange={(e) => setSenderAccountNumber(e.target.value)}>
+				{
+					accounts.map(account => {
+						return (
+							<option key={account.accountNumberNoSpace} value={account.accountNumberNoSpace}>{account.name}		{account.balance}PLN</option>
+						)
+					})
+				}
 			</select>
 			<h5 className='make-transfer-title'>To</h5>
-			<input placeholder='recipient acc. number'/>
+			<input onChange={(e) => setRecipientAccountNumber(e.target.value)} placeholder='recipient acc. number'/>
 			<h5 className='make-transfer-title'>Amount</h5>
 			<div>
-				<input placeholder='0.00'/>
+				<input onChange={(e) => setAmount(e.target.value)} placeholder='0.00'/>
 				<span> PLN</span>
 			</div>
+			<h5 className='make-transfer-title'>Transfer title</h5>
+			<input onChange={(e) => setTitle(e.target.value)} placeholder='Title'/>
 		</>
 	)
 }

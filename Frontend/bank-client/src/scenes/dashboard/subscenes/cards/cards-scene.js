@@ -39,7 +39,7 @@ function CardsScene() {
 			emptyChildrenText='you have no cards yet'
 			height='sm'
 			option={<Button style='accent' type='general' icon='add' onClick={addCardModal} text='New card'></Button>}>
-			{!hasNoCards ? <CardsContainer /> : null}
+			{!hasNoCards ? <CardsContainer cards={cards} /> : null}
 		</DashboardSection>
 	)
 }

@@ -5,6 +5,7 @@ import { post } from '../../helpers/api'
 import { bankAccountAPI } from '../../helpers/endpoints'
 import { close } from '../../redux/reducers/modal-reducer'
 import { openNotification } from '../../redux/reducers/notification-reducer'
+import { addBankAccount } from '../../redux/reducers/user-reducer'
 import CreateAccountForm from './create-account-form'
 import { getModalData } from './selectors'
 
@@ -13,7 +14,8 @@ function CreateAccountModal() {
 	const modalData = getModalData()
 
 	const createNewAccount = () => {
-		post(`${bankAccountAPI}`, modalData).then(() => {
+		post(`${bankAccountAPI}`, modalData).then((response) => {
+			dispatch(addBankAccount(response.data.data))
 			dispatch(openNotification({
 				type: 'success',
 				message: 'New bank account created'

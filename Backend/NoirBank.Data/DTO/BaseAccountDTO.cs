@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace NoirBank.Data.DTO
 {
-    public class NewBaseAccount
+    public class BaseAccountDTO
     {
         [Required]
         public string FirstName { get; set; }
@@ -13,10 +13,6 @@ namespace NoirBank.Data.DTO
         public string Email { get; set; }
         [Required]
         public string Password { get; set; }
-
-        public NewBaseAccount()
-        {
-        }
     }
 }
 

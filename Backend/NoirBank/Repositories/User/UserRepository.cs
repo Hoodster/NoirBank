@@ -47,7 +47,7 @@ namespace NoirBank.Repositories
             _emailService = emailService;
         }
 
-        public async Task CreateAccountAsync(Data.DTO.NewAccount newAccount, ApplicationRoles role)
+        public async Task CreateAccountAsync(AccountDTO newAccount, ApplicationRoles role)
         {
             CheckIfNullOrEmpty(
                 newAccount.FirstName,
@@ -164,7 +164,7 @@ namespace NoirBank.Repositories
             await _userManager.AddToRoleAsync(user, role.ToString());
         }
 
-        private static Customer CreateCustomerNode(NewAccount newAccount)
+        private static Customer CreateCustomerNode(AccountDTO newAccount)
         {
             var address = new Data.Entities.Address();
             var addressDTO = newAccount.Address;

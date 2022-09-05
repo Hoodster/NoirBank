@@ -7,9 +7,10 @@ namespace NoirBank.Repositories
 {
     public interface IAccountRepository
     {
-        Task CreateAccount(BankAccountDTO accountDTO);
+        Task<BasicAccount> CreateAccount(BankAccountDTO accountDTO);
         Task<IList<BasicAccount>> GetAllAccounts();
         Task GetAccount(Guid accountID);
+        Task DepositToAccountAsync(DepositDTO deposit);
     }
 }
 

@@ -12,7 +12,7 @@ function AddCardForm() {
 
 	const [cardStyle, setCardStyle] = useState('card1')
 	const [cardType, setCardType] = useState('debit')
-	const [account, setAccount] = useState('account 1')
+	const [account, setAccount] = useState(accounts[0].accountNumberNoSpace)
 
 	const setCardData = () => {
 		dispatch(setModalData({ cardStyle, cardType, account }))
@@ -43,7 +43,7 @@ function AddCardForm() {
 			<h5 className='add-card-title'>Assigned account</h5>
 			<select className='add-card-select' onChange={e => setAccount(e.target.value)}>
 				{
-					accounts.map(account => <option key={account.accountNumberNoSpace} value={account.name}>{account.name}</option>)
+					accounts.map(account => <option key={account.accountNumberNoSpace} value={account.accountNumberNoSpace}>{account.name}</option>)
 				}
 			</select>
 			<h5 className='add-card-title'>Card design</h5>

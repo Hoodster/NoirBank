@@ -1,15 +1,26 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import ModalBase from '../../components/modal/modal-base'
+import { post } from '../../helpers/api'
+import { transferAPI } from '../../helpers/endpoints'
 import { close } from '../../redux/reducers/modal-reducer'
 import MakeTransferForm from './make-transfer-form'
+import { getModalData } from './selectors'
 
 function MakeTransferModal() {
 	const dispatch = useDispatch()
 
+	const modalData = getModalData()
+
+	const makeTransfer = () => {
+		post(transferAPI, modalData).then(() => {
+			dispatch(close())
+		})
+	}
+
 	const primaryAction = {
 		text: 'Send',
-		action: () => alert('Money sent')
+		action: () => makeTransfer()
 	}
 
 	const secondaryAction = {

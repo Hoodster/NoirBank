@@ -7,7 +7,7 @@ namespace NoirBank.Repositories
 {
     public interface ICardRepository
     {
-        Task AddCardAsync(CardDTO card);
+        Task<BasicCard> AddCardAsync(CardDTO card);
         Task<IList<BasicCard>> GetAllCustomerCards();
     }
 }

@@ -15,6 +15,10 @@ namespace NoirBank.Data.Entities
 		public DateTimeOffset OperationDate { get; set; }
 		public OperationTypes OperationType { get; set; }
 
+		[ForeignKey("BankAccount")]
+		public Guid BankAccountID { get; set; }
+		public virtual BankAccount BankAccount { get; set; }
+
 		public Operation()
 		{
 		}

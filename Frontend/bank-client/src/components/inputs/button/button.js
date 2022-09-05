@@ -11,7 +11,7 @@ function Button({type, style, icon, text, onClick}) {
 
 Button.propTypes = {
 	type: PropTypes.oneOf(['main', 'general']).isRequired,
-	style: PropTypes.oneOf(['primary', 'accent']).isRequired,
+	style: PropTypes.oneOf(['primary', 'accent', 'accent-inverted']).isRequired,
 	text: PropTypes.string.isRequired,
 	icon: PropTypes.string,
 	onClick: PropTypes.func

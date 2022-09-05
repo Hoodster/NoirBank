@@ -13,7 +13,7 @@ function ActionButtons(props) {
 		icon: ''
 	}
 
-	if (props.primaryActionButton.icon) {
+	if (props.primaryActionButton?.icon) {
 		primaryButtonProps.icon = props.primaryActionButton.icon
 	}
 
@@ -31,7 +31,7 @@ function ActionButtons(props) {
 			{
 				addSecondaryButton()
 			}
-			<Button type='main' style='primary' text={props.primaryActionButton.text} onClick={props.primaryActionButton.action} {...primaryButtonProps} />
+			<Button type='main' style='primary' text={props.primaryActionButton?.text} onClick={props.primaryActionButton?.action} {...primaryButtonProps} />
 		</div>
 	)
 }

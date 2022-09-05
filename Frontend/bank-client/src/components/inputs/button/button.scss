@@ -34,3 +34,9 @@
     color: $font-color;
     border-radius: map-get($border-radius,'rounded');
 }
+
+.accent-inverted {
+    @include buttonEvents($accent-color-inverted);
+    color: map-get($accent-color, 'base');
+    border-radius: map-get($border-radius,'rounded');
+}

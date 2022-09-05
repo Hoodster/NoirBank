@@ -33,9 +33,6 @@ namespace NoirBank.Data.Entities
         /// </summary>
         [ForeignKey("HomeAddress")]
 		public Guid? HomeAddressID { get; set; }
-		public Customer()
-		{
-		}
 	}
 }
 

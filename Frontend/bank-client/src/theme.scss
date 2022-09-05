@@ -35,6 +35,10 @@ $shadow-dark: black;
     --accent-color: #{$accent-color-light};
     --accent-color-hover: #{hoverColor($accent-color-light, false)};
     --accent-color-focus: #{focusColor($accent-color-light, false)};
+
+    --accent-color-inverted: #{$accent-color-dark};
+    --accent-color-inverted-hover: #{hoverColor($accent-color-dark, true)};
+    --accent-color-inverted-focus: #{focusColor($accent-color-dark, true)};
 }
 
 [data-theme='dark'] {
@@ -52,4 +56,8 @@ $shadow-dark: black;
     --accent-color: #{$accent-color-dark};
     --accent-color-hover: #{hoverColor($accent-color-dark, true)};
     --accent-color-focus: #{focusColor($accent-color-dark, true)};
+
+    --accent-color-inverted: #{$accent-color-light};
+    --accent-color-inverted-hover: #{hoverColor($accent-color-light, false)};
+    --accent-color-inverted-focus: #{focusColor($accent-color-light, false)};
 }

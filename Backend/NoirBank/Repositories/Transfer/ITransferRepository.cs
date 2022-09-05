@@ -6,6 +6,7 @@ namespace NoirBank.Repositories
 {
     public interface ITransferRepository
     {
+        Task MakeTransferAsync(TransferDTO transfer);
     }
 }
 

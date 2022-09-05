@@ -21,7 +21,7 @@ namespace NoirBank.Repositories
             _authService = authService;
         }
 
-        public async Task AddCardAsync(CardDTO card)
+        public async Task<BasicCard> AddCardAsync(CardDTO card)
         {
             var accountID = _databaseContext.BankAccounts
                 .Select(account => new { account.AccountID, account.AccountNumber })
@@ -32,12 +32,13 @@ namespace NoirBank.Repositories
                 CardNumber = BankNumbersHelper.GenerateBankCardNumber(),
                 Cover = card.Cover,
                 CardType = Enum.Parse<CardTypes>(card.Type, true),
-                ExpirationDate = new DateTime().AddYears(6),
+                ExpirationDate = DateTime.UtcNow.AddYears(6),
                 CVV = new Random().Next(100, 999),
                 AccountID = accountID
             };
-            await _databaseContext.AddAsync(newCard);
+            var result = await _databaseContext.AddAsync(newCard);
             await _databaseContext.SaveChangesAsync();
+            return PrepareBasicCardInfo(result.Entity);
         }
 
         public async Task<IList<BasicCard>> GetAllCustomerCards()
@@ -53,19 +54,24 @@ namespace NoirBank.Repositories
             foreach(var innerCards in cards)
             {
                 foreach (var card in innerCards) {
-                    var shadowNumber = BankNumbersHelper.ShadowCardNumber(card.CardNumber);
-                    result.Add(new BasicCard
-                    {
-                        HiddenNumber = BankNumbersHelper.FormatCardNumber(shadowNumber),
-                        ExpirationMonth = card.ExpirationDate.Month.ToString(),
-                        ExpirationDay = card.ExpirationDate.Day.ToString(),
-                        Type = card.CardType == Data.Enums.CardTypes.Credit ? "Credit" : "Debit",
-                        Cover = "card2"
-                    });
+                    result.Add(PrepareBasicCardInfo(card));
                  }
             }
 
             return result;
+        }
+
+        private static BasicCard PrepareBasicCardInfo(Card card)
+        {
+            var shadowNumber = BankNumbersHelper.ShadowCardNumber(card.CardNumber);
+            return new BasicCard
+            {
+                HiddenNumber = BankNumbersHelper.FormatCardNumber(shadowNumber),
+                ExpirationMonth = card.ExpirationDate.ToString("MM"),
+                ExpirationYear = card.ExpirationDate.ToString("yy"),
+                Type = card.CardType == Data.Enums.CardTypes.Credit ? "Credit" : "Debit",
+                Cover = card.Cover
+            };
         }
     }
 }

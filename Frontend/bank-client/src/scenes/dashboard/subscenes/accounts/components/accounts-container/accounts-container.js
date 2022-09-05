@@ -9,12 +9,14 @@ function AccountsContainer(props) {
 		<div className='accounts-container'>
 			<Swipeable space={30} data={
 				props.accounts.map(account => {
+					const balance = account.balance.toString().split('.')
 					return (<BankAccountQuickview
+						accountKey={account.accountNumberNoSpace}
 						type={account.type}
 						name={account.name}
 						accountNumber={account.accountNumber}
-						fulls={account.balance}
-						cents={'00'}
+						fulls={balance[0]}
+						cents={balance[1] ? balance[1] : '00'}
 					/>)
 				})
 			} />

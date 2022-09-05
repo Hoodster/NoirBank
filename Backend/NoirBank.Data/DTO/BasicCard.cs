@@ -6,7 +6,7 @@ namespace NoirBank.Data.DTO
     {
         public string HiddenNumber { get; set; }
         public string ExpirationMonth { get; set; }
-        public string ExpirationDay { get; set; }
+        public string ExpirationYear { get; set; }
         public string Type { get; set; }
         public string Cover { get; set; }
     }

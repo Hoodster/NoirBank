@@ -21,21 +21,22 @@ namespace NoirBank.Repositories
             _databaseContext = databaseContext;
         }
 
-        public async Task CreateAccount(BankAccountDTO accountDTO)
+        public async Task<BasicAccount> CreateAccount(BankAccountDTO accountDTO)
         {
             var user = await _authenticationService.GetCurrentUserAsync();
             var bankAccountName = !accountDTO.Name.IsNullOrEmpty() ? accountDTO.Name : $"{accountDTO.Type.ToString().ToLower()} account";
             var bankAccount = new BankAccount
             {
                 Balance = 0.0,
-                AccountType = (AccountTypes)Enum.Parse(typeof(AccountTypes), accountDTO.Type.ToUpper()),
+                AccountType = Enum.Parse<AccountTypes>(accountDTO.Type, true),
                 Name = bankAccountName,
                 AccountNumber = BankNumbersHelper.GenerateBankAccountNumber(),
                 CustomerID = user.CustomerID
             };
 
-            await _databaseContext.BankAccounts.AddAsync(bankAccount);
+            var result = await _databaseContext.BankAccounts.AddAsync(bankAccount);
             await _databaseContext.SaveChangesAsync();
+            return PrepareBasicAccountInfo(result.Entity);
         }
 
         public Task GetAccount(Guid accountID)
@@ -48,16 +49,41 @@ namespace NoirBank.Repositories
             var user = await _authenticationService.GetCurrentUserAsync();
             var bankAccounts = _databaseContext.BankAccounts
                 .Where(bankAccount => bankAccount.CustomerID == user.CustomerID)
-                .Select(bankAccount => new BasicAccount
-                {
-                    AccountNumber = BankNumbersHelper.SplitBankAccountNumber(bankAccount.AccountNumber),
-                    AccountNumberNoSpace = bankAccount.AccountNumber,
-                    Type = bankAccount.AccountType,
-                    Balance = bankAccount.Balance,
-                    Name = bankAccount.Name
-                }).ToList();
+                .Select(bankAccount => PrepareBasicAccountInfo(bankAccount)).ToList();
 
             return bankAccounts;
+        }
+
+        public async Task DepositToAccountAsync(DepositDTO deposit)
+        {
+            var amount = double.Parse(deposit.Amount);
+            var account = _databaseContext.BankAccounts.FirstOrDefault(x => x.AccountNumber.Equals(deposit.AccountNumber));
+            account.Balance += amount;
+            _databaseContext.BankAccounts.Update(account);
+
+            var operation = new Operation
+            {
+                Amount = amount,
+                OperationDate = DateTime.UtcNow,
+                TranscationType = TransactionTypes.Income,
+                Title = $"Deposit to account {account.AccountNumber}",
+                OperationType = OperationTypes.Deposit
+            };
+
+            await _databaseContext.Operations.AddAsync(operation);
+            await _databaseContext.SaveChangesAsync();
+        }
+
+        private static BasicAccount PrepareBasicAccountInfo(BankAccount account)
+        {
+            return new BasicAccount
+            {
+                AccountNumber = BankNumbersHelper.SplitBankAccountNumber(account.AccountNumber),
+                AccountNumberNoSpace = account.AccountNumber,
+                Type = account.AccountType,
+                Balance = account.Balance,
+                Name = account.Name
+            };
         }
     }
 }

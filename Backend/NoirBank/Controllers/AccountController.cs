@@ -22,9 +22,11 @@ namespace NoirBank.Controllers
         }
 
         [HttpPost]
-        public async Task AddAccount([FromBody] BankAccountDTO accountDTO)
+        public async Task<IActionResult> AddAccount([FromBody] BankAccountDTO accountDTO)
         {
-            await _accountRepository.CreateAccount(accountDTO);
+            var result = await _accountRepository.CreateAccount(accountDTO);
+            var content = new HTTPResponse(HttpStatusCode.OK, result);
+            return new OkObjectResult(content);
         }
 
         [HttpGet]
@@ -32,6 +34,14 @@ namespace NoirBank.Controllers
         {
             var result = await _accountRepository.GetAllAccounts();
             var content = new HTTPResponse(HttpStatusCode.OK, result);
+            return new OkObjectResult(content);
+        }
+
+        [HttpPost("deposit")]
+        public async Task<IActionResult> DepositMoney([FromBody] DepositDTO deposit)
+        {
+            await _accountRepository.DepositToAccountAsync(deposit);
+            var content = new HTTPResponse(HttpStatusCode.OK, "ok");
             return new OkObjectResult(content);
         }
     }

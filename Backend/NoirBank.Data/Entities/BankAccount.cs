@@ -21,6 +21,7 @@ namespace NoirBank.Data.Entities
 
         public AccountTypes AccountType { get; set; }
 		public IList<Card> Cards { get; set; }
+		public IList<Operation> Operations { get; set; }
 
 		public BankAccount()
 		{

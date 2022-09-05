@@ -8,7 +8,7 @@ namespace NoirBank
         public AutoMapperProfile()
         {
             CreateMap<Data.DTO.Address, Data.Entities.Address>();
-            CreateMap<Data.DTO.NewAccount, Data.Entities.Customer>();
+            CreateMap<Data.DTO.AccountDTO, Data.Entities.Customer>();
         }
     }
 }
