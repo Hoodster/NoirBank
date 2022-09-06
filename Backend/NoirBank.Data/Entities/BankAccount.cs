@@ -12,14 +12,16 @@ namespace NoirBank.Data.Entities
 		public Guid AccountID { get; set; }
         public string AccountNumber { get; set; }
         public string Name { get; set; }
+        public double Balance { get; set; }
 
-		[ForeignKey("Customer")]
+        [ForeignKey("Customer")]
         public Guid? CustomerID { get; set; }
         public virtual Customer Customer { get; set; }
 
-        public double Balance { get; set; }
+		[ForeignKey("AccountType")]
+		public Guid AccountTypeID { get; set; }
+        public virtual AccountType AccountType { get; set; }
 
-        public AccountTypes AccountType { get; set; }
 		public IList<Card> Cards { get; set; }
 		public IList<Operation> Operations { get; set; }
 

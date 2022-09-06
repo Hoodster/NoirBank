@@ -36,8 +36,9 @@ namespace NoirBank.Repositories
                 Title = transfer.Title != null
                 ? transfer.Title
                 : $"Transfer {defaultTextTransferDirection}",
-                TranscationType = isCustomerSender ? TransactionTypes.Outcome : TransactionTypes.Income,
-                OperationType = OperationTypes.Transfer,
+                //TODO:Change type
+                //TranscationType = isCustomerSender ? TransactionTypes.Outcome : TransactionTypes.Income,
+                //OperationType = OperationTypes.Transfer,
                 BankAccountID = isCustomerSender ? senderAccount.AccountID : recipientAccount.AccountID
             };
 

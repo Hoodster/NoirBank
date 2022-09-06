@@ -31,7 +31,8 @@ namespace NoirBank.Repositories
             {
                 CardNumber = BankNumbersHelper.GenerateBankCardNumber(),
                 Cover = card.Cover,
-                CardType = Enum.Parse<CardTypes>(card.Type, true),
+                //TODO: Change types
+               // CardType = Enum.Parse<CardTypes>(card.Type, true),
                 ExpirationDate = DateTime.UtcNow.AddYears(6),
                 CVV = new Random().Next(100, 999),
                 AccountID = accountID
@@ -69,7 +70,8 @@ namespace NoirBank.Repositories
                 HiddenNumber = BankNumbersHelper.FormatCardNumber(shadowNumber),
                 ExpirationMonth = card.ExpirationDate.ToString("MM"),
                 ExpirationYear = card.ExpirationDate.ToString("yy"),
-                Type = card.CardType == Data.Enums.CardTypes.Credit ? "Credit" : "Debit",
+                //TODO: Change type
+        //        Type = card.CardType == Data.Enums.CardTypes.Credit ? "Credit" : "Debit",
                 Cover = card.Cover
             };
         }

@@ -29,7 +29,8 @@ namespace NoirBank.Repositories
             var bankAccount = new BankAccount
             {
                 Balance = 0.0,
-                AccountType = Enum.Parse<AccountTypes>(accountDTO.Type, true),
+                //TODO:Change types
+                //AccountType = Enum.Parse<AccountTypes>(accountDTO.Type, true),
                 Name = bankAccountName,
                 AccountNumber = BankNumbersHelper.GenerateBankAccountNumber(),
                 CustomerID = user.CustomerID
@@ -62,13 +63,15 @@ namespace NoirBank.Repositories
             account.Balance += amount;
             _databaseContext.BankAccounts.Update(account);
 
+            var incomeTransacitonType = _databaseContext.TransactionTypes.First(x => x.Type.Equals(TransactionTypesOptions.INCOME));
+
             var operation = new Operation
             {
                 Amount = amount,
                 OperationDate = DateTime.UtcNow,
-                TranscationType = TransactionTypes.Income,
+                TransactionTypeID = incomeTransacitonType.TransactionTypeID,
                 Title = $"Deposit to account {account.AccountNumber}",
-                OperationType = OperationTypes.Deposit,
+               // OperationType = OperationTypes.Deposit,
                 BankAccountID = account.AccountID
             };
 
@@ -82,7 +85,8 @@ namespace NoirBank.Repositories
             {
                 AccountNumber = BankNumbersHelper.SplitBankAccountNumber(account.AccountNumber),
                 AccountNumberNoSpace = account.AccountNumber,
-                Type = account.AccountType,
+                //TODO:Change type
+            //    Type = account.AccountType.Type,
                 Balance = account.Balance,
                 Name = account.Name
             };
@@ -94,7 +98,10 @@ namespace NoirBank.Repositories
             var operations = _databaseContext.BankAccounts
                 .Where(x => x.CustomerID.Equals(currentUser.CustomerID))
                 .SelectMany(s => s.Operations)
-                .Include(x => x.BankAccount).ToList();
+                .Include(x => x.BankAccount)
+                .Include(x => x.OperationType)
+                .Include(x => x.TransactionType)
+                .ToList();
 
             var flattenOperations = operations.OrderByDescending(x => x.OperationDate).ToList();
 
@@ -102,13 +109,14 @@ namespace NoirBank.Repositories
 
             foreach(var transaction in flattenOperations)
             {
+
                 returnList.Add(new
                 {
                     AccountName = transaction.BankAccount.Name,
                     OperationDate = transaction.OperationDate.ToLocalTime().ToString("dd:MM:yyyy HH:mm"),
                     Title = transaction.Title,
-                    TransactionType = transaction.TranscationType,
-                    OperaitonType = transaction.OperationType,
+                    TransactionTypeID = transaction.TransactionType.Type,
+                    OperaitonType = transaction.OperationType.Type,
                     Amount = transaction.Amount
             });
                 
