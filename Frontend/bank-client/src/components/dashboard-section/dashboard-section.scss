@@ -1,0 +1,42 @@
+@import '../../variables.scss';
+
+.nb-dash-section {
+    margin: 0 10%;
+
+    .titleSection {
+        text-align: left;
+        align-items: baseline;
+        display: inline-flex;
+        align-items: center; 
+        vertical-align: baseline;
+
+        .title {
+            font-size: 30pt;
+            font-weight: 600;
+            margin-right: $margin-horizontal;
+        }
+    }
+
+    .container {
+        display: flex;
+        align-items: center;
+
+        &-empty {
+            text-align: center;
+        }
+
+        .emptyMessage {
+            font-weight: bold;
+            text-align: center;
+            width: 100%;
+        }
+    }
+
+    .md {
+        margin: 40px 0;
+    }
+
+    .sm {
+        margin: 29px 0;
+    }
+}

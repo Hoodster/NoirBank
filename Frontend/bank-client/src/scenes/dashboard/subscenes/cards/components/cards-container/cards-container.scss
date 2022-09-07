@@ -1,0 +1,17 @@
+@import '../../../../../../variables.scss';
+
+.cards-container {
+    width: 100%;
+    height: 100%;
+
+    .swiper-slide {
+      width: map-get($card, 'width');
+      margin-left: 10px;
+    }
+  
+    .swiper-button-prev,
+    .swiper-button-next {
+      color: white;
+      font-weight: bold;
+    }
+}

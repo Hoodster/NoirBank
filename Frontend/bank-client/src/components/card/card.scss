@@ -1,0 +1,70 @@
+@import '../../variables.scss';
+$heightBase: map-get($card, 'height');
+$widthBase: map-get($card, 'width');
+
+.nb-card {
+    @include withShadow(4px, $shadow-color);
+    @include withBorder('card', 0, black);
+    height: $heightBase;
+    width: $widthBase;
+    background-size: cover;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    cursor: pointer;
+
+    &-row-last {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    span {
+        font-size: map-get($font-size, 'small');
+        color: white;
+        margin: 5px 6px;
+        user-select: none;
+    }
+
+    span.nb-cardType {
+        font-weight: bold;
+    }
+
+    &:hover {
+        filter: grayscale(50%);
+    }
+}
+
+.card {
+    &-sm {
+        height: $heightBase * 0.5;
+        width: $widthBase * 0.5;
+    }
+    
+    &-md {
+        height: $heightBase * 1.5;
+        width: $widthBase * 1.5;
+    }
+    
+    &-lg {
+        height: $heightBase * 2;
+        width: $widthBase * 2;
+    }
+}
+
+.card1 {
+    background-image: url(../../assets/cards/card1.svg);
+}
+
+.card2 {
+    background-image: url(../../assets/cards/card2.svg);
+}
+
+.card3 {
+    background-image: url(../../assets/cards/card3.svg);
+}
+
+.card4 {
+    background-image: url(../../assets/cards/card4.svg);
+}

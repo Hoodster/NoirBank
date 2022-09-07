@@ -1,0 +1,23 @@
+@import url("//fonts.googleapis.com/css?family=Abril+Fatface");
+@import '../../variables.scss';
+
+.nb-nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 $margin-horizontal;
+    margin-bottom: 40px;
+    
+    &>span {
+        cursor: pointer;
+    }
+
+    .account-nav {
+        display: flex;
+        align-items: center;
+        align-content: center;
+    }
+}
+
+.nb-nav span {
+    font-weight: bold;
+}

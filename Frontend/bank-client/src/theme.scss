@@ -1,0 +1,63 @@
+@import './functions.scss';
+
+// contants
+$primary-color-start-internal: #4568DC;
+$primary-color-end-internal: #B06AB3;
+
+
+// LIGHT
+$background-theme-light: #F1F0F5;
+$font-color-light: black;
+$accent-color-light: white;
+$shadow-light: #42445a;
+
+
+//DARK
+$background-theme-dark: #282C34;
+$font-color-dark: white;
+$accent-color-dark: black;
+$shadow-dark: black;
+
+:root {
+    --isDark: false;
+    --primary-color-start: #{$primary-color-start-internal};
+    --primary-color-end: #{$primary-color-end-internal};
+    --background-theme: #{$background-theme-light};
+    --font-color: #{$font-color-light};
+    --shadow: #{$shadow-light};
+
+    --primary-color-start-hover: #{hoverColor($primary-color-start-internal, false)};
+    --primary-color-start-focus: #{focusColor($primary-color-start-internal, false)};
+
+    --primary-color-end-hover: #{hoverColor($primary-color-end-internal, false)};
+    --primary-color-end-focus: #{focusColor($primary-color-end-internal, false)};
+
+    --accent-color: #{$accent-color-light};
+    --accent-color-hover: #{hoverColor($accent-color-light, false)};
+    --accent-color-focus: #{focusColor($accent-color-light, false)};
+
+    --accent-color-inverted: #{$accent-color-dark};
+    --accent-color-inverted-hover: #{hoverColor($accent-color-dark, true)};
+    --accent-color-inverted-focus: #{focusColor($accent-color-dark, true)};
+}
+
+[data-theme='dark'] {
+    --isDark: true;
+    --background-theme: #{$background-theme-dark};
+    --font-color: #{$font-color-dark};
+    --shadow: #{$shadow-dark};
+
+    --primary-color-start-hover: #{hoverColor($primary-color-start-internal, false)};
+    --primary-color-start-focus: #{focusColor($primary-color-start-internal, false)};
+
+    --primary-color-end-hover: #{hoverColor($primary-color-end-internal, false)};
+    --primary-color-end-focus: #{focusColor($primary-color-end-internal, false)};
+
+    --accent-color: #{$accent-color-dark};
+    --accent-color-hover: #{hoverColor($accent-color-dark, true)};
+    --accent-color-focus: #{focusColor($accent-color-dark, true)};
+
+    --accent-color-inverted: #{$accent-color-light};
+    --accent-color-inverted-hover: #{hoverColor($accent-color-light, false)};
+    --accent-color-inverted-focus: #{focusColor($accent-color-light, false)};
+}

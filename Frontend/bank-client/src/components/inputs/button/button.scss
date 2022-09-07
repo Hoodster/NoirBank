@@ -1,0 +1,42 @@
+@import '../../../variables.scss';
+@import '../../../functions.scss';
+
+.nb-button {
+    border: 0;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    border-radius: map-get($border-radius,'normal');
+
+    .nb-ico {
+        margin-right: $margin-horizontal;
+    }
+}
+
+// styles
+.main {
+    padding: 14px 20px;
+    font-size: 14pt;
+}
+
+.general {
+    padding: 7px 20px;
+}
+
+// color schemes
+.primary {
+    @include buttonEvents($primary-color);
+    color: white;
+}
+
+.accent {
+    @include buttonEvents($accent-color);
+    color: $font-color;
+    border-radius: map-get($border-radius,'rounded');
+}
+
+.accent-inverted {
+    @include buttonEvents($accent-color-inverted);
+    color: map-get($accent-color, 'base');
+    border-radius: map-get($border-radius,'rounded');
+}

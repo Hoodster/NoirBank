@@ -1,0 +1,17 @@
+@import '../../../../../../variables.scss';
+
+.accounts-container {
+    height: 100%;
+    width: 100%;
+
+    .swiper-slide {
+      width: map-get($account-quickview, 'width');
+      margin-left: 15px;
+    }
+  
+    .swiper-button-prev,
+    .swiper-button-next {
+      color: $font-color;
+      font-weight: bold;
+    }
+}

@@ -1,0 +1,16 @@
+.action-buttons {
+    display: inline-flex;
+    gap: 5px;
+
+    &[position = left] {
+        align-self: baseline;
+    }
+
+    &[position = center] {
+        align-self: center;
+    }
+
+    &[position = right] {
+        align-self: flex-end;
+    }
+}

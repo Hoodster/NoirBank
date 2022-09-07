@@ -9,13 +9,21 @@ namespace NoirBank.Data.Entities
 		[Key]
 		public Guid SessionID { get; set; }
 		public DateTimeOffset LoginDate { get; set; }
-		public virtual Customer Customer { get; set; }
-		[ForeignKey("Customer")]
-		public Guid? CustomerID { get; set; }
-		public bool IsSuccessful {get;set;}
+		[ForeignKey("User")]
+		public Guid UserID { get; set; }
+        public virtual User User { get; set; }
+        public bool IsSuccessful {get;set;}
+
 		public SessionLog()
 		{
 
+		}
+
+		public SessionLog(DateTimeOffset date, Guid userID, bool succeed)
+		{
+			this.LoginDate = date;
+			UserID = userID;
+			IsSuccessful = succeed;
 		}
 	}
 }

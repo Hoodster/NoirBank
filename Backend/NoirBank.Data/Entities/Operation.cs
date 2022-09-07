@@ -11,16 +11,19 @@ namespace NoirBank.Data.Entities
 		public Guid OperationID { get; set; }
 		public string Title { get; set; }
 		public double Amount { get; set; }
-		public TransactionTypes TranscationType { get; set; }
-		public double Balance { get; set; }
-		public double PreviousBalance { get; set; }
-		/*[ForeignKey("Recipient")]
-		public Guid? RecipientId { get; set; }
-		public virtual Account Recipient { get; set; }
-		[ForeignKey("Sender")]
-		public Guid? SenderId { get; set; }*/
-		public virtual Account Sender { get; set; }
-		public OperationTypes OperationType { get; set; }
+		public DateTimeOffset OperationDate { get; set; }
+
+        [ForeignKey("TransactionType")]
+        public Guid TransactionTypeID { get; set; }
+        public virtual TransactionType TransactionType { get; set; }
+
+        [ForeignKey("OperationType")]
+		public Guid OperationTypeID { get; set; }
+		public virtual OperationType OperationType { get; set; }
+
+		[ForeignKey("BankAccount")]
+		public Guid BankAccountID { get; set; }
+		public virtual BankAccount BankAccount { get; set; }
 
 		public Operation()
 		{

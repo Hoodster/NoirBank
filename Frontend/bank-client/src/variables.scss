@@ -1,0 +1,53 @@
+@import './theme.scss';
+
+$primary-color: (
+    'baseStart': $primary-color-start-internal,
+    'hoverStart': var(--primary-color-start-hover),
+    'activeStart': var(--primary-color-start-focus),
+    'baseEnd': $primary-color-end-internal,
+    'hoverEnd': var(--primary-color-end-hover),
+    'activeEnd': var(--primary-color-end-focus),
+);
+
+$accent-color: (
+    'base': var(--accent-color),
+    'hover': var(--accent-color-hover),
+    'focus': var(--accent-color-focus),
+);
+
+$accent-color-inverted: (
+    'base': var(--accent-color-inverted),
+    'hover': var(--accent-color-inverted-hover),
+    'focus': var(--accent-color-inverted-focus),
+);
+
+$background-theme: var(--background-theme);
+
+$font-color: var(--font-color);
+
+$isDark: var(--isDark);
+
+$border-radius: (
+    'card': 3.18mm,
+    'normal': 8px,
+    'rounded': 20px,
+);
+
+$font-size: (
+    'small': 13px
+);
+
+$margin-horizontal: 8px;
+
+$shadow-color: var(--shadow);
+
+// COMPONENTS
+$account-quickview: (
+    'width': 400px,
+    'height': 230px,
+);
+
+$card: (
+    'height': 130px,
+    'width': 220px,
+);

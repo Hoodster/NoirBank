@@ -1,0 +1,69 @@
+@import '../../variables.scss';
+
+.nb-account-quickview {
+    @include withShadow(3px, $shadow-color);
+    @include withBorder('card', 0, $font-color);
+    background-color: map-get($accent-color, 'base');
+    display: flex;
+    width: map-get($account-quickview, 'width');
+    height: map-get($account-quickview, 'height');
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 2px 5px;
+    color: $font-color;
+
+
+    .details {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+
+        .type {
+            font-size: 15px;
+            font-weight: bold;
+            font-style: italic; 
+        }
+        
+        .name {
+            font-size: 20px;
+            font-style: normal;
+            margin-top: 5px;
+        }
+
+        .number {
+            font-size: 12pt;
+        }
+
+        .amount {
+            font-size: 30px;
+            font-weight: bold;
+            margin-top: 8px;
+        }
+
+        .currency {
+            font-size: 25px;
+            color: rgb(154, 154, 154)
+        }
+    }
+
+    .recent {
+        display: flex;
+        flex-direction: column;
+
+        .title {
+            font-weight: bolder;
+            font-size: 14px;
+        }
+        .content {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            font-size: 16px;
+
+            &-amount {
+                font-weight: bold;
+                color: red;
+            }
+        }
+    }
+}
