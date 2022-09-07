@@ -15,6 +15,7 @@ function AccountsContainer(props) {
 						type={account.type}
 						name={account.name}
 						accountNumber={account.accountNumber}
+						isLocked={account.status === 'Locked'}
 						fulls={balance[0]}
 						cents={balance[1] ? balance[1] : '00'}
 					/>)

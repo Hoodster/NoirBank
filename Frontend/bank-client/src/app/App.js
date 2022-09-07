@@ -7,24 +7,18 @@ import { Routes, Route } from 'react-router-dom'
 import LoginScene from '../scenes/login/login-scene'
 import { isModalOpened } from './selectors'
 import ActiveModal from '../modals'
-import axios from 'axios'
 import SnackBar from '../components/snack-bar/SnackBar'
 import AuthorizedRoute from '../components/authorized-route/authorized-route'
+import TwoFactorScene from '../scenes/login/twofactor-scene'
 
 function App() {
-	useEffect(() => {
-		axios.interceptors.response.use(function (response) {
-			return response
-		}, function (error) {
-			return Promise.reject(error)
-		})
-	})
 
 	return (
 		<div className="client-body">
 			<Routes>
 				<Route path='/registration' element={<RegistrationScene />} />
 				<Route path='/login' element={<LoginScene />} />
+				<Route path='/token' element={<TwoFactorScene/>} />
 				<Route path='/'
 					element={
 						<AuthorizedRoute>

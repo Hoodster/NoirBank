@@ -25,7 +25,7 @@ function BillingHistoryContainer() {
 				<TableBody>
 					{
 						accounts ? accounts.map(account => {
-							const isIncome = account.transactionType === 0
+							const isIncome = account.transactionType === 'Income'
 							return (
 								<TableRow key={Math.random()}>
 									<TableCell style={!isIncome ? { 'color': 'red'} : null} >{account.accountName}</TableCell>

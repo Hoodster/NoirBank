@@ -10,9 +10,12 @@ namespace NoirBank.Repositories
     public interface IUserRepository
     {
         Task CreateAccountAsync(AccountDTO newAccount, ApplicationRoles role);
-        Task<JWTToken> SignInAsync(Credentials credentials);
+        Task<string> SignInAsync(Credentials credentials);
         Task<Profile> GetProfileAsync();
-        Task<IList<Object>> GetUserSessionLogsAsync();
+        Task<IList<SessionLogDTO>> GetUserSessionLogsAsync();
+        Task<IList<AdmUser>> GetAllAccounts();
+        Task SwitchAccountLock(string userID);
+        Task<JWTToken> SignInTwoFactorAsync(string email, string token);
     }
 }
 

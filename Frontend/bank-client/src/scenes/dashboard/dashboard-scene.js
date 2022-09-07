@@ -1,29 +1,35 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import MainBar from '../../components/mainbar/main-bar'
-import AccountsScene from './subscenes/accounts/accounts-scene'
-import CardsScene from './subscenes/cards/cards-scene'
-import OthersScene from './subscenes/others/others-scene'
 
 import './dashboard-scene.scss'
+import { get } from '../../helpers/api'
 import { userAPI } from '../../helpers/endpoints'
 import { useDispatch } from 'react-redux'
 import { addProfile } from '../../redux/reducers/user-reducer'
-import { get } from '../../helpers/api'
+import CustomerContainer from './components/customer-container'
+import AdminContainer from './components/admin-container'
+
 function DashboardScene() {
 	const dispatch = useDispatch()
+	const [role, setRole] = useState()
 
 	useEffect(() => {
 		get(`${userAPI}/profile`)
 			.then((response) => {
+				if (response.data.data.login.includes('adm')) {
+					localStorage.setItem('r', 'a')
+				} else {
+					localStorage.setItem('r', 'c')
+				}
 				dispatch(addProfile(response.data.data))
+				const roleInternal = localStorage.getItem('r')
+				setRole(roleInternal === 'a' ? 'Admin' : 'Customer')
 			})
 	}, [])
 
 	return (<div className='nb-dash'>
 		<MainBar />
-		<CardsScene />
-		<AccountsScene />
-		<OthersScene />
+		{role === 'Admin' ? <AdminContainer /> : <CustomerContainer />}
 	</div>)
 }
 

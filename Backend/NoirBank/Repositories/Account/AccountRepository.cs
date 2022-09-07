@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using NoirBank.Data.DTO;
@@ -29,49 +30,48 @@ namespace NoirBank.Repositories
             var bankAccount = new BankAccount
             {
                 Balance = 0.0,
-                //TODO:Change types
-                //AccountType = Enum.Parse<AccountTypes>(accountDTO.Type, true),
+                AccountTypeID = TypesHelper.MapAccountTypes(accountDTO.Type),
                 Name = bankAccountName,
                 AccountNumber = BankNumbersHelper.GenerateBankAccountNumber(),
-                CustomerID = user.CustomerID
+                CustomerID = user.CustomerID,
+                IsLocked = false
             };
 
             var result = await _databaseContext.BankAccounts.AddAsync(bankAccount);
             await _databaseContext.SaveChangesAsync();
-            return PrepareBasicAccountInfo(result.Entity);
-        }
-
-        public Task GetAccount(Guid accountID)
-        {
-            throw new NotImplementedException();
+            return PrepareBasicAccountInfo(result.Entity, accountDTO.Type);
         }
 
         public async Task<IList<BasicAccount>> GetAllAccounts()
         {
             var user = await _authenticationService.GetCurrentUserAsync();
-            var bankAccounts = _databaseContext.BankAccounts
-                .Where(bankAccount => bankAccount.CustomerID == user.CustomerID)
-                .Select(bankAccount => PrepareBasicAccountInfo(bankAccount)).ToList();
+
+            var bankAccounts = GetCustomerAccounts(user.CustomerID.Value);
 
             return bankAccounts;
+        }
+
+        public IList<BasicAccount> GetAllAccountsByCustomerID(string customerID)
+        {
+            var custID = Guid.Parse(customerID);
+            var accounts = GetCustomerAccounts(custID);
+            return accounts;
         }
 
         public async Task DepositToAccountAsync(DepositDTO deposit)
         {
             var amount = double.Parse(deposit.Amount);
             var account = _databaseContext.BankAccounts.FirstOrDefault(x => x.AccountNumber.Equals(deposit.AccountNumber));
-            account.Balance += amount;
+            account.Balance = Math.Round(account.Balance + amount, 2, MidpointRounding.AwayFromZero);
             _databaseContext.BankAccounts.Update(account);
-
-            var incomeTransacitonType = _databaseContext.TransactionTypes.First(x => x.Type.Equals(TransactionTypesOptions.INCOME));
 
             var operation = new Operation
             {
                 Amount = amount,
                 OperationDate = DateTime.UtcNow,
-                TransactionTypeID = incomeTransacitonType.TransactionTypeID,
+                TransactionTypeID = TransactionTypesIDs.INCOME,
                 Title = $"Deposit to account {account.AccountNumber}",
-               // OperationType = OperationTypes.Deposit,
+                OperationTypeID = OperationTypesIDs.DEPOSIT,
                 BankAccountID = account.AccountID
             };
 
@@ -79,16 +79,24 @@ namespace NoirBank.Repositories
             await _databaseContext.SaveChangesAsync();
         }
 
-        private static BasicAccount PrepareBasicAccountInfo(BankAccount account)
+        private IList<BasicAccount> GetCustomerAccounts(Guid customerID)
+        {
+            return _databaseContext.BankAccounts
+                .Where(bankAccount => bankAccount.CustomerID.Equals(customerID))
+                .Include(bankAccount => bankAccount.AccountType)
+                .Select(bankAccount => PrepareBasicAccountInfo(bankAccount, null)).ToList();
+        }
+
+        private static BasicAccount PrepareBasicAccountInfo(BankAccount account, string accountType = null)
         {
             return new BasicAccount
             {
                 AccountNumber = BankNumbersHelper.SplitBankAccountNumber(account.AccountNumber),
                 AccountNumberNoSpace = account.AccountNumber,
-                //TODO:Change type
-            //    Type = account.AccountType.Type,
+                Type = accountType != null ? accountType : account.AccountType.Type,
                 Balance = account.Balance,
-                Name = account.Name
+                Name = account.Name,
+                Status = account.IsLocked ? "Locked" : "Active"
             };
         }
 
@@ -113,16 +121,24 @@ namespace NoirBank.Repositories
                 returnList.Add(new
                 {
                     AccountName = transaction.BankAccount.Name,
-                    OperationDate = transaction.OperationDate.ToLocalTime().ToString("dd:MM:yyyy HH:mm"),
+                    OperationDate = transaction.OperationDate.ToLocalTime().ToString("dd/MM/yyyy HH:mm"),
                     Title = transaction.Title,
-                    TransactionTypeID = transaction.TransactionType.Type,
-                    OperaitonType = transaction.OperationType.Type,
-                    Amount = transaction.Amount
+                    TransactionType = transaction.TransactionType.Type,
+                    OperationType = transaction.OperationType.Type,
+                    Amount = Math.Round(transaction.Amount, 2, MidpointRounding.AwayFromZero)
             });
                 
             }
 
             return returnList;
+        }
+
+        public async Task SwitchAccountLock(string accountNumber)
+        {
+            var bankAccount = await _databaseContext.BankAccounts.FirstOrDefaultAsync(x => x.AccountNumber.Equals(accountNumber));
+            bankAccount.IsLocked = !bankAccount.IsLocked;
+            _databaseContext.BankAccounts.Update(bankAccount);
+            await _databaseContext.SaveChangesAsync();
         }
     }
 }

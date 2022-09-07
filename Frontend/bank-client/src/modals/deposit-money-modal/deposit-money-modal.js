@@ -25,6 +25,7 @@ function DepositMoneyModal() {
 				type: 'success',
 				message: 'Desposit successfully added'
 			}))
+			dispatch(close())
 		}).catch(() => {
 			dispatch(openNotification({
 				type: 'error',

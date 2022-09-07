@@ -13,6 +13,7 @@ namespace NoirBank.Data.Entities
         public string AccountNumber { get; set; }
         public string Name { get; set; }
         public double Balance { get; set; }
+		public bool IsLocked { get; set; }
 
         [ForeignKey("Customer")]
         public Guid? CustomerID { get; set; }

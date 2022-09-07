@@ -11,7 +11,7 @@ function AddCardForm() {
 	const accounts = getAccounts()
 
 	const [cardStyle, setCardStyle] = useState('card1')
-	const [cardType, setCardType] = useState('debit')
+	const [cardType, setCardType] = useState('Debit')
 	const [account, setAccount] = useState(accounts[0].accountNumberNoSpace)
 
 	const setCardData = () => {
@@ -37,8 +37,8 @@ function AddCardForm() {
 		<>
 			<h5 className='add-card-title'>Card type</h5>
 			<select className='add-card-select' onChange={e => setCardType(e.target.value)}>
-				<option value={'debit'}>Debit</option>
-				<option value={'credit'}>Credit</option>
+				<option value={'Debit'}>Debit</option>
+				<option value={'Credit'}>Credit</option>
 			</select>
 			<h5 className='add-card-title'>Assigned account</h5>
 			<select className='add-card-select' onChange={e => setAccount(e.target.value)}>

@@ -19,6 +19,7 @@ namespace NoirBank.Data.Entities
         /// Email address.
         /// </summary>
         public override string Email { get; set; }
+        public bool IsLocked { get; set; }
         /// <summary>
         /// SignIn session logs.
         /// </summary>
@@ -31,7 +32,6 @@ namespace NoirBank.Data.Entities
         [ForeignKey("Admin")]
         public Guid? AdminID { get; set; }
         public virtual Admin Admin { get; set; }
-
 
         public User()
         {

@@ -49,7 +49,8 @@ namespace NoirBank
                     options.Password.RequireUppercase = false;
                 })
                 .AddRoles<IdentityRole<Guid>>()
-                .AddEntityFrameworkStores<DatabaseContext>();
+                .AddEntityFrameworkStores<DatabaseContext>()
+                .AddDefaultTokenProviders();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(x => {

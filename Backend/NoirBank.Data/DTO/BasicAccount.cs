@@ -10,6 +10,7 @@ namespace NoirBank.Data.DTO
         public string Name { get; set; }
         public double Balance { get; set; }
         public string AccountNumberNoSpace { get; set; }
+        public string Status { get; set; }
 
         public BasicAccount()
         {

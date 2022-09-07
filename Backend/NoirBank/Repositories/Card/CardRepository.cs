@@ -31,15 +31,14 @@ namespace NoirBank.Repositories
             {
                 CardNumber = BankNumbersHelper.GenerateBankCardNumber(),
                 Cover = card.Cover,
-                //TODO: Change types
-               // CardType = Enum.Parse<CardTypes>(card.Type, true),
+                CardTypeID = TypesHelper.MapCardTypes(card.Type),
                 ExpirationDate = DateTime.UtcNow.AddYears(6),
                 CVV = new Random().Next(100, 999),
                 AccountID = accountID
             };
             var result = await _databaseContext.AddAsync(newCard);
             await _databaseContext.SaveChangesAsync();
-            return PrepareBasicCardInfo(result.Entity);
+            return PrepareBasicCardInfo(result.Entity, card.Type);
         }
 
         public async Task<IList<BasicCard>> GetAllCustomerCards()
@@ -48,21 +47,16 @@ namespace NoirBank.Repositories
             var cards = _databaseContext
                 .BankAccounts
                 .Where(bankAccount => bankAccount.CustomerID == currentUser.CustomerID)
-                .Include(x => x.Cards)
-                .Select(x => x.Cards)
+                .Include(bankAccount => bankAccount.Cards)
+                .SelectMany(bankAccount => bankAccount.Cards)
+                .Include(card => card.CardType)
+                .Select(card => PrepareBasicCardInfo(card, null))
                 .ToList();
-            var result = new List<BasicCard>();
-            foreach(var innerCards in cards)
-            {
-                foreach (var card in innerCards) {
-                    result.Add(PrepareBasicCardInfo(card));
-                 }
-            }
 
-            return result;
+            return cards;
         }
 
-        private static BasicCard PrepareBasicCardInfo(Card card)
+        private static BasicCard PrepareBasicCardInfo(Card card, string cardType = null)
         {
             var shadowNumber = BankNumbersHelper.ShadowCardNumber(card.CardNumber);
             return new BasicCard
@@ -70,8 +64,7 @@ namespace NoirBank.Repositories
                 HiddenNumber = BankNumbersHelper.FormatCardNumber(shadowNumber),
                 ExpirationMonth = card.ExpirationDate.ToString("MM"),
                 ExpirationYear = card.ExpirationDate.ToString("yy"),
-                //TODO: Change type
-        //        Type = card.CardType == Data.Enums.CardTypes.Credit ? "Credit" : "Debit",
+                Type = cardType != null ? cardType : card.CardType.Type,
                 Cover = card.Cover
             };
         }

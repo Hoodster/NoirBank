@@ -6,7 +6,7 @@ namespace NoirBank.Data.Enums
 	public static class OperationTypesOptions
 	{
 		public const string TRANSFER = "Transfer";
-		public const string CARD_TRANSACTION = "CardTransaciton";
+		public const string CARD_TRANSACTION = "CardTransaction";
 		public const string DEPOSIT = "Deposit";
 	}
 

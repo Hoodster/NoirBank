@@ -12,7 +12,7 @@ using NoirBank.Repositories;
 namespace NoirBank.Controllers
 {
     [Route("api/card")]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Customer")]
     public class CardController : Controller
     {
         private readonly ICardRepository _cardRepository;

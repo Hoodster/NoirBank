@@ -4,8 +4,9 @@ const endpoints = {
 	bankAccountAPI: `${dbDomain}/api/bankaccount`,
 	cardAPI: `${dbDomain}/api/card`,
 	transferAPI: `${dbDomain}/api/transfer`,
-	customerAPI: `${dbDomain}/api/customer`
+	customerAPI: `${dbDomain}/api/customer`,
+	adminAPI: `${dbDomain}/api/admin`
 }
 
-export const { userAPI, bankAccountAPI, cardAPI, transferAPI, customerAPI } = endpoints
+export const { userAPI, bankAccountAPI, cardAPI, transferAPI, customerAPI, adminAPI } = endpoints
 export default endpoints 

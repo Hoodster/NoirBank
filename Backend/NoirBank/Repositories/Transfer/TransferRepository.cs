@@ -36,9 +36,8 @@ namespace NoirBank.Repositories
                 Title = transfer.Title != null
                 ? transfer.Title
                 : $"Transfer {defaultTextTransferDirection}",
-                //TODO:Change type
-                //TranscationType = isCustomerSender ? TransactionTypes.Outcome : TransactionTypes.Income,
-                //OperationType = OperationTypes.Transfer,
+                TransactionTypeID = isCustomerSender ? TransactionTypesIDs.OUTCOME : TransactionTypesIDs.INCOME,
+                OperationTypeID = OperationTypesIDs.TRANSFER,
                 BankAccountID = isCustomerSender ? senderAccount.AccountID : recipientAccount.AccountID
             };
 
@@ -46,17 +45,20 @@ namespace NoirBank.Repositories
 
             if (!isCustomerSender)
             {
-                recipientAccount.Balance += double.Parse(transfer.Amount);
+                recipientAccount.Balance = RoundValue(recipientAccount.Balance + double.Parse(transfer.Amount));
                 _dbContext.BankAccounts.Update(recipientAccount);
             } else
             {
-                senderAccount.Balance -= double.Parse(transfer.Amount);
+                senderAccount.Balance = RoundValue(senderAccount.Balance - double.Parse(transfer.Amount));
                 _dbContext.BankAccounts.Update(senderAccount);
             }
 
-            
-
             await _dbContext.SaveChangesAsync();
+        }
+
+        private static double RoundValue(double val)
+        {
+            return Math.Round(val, 2, MidpointRounding.AwayFromZero);
         }
     }
 }

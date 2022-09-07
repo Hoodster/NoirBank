@@ -8,7 +8,6 @@ namespace NoirBank.Data.Enums
         public const string STANDARD = "Standard";
         public const string SAVING = "Saving";
         public const string BUSINESS = "Business";
-        public const string CREDIT = "Credit";
         public const string INVESTMENT = "Investment";
     }
 

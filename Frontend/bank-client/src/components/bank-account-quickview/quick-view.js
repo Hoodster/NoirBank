@@ -29,7 +29,9 @@ function BankAccountQuickview(props) {
 				</div>
 			</div>
 			<div>
-				<Button style='accent-inverted' type='general' text='Deposit money' onClick={openDepositModal}/>
+				{
+					!props.isLocked ? <Button style='accent-inverted' type='general' text='Deposit money' onClick={openDepositModal}/> : <h5>Account has been locked</h5>
+				}
 			</div>
 		</div>
 	)

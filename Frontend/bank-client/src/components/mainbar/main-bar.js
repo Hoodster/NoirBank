@@ -17,6 +17,7 @@ function MainBar() {
 
 	const logout = () => {
 		localStorage.removeItem('token')
+		localStorage.removeItem('r')
 		location.reload()
 	}
 

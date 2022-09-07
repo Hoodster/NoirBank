@@ -11,7 +11,7 @@ using NoirBank.Repositories;
 namespace NoirBank.Controllers
 {
     [Route("api/transfer")]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Customer")]
     public class TransferController : Controller
     {
         private readonly ITransferRepository _transferRepository;

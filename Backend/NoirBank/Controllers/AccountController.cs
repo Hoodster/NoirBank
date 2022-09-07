@@ -11,7 +11,7 @@ using NoirBank.Repositories;
 namespace NoirBank.Controllers
 {
     [Route("api/bankaccount")]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Customer")]
     public class AccountController : Controller
     {
         private readonly IAccountRepository _accountRepository;

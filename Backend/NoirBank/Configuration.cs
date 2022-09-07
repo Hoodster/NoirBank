@@ -13,7 +13,6 @@ namespace NoirBank
             services.AddScoped<IAuthenticationService, AuthenticationService>();
             services.AddScoped<IEmailService, EmailService>();
             services.AddScoped<IAccountRepository, AccountRepository>();
-            services.AddScoped<IAdminRepository, AdminRepository>();
             services.AddScoped<ICardRepository, CardRepository>();
             services.AddScoped<ITransferRepository, TransferRepository>();
             services.AddScoped<IUserRepository, UserRepository>();

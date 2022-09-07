@@ -2,7 +2,8 @@ import axios from 'axios'
 
 const getOptions = () => {
 	const headers = {
-		Authorization: `Bearer ${localStorage.getItem('token')}`
+		Authorization: `Bearer ${localStorage.getItem('token')}`,
+		'Content-Type': 'application/json'
 	}
 
 	return {

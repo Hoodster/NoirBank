@@ -106,12 +106,51 @@ namespace NoirBank.Controllers
             }
         }
 
+        /// <summary>
+        /// Get customer's billing history
+        /// </summary>
+        /// <response code="200">
+        /// Billing
+        ///
+        ///     {
+        ///        "status": 200
+        ///        "data": [
+        ///             {
+        ///                 "AccountName": "Sample Bank Account Name",
+        ///                 "OperationDate": "01/01/2000 12:12",
+        ///                 "Title": "Sample operation title",
+        ///                 "TransactionType": "Income | Outcome"
+        ///                 "OperationType": "Transfer | Deposit | CardTransaction",
+        ///                 "Amount": "100.50"
+        ///             }
+        ///        ]
+        ///     }
+        ///
+        /// </response>
+        /// <response code="401">
+        /// Unauthorized. Token missing or expired.
+        ///
+        ///     {
+        ///        "status": 401
+        ///        "data": {
+        ///             "type": "error"
+        ///             "message": "account_unauthorized"
+        ///        }
+        ///     }
+        /// </response>
         [HttpGet("billing")]
         public async Task<IActionResult> GetCustomerBillingHistory()
         {
-            var result = await _accountRepository.GetBillingHistoryAsync();
-            var content = new HTTPResponse(HttpStatusCode.OK, result);
-            return new OkObjectResult(content);
+            try
+            {
+                var result = await _accountRepository.GetBillingHistoryAsync();
+                var content = new HTTPResponse(HttpStatusCode.OK, result);
+                return new OkObjectResult(content);
+            } catch (Exception e)
+            {
+                var content = new HTTPResponse(HttpStatusCode.OK, "account_unauthorized");
+                return new OkObjectResult(content);
+            }
         }
     }
 }

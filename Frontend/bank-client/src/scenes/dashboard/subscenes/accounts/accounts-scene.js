@@ -6,7 +6,6 @@ import { get } from '../../../../helpers/api'
 import { bankAccountAPI } from '../../../../helpers/endpoints'
 import { CREATE_ACCOUNT } from '../../../../modals/constants'
 import { open } from '../../../../redux/reducers/modal-reducer'
-import { openNotification } from '../../../../redux/reducers/notification-reducer'
 import { addBankAccounts } from '../../../../redux/reducers/user-reducer'
 import AccountsContainer from './components/accounts-container/accounts-container'
 import { getAccounts } from './selectors'
@@ -18,10 +17,6 @@ function AccountsScene() {
 	useEffect(() => {
 		get(`${bankAccountAPI}`)
 			.then(response => dispatch(addBankAccounts(response.data.data)))
-			.catch(dispatch(openNotification({
-				type: 'error',
-				message: 'Couldn\'t load cards. Please try again.'
-			})))
 	}, [])
 
 	const createAccountModal = () => {
