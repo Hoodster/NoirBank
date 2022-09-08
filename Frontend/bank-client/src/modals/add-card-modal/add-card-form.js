@@ -43,7 +43,7 @@ function AddCardForm() {
 			<h5 className='add-card-title'>Assigned account</h5>
 			<select className='add-card-select' onChange={e => setAccount(e.target.value)}>
 				{
-					accounts.map(account => <option key={account.accountNumberNoSpace} value={account.accountNumberNoSpace}>{account.name}</option>)
+					accounts.filter(account => account.status !== 'Locked').map(account => <option key={account.accountNumberNoSpace} value={account.accountNumberNoSpace}>{account.name}</option>)
 				}
 			</select>
 			<h5 className='add-card-title'>Card design</h5>

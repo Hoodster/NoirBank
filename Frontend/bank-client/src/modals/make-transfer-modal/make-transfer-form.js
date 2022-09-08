@@ -26,7 +26,7 @@ function MakeTransferForm() {
 			<h5 className='make-transfer-title'>From</h5>
 			<select onChange={(e) => setSenderAccountNumber(e.target.value)}>
 				{
-					accounts.map(account => {
+					accounts.filter(x => x.status !== 'Locked').map(account => {
 						return (
 							<option key={account.accountNumberNoSpace} value={account.accountNumberNoSpace}>{account.name}		{account.balance}PLN</option>
 						)
@@ -34,14 +34,14 @@ function MakeTransferForm() {
 				}
 			</select>
 			<h5 className='make-transfer-title'>To</h5>
-			<input onChange={(e) => setRecipientAccountNumber(e.target.value)} placeholder='recipient acc. number'/>
+			<input onChange={(e) => setRecipientAccountNumber(e.target.value)} placeholder='recipient acc. number' />
 			<h5 className='make-transfer-title'>Amount</h5>
 			<div>
-				<input onChange={(e) => setAmount(e.target.value)} placeholder='0.00'/>
+				<input onChange={(e) => setAmount(e.target.value)} placeholder='0.00' />
 				<span> PLN</span>
 			</div>
 			<h5 className='make-transfer-title'>Transfer title</h5>
-			<input onChange={(e) => setTitle(e.target.value)} placeholder='Title'/>
+			<input onChange={(e) => setTitle(e.target.value)} placeholder='Title' />
 		</>
 	)
 }

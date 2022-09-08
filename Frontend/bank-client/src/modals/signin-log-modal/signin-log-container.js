@@ -16,23 +16,23 @@ function SignInLogContainer() {
 			<Table>
 				<TableHead>
 					<TableRow>
-						<TableCell style={{'fontWeight': 'bold'}}>ID</TableCell>
-						<TableCell style={{'fontWeight': 'bold'}}>Date</TableCell>
-						<TableCell style={{'fontWeight': 'bold'}}>Status</TableCell>
+						<TableCell style={{ 'fontWeight': 'bold' }}>ID</TableCell>
+						<TableCell style={{ 'fontWeight': 'bold' }}>Date</TableCell>
+						<TableCell style={{ 'fontWeight': 'bold' }}>Status</TableCell>
 					</TableRow>
 				</TableHead>
 				<TableBody>
 					{
 						logs ? logs.map(log => {
-							const isSuccessfull = log.isSuccessfull === 'Succeed'
+							const isSuccessful = log.isSuccessful === 'Succeed'
 							return (
 								<TableRow key={Math.random()}>
-									<TableCell style={!isSuccessfull ? { 'color': 'red'} : null}>{log.sessionID.substring(0,7)}</TableCell>
-									<TableCell style={!isSuccessfull ? { 'color': 'red'} : null}>{log.sessionDate}</TableCell>
-									<TableCell style={!isSuccessfull ? { 'color': 'red'} : null}>{log.isSuccessfull}</TableCell>
+									<TableCell style={!isSuccessful ? { 'color': 'red' } : null}>{log.sessionID.substring(0, 7)}</TableCell>
+									<TableCell style={!isSuccessful ? { 'color': 'red' } : null}>{log.sessionDate}</TableCell>
+									<TableCell style={!isSuccessful ? { 'color': 'red' } : null}>{log.isSuccessful}</TableCell>
 								</TableRow>
 							)
-						}) : 
+						}) :
 							<TableRow>
 								<TableCell></TableCell>
 								<TableCell align='center'>No Data To Show</TableCell>
