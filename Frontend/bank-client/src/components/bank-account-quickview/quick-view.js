@@ -10,7 +10,7 @@ function BankAccountQuickview(props) {
 
 
 	const openDepositModal = () => {
-		dispatch(setModalData({accountNumber: props.accountKey}))
+		dispatch(setModalData({ accountNumber: props.accountKey }))
 		dispatch(open(DEPOSIT_MONEY))
 	}
 
@@ -21,16 +21,16 @@ function BankAccountQuickview(props) {
 				<span className='name'>{props.name}</span>
 				<div>
 					<span className='number'>{props.accountNumber}</span>
-					<div style={{'marginTop': '18px'}}>
-						<span className='amount'>{props.fulls}</span>
-						<span className='amount-c'>{`.${props.cents}`}</span>
+					<div style={{ 'marginTop': '18px' }}>
+						<span className='amount-c'>{props.fulls}</span>
+						<span className='amount'>{`.${props.cents}`}</span>
 						<span className='currency'>  PLN</span>
 					</div>
 				</div>
 			</div>
 			<div>
 				{
-					!props.isLocked ? <Button style='accent-inverted' type='general' text='Deposit money' onClick={openDepositModal}/> : <h5>Account has been locked</h5>
+					!props.isLocked ? <Button style='accent-inverted' type='general' text='Deposit money' onClick={openDepositModal} /> : <h5>Account has been locked</h5>
 				}
 			</div>
 		</div>
