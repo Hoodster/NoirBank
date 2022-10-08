@@ -70,7 +70,6 @@ function AdminBankAccounts() {
 						{
 							bankAccounts
 								? bankAccounts.map((account) => {
-									console.log(account)
 									return (
 										<TableRow key={account.accountNumberNoSpace}>
 											<TableCell>{account.accountNumber}</TableCell>

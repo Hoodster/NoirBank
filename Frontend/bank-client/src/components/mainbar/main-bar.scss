@@ -15,6 +15,35 @@
         display: flex;
         align-items: center;
         align-content: center;
+        flex-direction: column;
+        position: relative;
+
+        .menu {
+            position: relative;
+            margin-top: 5px;
+            font-size: 12pt;
+        }
+    
+        .menu-container {
+            position: absolute;
+            width: 100%;
+            min-width: auto;
+            border-radius: map-get($border-radius,'normal');
+            margin: 10px 0 0 0;
+            list-style-type: none;
+            background-color: map-get($accent-color, 'base');
+            padding: 0;
+            top: 35px;
+
+            li {
+                width: 100%;
+
+                button {
+                    width: 100%;
+                    border-radius: map-get($border-radius,'normal');
+                }
+            }
+        }
     }
 }
 
