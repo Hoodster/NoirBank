@@ -9,18 +9,21 @@ using NoirBank.Data.DTO;
 using NoirBank.Data.Entities;
 using NoirBank.Data.Enums;
 using NoirBank.Utils;
+using NoirBank.Utils.BraintreeService;
 
 namespace NoirBank.Repositories
 {
     public class AccountRepository : IAccountRepository
     {
         private readonly IAuthenticationService _authenticationService;
+        private readonly IBraintreeService _braintreeService;
         private readonly DatabaseContext _databaseContext;
 
-        public AccountRepository(IAuthenticationService authenticationService, DatabaseContext databaseContext)
+        public AccountRepository(IAuthenticationService authenticationService,IBraintreeService braintreeService, DatabaseContext databaseContext)
         {
             _authenticationService = authenticationService;
             _databaseContext = databaseContext;
+            _braintreeService = braintreeService;
         }
 
         public async Task<BasicAccount> CreateAccount(BankAccountDTO accountDTO)
@@ -139,6 +142,12 @@ namespace NoirBank.Repositories
             bankAccount.IsLocked = !bankAccount.IsLocked;
             _databaseContext.BankAccounts.Update(bankAccount);
             await _databaseContext.SaveChangesAsync();
+        }
+
+        public void TestTransaction()
+        {
+            var elo = _braintreeService.GetGateway();
+            var elo2 = elo.ClientToken.Generate();
         }
     }
 }

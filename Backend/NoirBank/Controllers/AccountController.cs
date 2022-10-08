@@ -44,6 +44,14 @@ namespace NoirBank.Controllers
             var content = new HTTPResponse(HttpStatusCode.OK, "ok");
             return new OkObjectResult(content);
         }
+
+        [HttpGet("braintree")]
+        [AllowAnonymous]
+        public IActionResult TestBraintree()
+        {
+            _accountRepository.TestTransaction();
+            return new OkResult();
+        }
     }
 }
 

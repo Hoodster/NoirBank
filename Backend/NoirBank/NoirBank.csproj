@@ -25,6 +25,7 @@
     <PackageReference Include="SendGrid" Version="9.28.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="5.0.17" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational.Design" Version="1.1.6" />
+    <PackageReference Include="Braintree" Version="5.13.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -46,6 +47,8 @@
     <None Remove="SendGrid" />
     <None Remove="Microsoft.EntityFrameworkCore.Relational" />
     <None Remove="Microsoft.EntityFrameworkCore.Relational.Design" />
+    <None Remove="Braintree" />
+    <None Remove="Utils\BraintreeService\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NoirBank.Data\NoirBank.Data.csproj">
@@ -58,5 +61,6 @@
     <Folder Include="Repositories\Transfer\" />
     <Folder Include="Utils\" />
     <Folder Include="Utils\AuthenticationService\" />
+    <Folder Include="Utils\BraintreeService\" />
   </ItemGroup>
 </Project>
