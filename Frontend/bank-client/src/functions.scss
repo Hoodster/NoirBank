@@ -41,12 +41,12 @@
 };
 
 @function hoverColor($color, $isDark) {
-    $hoverChange: 8%;
+    $hoverChange: 12%;
     @return __filterColor($color, $isDark, $hoverChange)
 };
 
 @function focusColor($color, $isDark) {
-    $focusChange: 16%;
+    $focusChange: 24%;
     @return __filterColor($color, $isDark, $focusChange)
 };
 
