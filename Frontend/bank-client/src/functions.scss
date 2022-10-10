@@ -10,6 +10,14 @@
     border-color: $color;
 }
 
+@mixin clickableBase($borderRadius) {
+    border: 0;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    border-radius: map-get($borderRadius,'normal');
+}
+
 @mixin buttonEvents($color) {
     cursor: pointer;
     

@@ -1,0 +1,16 @@
+@import '../../../functions.scss';
+@import '../../../variables.scss';
+
+.nb-radio {
+    @include clickableBase($border-radius);
+    @include buttonEvents($accent-color);
+    padding: 14px 20px;
+    font-size: 14pt;
+    width: 200px;
+
+    input {
+        color: map-get($accent-color, 'base');
+        margin-right: 15px;
+        left: 0;
+    }
+}
