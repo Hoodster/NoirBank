@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using NoirBank.Repositories;
 using NoirBank.Utils;
+using NoirBank.Utils.BraintreeService;
 using NoirBank.Utils.EmailService;
 
 namespace NoirBank
@@ -16,6 +17,7 @@ namespace NoirBank
             services.AddScoped<ICardRepository, CardRepository>();
             services.AddScoped<ITransferRepository, TransferRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddSingleton<IBraintreeService, BraintreeService>();
             
             return services;
         }
