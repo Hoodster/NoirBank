@@ -15,6 +15,8 @@ namespace NoirBank.Repositories
         Task<IList<SessionLogDTO>> GetUserSessionLogsAsync();
         Task<IList<AdmUser>> GetAllAccounts();
         Task SwitchAccountLock(string userID);
+        Task<Address> GetAccountAddressAsync();
+        Task UpdateEmailAsync(string newEmail);
         Task<JWTToken> SignInTwoFactorAsync(string email, string token);
     }
 }

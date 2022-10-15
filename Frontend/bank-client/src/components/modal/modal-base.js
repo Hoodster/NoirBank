@@ -15,7 +15,7 @@ function ModalBase(props) {
 		<div className='modal-container'>
 			<div className='modal-background' onClick={closeModal} />
 			<div className='modal'>
-				<h3 className='modal-title'>{props.title}</h3>
+				<h4 className='modal-title'>{props.title}</h4>
 				<div className='content' position={props.contentPosition ? props.contentPosition : 'left'}>
 					{props.children}
 				</div>
