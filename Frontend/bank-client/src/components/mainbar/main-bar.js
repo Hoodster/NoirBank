@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import Logo from '../../assets/logo/logo'
-import { CHOOSE_THEME } from '../../modals/constants'
+import { ACCOUNT_SETTINGS, CHOOSE_THEME } from '../../modals/constants'
 import { open } from '../../redux/reducers/modal-reducer'
 import Button from '../inputs/button/button'
 import './main-bar.scss'
@@ -44,6 +44,10 @@ function MainBar() {
 		setIsExpanded(false)
 	}
 
+	const openAccountSettings = () => {
+		dispatch(open(ACCOUNT_SETTINGS))
+	}
+
 	const toggleMenu = () => {
 		setIsExpanded(!isExpanded)
 	}
@@ -55,9 +59,9 @@ function MainBar() {
 			<Logo />
 		</span>
 		<div className='account-nav'>
-			<Button text={`${firstName} ${lastName}`} type='general' style='primary menu' onClick={toggleMenu} icon={!isExpanded ? 'expand_more' : 'expand_less'} />
+			<Button text={`${firstName} ${lastName}`} type='general' style='primary' onClick={toggleMenu} icon={!isExpanded ? 'expand_more' : 'expand_less'} />
 			{isExpanded ? <ul className='menu-container'>
-				<li><Button type='main' icon={'assignment_ind'} style='accent' text='Account'/></li>
+				<li><Button type='main' icon={'assignment_ind'} style='accent' text='Account' onClick={openAccountSettings}/></li>
 				<li><Button type='main'icon={themeIcon} style='accent' text='Theme' onClick={openThemePicker}/></li>
 				<li><Button type='main' icon={'logout'} style='accent' text='Logout' onClick={logout}/></li>
 			</ul> : null}

@@ -1,8 +1,9 @@
 /* eslint-disable indent */
 import React from 'react'
+import AccountSettingsModal from './account-settings-modal/account-settings-modal'
 import AddCardModal from './add-card-modal/add-card-modal'
 import BillingHistoryModal from './billing-history-modal/billing-history-modal'
-import { ADD_CARD, CHOOSE_THEME, CREATE_ACCOUNT, DEPOSIT_MONEY, MAKE_TRANSFER, VIEW_BILLING_HISTORY, VIEW_SIGNIN_LOGS } from './constants'
+import { ACCOUNT_SETTINGS, ADD_CARD, CHOOSE_THEME, CREATE_ACCOUNT, DEPOSIT_MONEY, MAKE_TRANSFER, VIEW_BILLING_HISTORY, VIEW_SIGNIN_LOGS } from './constants'
 import CreateAccountModal from './create-account-modal/create-account-modal'
 import DefaultModal from './default-modal/default-modal'
 import DepositMoneyModal from './deposit-money-modal/deposit-money-modal'
@@ -29,16 +30,14 @@ function ActiveModal() {
 				return <BillingHistoryModal />
 			case CHOOSE_THEME:
 				return <ThemePickerModal />
+			case ACCOUNT_SETTINGS:
+				return <AccountSettingsModal />
 			default:
 				return <DefaultModal />
 		}
 	}
 
-	return (
-		<React.Fragment>
-			{getModal()}
-		</React.Fragment>
-	)
+	return getModal()
 }
 
 export default ActiveModal	

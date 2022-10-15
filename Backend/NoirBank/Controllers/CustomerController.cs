@@ -152,6 +152,21 @@ namespace NoirBank.Controllers
                 return new OkObjectResult(content);
             }
         }
+
+        [HttpGet("address")]
+        public async Task<IActionResult> GetCustomerAddress()
+        {
+            try
+            {
+                var result = await _userRepository.GetAccountAddressAsync();
+                var content = new HTTPResponse(HttpStatusCode.OK, result);
+                return new OkObjectResult(content);
+            } catch (Exception e)
+            {
+                var content = new HTTPResponse(HttpStatusCode.OK, "account_unauthorized");
+                return new OkObjectResult(content);
+            }
+        }
     }
 }
 

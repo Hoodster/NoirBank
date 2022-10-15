@@ -206,5 +206,22 @@ namespace NoirBank.Controllers
         }
 
         #endregion
+
+        [HttpPut("email")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Customer, Admin")]
+        public async Task<IActionResult> UpdateEmail([FromBody] string email)
+        {
+            try
+            {
+                await _userRepository.UpdateEmailAsync(email);
+                var content = new HTTPResponse(HttpStatusCode.OK, "ok");
+                return new OkObjectResult(content);
+            }
+            catch
+            {
+                var content = new HTTPResponse(HttpStatusCode.BadRequest, "bad_request");
+                return new BadRequestObjectResult(content);
+            }
+        }
     }
 }

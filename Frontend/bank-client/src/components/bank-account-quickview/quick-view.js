@@ -22,8 +22,8 @@ function BankAccountQuickview(props) {
 				<div>
 					<span className='number'>{props.accountNumber}</span>
 					<div style={{ 'marginTop': '18px' }}>
-						<span className='amount-c'>{props.fulls}</span>
-						<span className='amount'>{`.${props.cents}`}</span>
+						<span className='amount'>{props.fulls}</span>
+						<span className='amount-c'>{`.${props.cents}`}</span>
 						<span className='currency'>  PLN</span>
 					</div>
 				</div>
