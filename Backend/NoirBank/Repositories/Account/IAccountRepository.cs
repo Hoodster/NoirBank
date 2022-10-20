@@ -14,6 +14,7 @@ namespace NoirBank.Repositories
         Task<IList<Object>> GetBillingHistoryAsync();
         IList<BasicAccount> GetAllAccountsByCustomerID(string customerID);
         Task SwitchAccountLock(string accountNumber);
+        Task<byte[]> GenerateOperationPDF(string transactionID);
         void TestTransaction();
     }
 }
