@@ -7,32 +7,48 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
 import { getModalData } from '../add-card-modal/selectors'
+import Button from '../../components/inputs/button/button'
+import { transactionAPI } from '../../helpers/endpoints'
 
 function BillingHistoryContainer() {
-	const accounts = getModalData().accounts
+	const transactions = getModalData().accounts
+	const headers = [
+		'Account name',
+		'Title',
+		'Amount',
+		'Type',
+		'Date',
+		'Actions'
+	]
+
+	const generateTransactionPDF = (transactionID) => {
+		open(`${transactionAPI}/pdf?transactionID=${transactionID}`)
+	}
+
 	return (
 		<TableContainer component={Paper}>
 			<Table>
 				<TableHead>
 					<TableRow>
-						<TableCell style={{'fontWeight': 'bold'}}>Account name</TableCell>
-						<TableCell style={{'fontWeight': 'bold'}}>Title</TableCell>
-						<TableCell style={{'fontWeight': 'bold'}}>Amount</TableCell>
-						<TableCell style={{'fontWeight': 'bold'}}>Type</TableCell>
-						<TableCell style={{'fontWeight': 'bold'}}>Date</TableCell>
+						{
+							headers.map(header => <TableCell key={Math.random()} style={{'fontWeight': 'bold'}}>{header}</TableCell>)
+						}
 					</TableRow> 
 				</TableHead>
 				<TableBody>
 					{
-						accounts ? accounts.map(account => {
-							const isIncome = account.transactionType === 'Income'
+						transactions ? transactions.map(transaction => {
+							const isIncome = transaction.transactionType === 'Income'
 							return (
 								<TableRow key={Math.random()}>
-									<TableCell style={!isIncome ? { 'color': 'red'} : null} >{account.accountName}</TableCell>
-									<TableCell  style={!isIncome ? { 'color': 'red'} : null} >{account.title}</TableCell>
-									<TableCell style={!isIncome ? { 'color': 'red'} : null} >{!isIncome?'-':''}{account.amount} PLN</TableCell>
-									<TableCell style={!isIncome ? { 'color': 'red'} : null} >{account.operationType}</TableCell>
-									<TableCell style={!isIncome ? { 'color': 'red'} : null} >{account.operationDate}</TableCell>
+									<TableCell>{transaction.accountName}</TableCell>
+									<TableCell>{transaction.title}</TableCell>
+									<TableCell style={!isIncome ? { 'color': 'red'} : null} >{!isIncome?'-':''}{transaction.amount} PLN</TableCell>
+									<TableCell>{transaction.operationType}</TableCell>
+									<TableCell>{transaction.operationDate}</TableCell>
+									<TableCell>
+										<Button text='Generate PDF' type='general' style='accent' onClick={() => generateTransactionPDF(transaction.transactionID)}/>
+									</TableCell>
 								</TableRow>
 							)
 						}) : 
