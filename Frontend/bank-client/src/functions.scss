@@ -10,6 +10,14 @@
     border-color: $color;
 }
 
+@mixin clickableBase($borderRadius) {
+    border: 0;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    border-radius: map-get($borderRadius,'normal');
+}
+
 @mixin buttonEvents($color) {
     cursor: pointer;
     
@@ -41,12 +49,12 @@
 };
 
 @function hoverColor($color, $isDark) {
-    $hoverChange: 8%;
+    $hoverChange: 12%;
     @return __filterColor($color, $isDark, $hoverChange)
 };
 
 @function focusColor($color, $isDark) {
-    $focusChange: 16%;
+    $focusChange: 24%;
     @return __filterColor($color, $isDark, $focusChange)
 };
 

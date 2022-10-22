@@ -23,10 +23,7 @@ module.exports = {
 			'error',
 			'tab'
 		],
-		'linebreak-style': [
-			'error',
-			'unix'
-		],
+		'linebreak-style': 'off',
 		'quotes': [
 			'error',
 			'single'
@@ -35,6 +32,6 @@ module.exports = {
 			'error',
 			'never'
 		],
-		'react/prop-types': 'off'
+		'react/prop-types': 'off',
 	}
 }

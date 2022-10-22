@@ -27,8 +27,8 @@ function MakeTransferModal() {
 		text: 'Cancel',
 		action: () => dispatch(close())
 	}
-	return(
-		<ModalBase title='Make a transfer' contentPosition='center' primaryAction={primaryAction} secondaryAction={secondaryAction}>
+	return (
+		<ModalBase title='Make transfer' contentPosition='center' primaryAction={primaryAction} secondaryAction={secondaryAction}>
 			<MakeTransferForm />
 		</ModalBase>
 	)

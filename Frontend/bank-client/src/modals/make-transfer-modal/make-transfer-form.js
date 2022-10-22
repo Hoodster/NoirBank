@@ -28,7 +28,7 @@ function MakeTransferForm() {
 				{
 					accounts.filter(x => x.status !== 'Locked').map(account => {
 						return (
-							<option key={account.accountNumberNoSpace} value={account.accountNumberNoSpace}>{account.name}		{account.balance}PLN</option>
+							<option key={account.accountNumberNoSpace} value={account.accountNumberNoSpace}>{`${account.name} - ${account.balance} PLN`}</option>
 						)
 					})
 				}

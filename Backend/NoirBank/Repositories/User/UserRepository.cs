@@ -217,6 +217,20 @@ namespace NoirBank.Repositories
             await _db.SaveChangesAsync();
         }
 
+        public async Task<Data.DTO.Address> GetAccountAddressAsync()
+        {
+            var currentUser = await _authenticationService.GetCurrentUserAsync();
+            var customer = await _db.Customers.Include(x => x.HomeAddress).FirstOrDefaultAsync(x => x.CustomerID == currentUser.CustomerID.Value);
+            return customer.HomeAddress;
+        }
+
+        public async Task UpdateEmailAsync(string newEmail)
+        {
+            var currentUser = await _authenticationService.GetCurrentUserAsync();
+            var token = await _userManager.GenerateChangeEmailTokenAsync(currentUser, newEmail);
+            await _userManager.ChangeEmailAsync(currentUser, newEmail, token);
+        }
+
         #region Private
         private async Task SendTwoFactorEmailAsync(string recipientEmail, string recipientName, string recipientToken)
         {

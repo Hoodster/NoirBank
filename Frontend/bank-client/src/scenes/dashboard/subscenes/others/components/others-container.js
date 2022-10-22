@@ -20,10 +20,10 @@ function OthersContainer() {
 		dispatch(open(VIEW_SIGNIN_LOGS))
 	}
 
-		
+
 	return (<div className="othersContainer">
 		<Button type="main" style='primary' onClick={openBillingHistory} text="Billing history"></Button>
-		<Button type='main' style='primary' onClick={openTransferModal} text="Make a transfer"></Button>
+		<Button type='main' style='primary' onClick={openTransferModal} text="Make transfer"></Button>
 		<Button type="main" style='primary' onClick={openSessionLogs} text="Sign in log"></Button>
 	</div>)
 }

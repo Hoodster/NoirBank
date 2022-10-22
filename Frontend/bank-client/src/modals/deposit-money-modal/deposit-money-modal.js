@@ -8,6 +8,8 @@ import { openNotification } from '../../redux/reducers/notification-reducer'
 import DepositMoneyForm from './deposit-money-form'
 import { getAccountNumber, getAmount } from './selectors'
 
+import './deposit-money-form.scss'
+
 function DepositMoneyModal() {
 	const dispatch = useDispatch()
 
