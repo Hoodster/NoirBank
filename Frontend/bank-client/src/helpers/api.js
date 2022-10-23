@@ -14,7 +14,7 @@ const getOptions = () => {
 export const put = (url, data, isAnonymous = false) => {
 	const options = getOptions()
 	return axios.put(url, data, !isAnonymous ? options : null).catch((error) => {
-		if (error.response.status === 500) {
+		if (error.response.status === 401) {
 			localStorage.removeItem('token')
 			location.reload()
 		}
@@ -25,7 +25,7 @@ export const put = (url, data, isAnonymous = false) => {
 export const post = (url, data, isAnonymous = false) => {
 	const options = getOptions()
 	return axios.post(url, data, !isAnonymous ? options : null).catch((error) => {
-		if (error.response.status === 500) {
+		if (error.response.status === 401) {
 			localStorage.removeItem('token')
 			location.reload()
 		}

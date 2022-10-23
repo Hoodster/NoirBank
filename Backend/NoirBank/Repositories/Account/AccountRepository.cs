@@ -78,7 +78,9 @@ namespace NoirBank.Repositories
                 TransactionTypeID = TransactionTypesIDs.INCOME,
                 Title = $"Deposit to account {account.AccountNumber}",
                 OperationTypeID = OperationTypesIDs.DEPOSIT,
-                BankAccountID = account.AccountID
+                BankAccountID = account.AccountID,
+                RecipientAccountNumber = account.AccountNumber,
+                SenderAccountNumber = "-"
             };
 
             await _databaseContext.Operations.AddAsync(operation);
@@ -161,10 +163,10 @@ namespace NoirBank.Repositories
             var amount = transaction.Amount.ToString();
             var documentHTML = GeneratePDFStatement(
                 transaction.Title,
-                transaction.BankAccount.AccountNumber,
-                transaction.BankAccount.AccountNumber,
+                transaction.RecipientAccountNumber,
+                transaction.SenderAccountNumber.Equals("-") ? transaction.SenderAccountNumber : BankNumbersHelper.SplitBankAccountNumber(transaction.SenderAccountNumber),
                 transaction.TransactionType.Type == TransactionTypesOptions.OUTCOME,
-                amount.Contains('.') ? amount : amount + ".00",
+                amount.Contains('.') || amount.Contains(',') ? amount : amount + ".00",
                 "PLN",
                 transaction.OperationDate.Date.ToString("dd/MM/yyyy"),
                 currentDate.ToLocalTime().ToString("dd/MM/yyyy HH:mm")
@@ -192,7 +194,7 @@ namespace NoirBank.Repositories
             htmlCode += "<div style=\"text-align: left; width: 100%\">";
             htmlCode += $"<h3>Title</h3><span>{title}</span>";
             htmlCode += $"<h3>Recipient</h3><span>{BankNumbersHelper.SplitBankAccountNumber(recipientNumber)}</span>";
-            htmlCode += $"<h3>Sender</h3><span>{BankNumbersHelper.SplitBankAccountNumber(senderNumber)}</span>";
+            htmlCode += $"<h3>Sender</h3><span>{senderNumber}</span>";
             htmlCode += $"<h3>Amount</h3><span>{(isOutcome ? "-" : "")}{amount}</span>";
             htmlCode += $"<h3>Currency</h3><span>{currency}</span>";
             htmlCode += $"<h3>Date</h3><span>{operationDate}</span></div>";

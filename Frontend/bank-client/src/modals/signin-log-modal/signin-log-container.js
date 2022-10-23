@@ -12,7 +12,7 @@ function SignInLogContainer() {
 	const logs = getModalData().logs
 
 	return (
-		<TableContainer component={Paper}>
+		<TableContainer style={{'max-height': '400px'}} component={Paper}>
 			<Table>
 				<TableHead>
 					<TableRow>

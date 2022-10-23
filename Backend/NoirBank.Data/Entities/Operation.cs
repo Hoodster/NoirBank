@@ -12,6 +12,8 @@ namespace NoirBank.Data.Entities
 		public string Title { get; set; }
 		public double Amount { get; set; }
 		public DateTimeOffset OperationDate { get; set; }
+		public string RecipientAccountNumber { get; set; }
+		public string SenderAccountNumber { get; set; }
 
         [ForeignKey("TransactionType")]
         public Guid TransactionTypeID { get; set; }
