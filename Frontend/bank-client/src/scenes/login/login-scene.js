@@ -38,7 +38,7 @@ function LoginScene() {
 				<input placeholder='account number' onChange={(e) => setAccountNumber(e.target.value)} />
 				<input placeholder='password' type='password' onChange={(e) => setPassword(e.target.value)} />
 			</div>
-			<Button type='main' style='primary' text='Sign in' onClick={signInButton} />
+			<Button type='main' buttonStyle='primary' text='Sign in' onClick={signInButton} />
 			<Link className='account-redirect' to='/registration'>Create new account</Link>
 		</div>
 	)

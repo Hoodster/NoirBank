@@ -66,7 +66,7 @@ function AdminAccounts() {
 											<TableCell>{account.accountType}</TableCell>
 											<TableCell>{account.status}</TableCell>
 											<TableCell>
-												<Button style='accent' type='general' text='Switch account activity' onClick={() => switchLockAccount(account.id)}></Button>
+												<Button buttonStyle='accent' type='general' text='Switch account activity' onClick={() => switchLockAccount(account.id)}></Button>
 											</TableCell>
 										</TableRow>
 									)

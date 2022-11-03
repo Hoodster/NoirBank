@@ -39,7 +39,7 @@ function TwoFactorScene() {
 			<div className='login-inputs'>
 				<input placeholder='two factor auth token' onChange={(e) => setToken(e.target.value)}/>
 			</div>
-			<Button type='main' style='primary' text='Confirm' onClick={() => checkToken(token)} />
+			<Button type='main' buttonStyle='primary' text='Confirm' onClick={() => checkToken(token)} />
 			<Link className='account-redirect' to='/registration'>Create new account</Link>
 		</div>
 	)

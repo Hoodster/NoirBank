@@ -22,7 +22,7 @@ function SignInLogModal() {
 		text: 'Ok'
 	}
     
-	return <ModalBase title='Signing in logs' primaryAction={primaryAction}>
+	return <ModalBase title='Authorization logs' primaryAction={primaryAction}>
 		<SignInLogContainer />
 	</ModalBase>
 }

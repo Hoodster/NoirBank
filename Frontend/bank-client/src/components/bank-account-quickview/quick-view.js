@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { DEPOSIT_MONEY } from '../../modals/constants'
-import { open, setModalData } from '../../redux/reducers/modal-reducer'
+import { open } from '../../redux/reducers/modal-reducer'
 import Button from '../inputs/button/button'
 import './quick-view.scss'
 
@@ -10,8 +10,12 @@ function BankAccountQuickview(props) {
 
 
 	const openDepositModal = () => {
-		dispatch(setModalData({ accountNumber: props.accountKey }))
-		dispatch(open(DEPOSIT_MONEY))
+		dispatch(open({
+			type: DEPOSIT_MONEY,
+			data: {
+				accountNumber: props.accountKey
+			}
+		}))
 	}
 
 	return (
@@ -30,7 +34,7 @@ function BankAccountQuickview(props) {
 			</div>
 			<div>
 				{
-					!props.isLocked ? <Button style='accent-inverted' type='general' text='Deposit money' onClick={openDepositModal} /> : <h5>Account has been locked</h5>
+					!props.isLocked ? <Button buttonStyle='accent-inverted' type='general' text='Deposit money' onClick={openDepositModal} /> : <h5>Account has been locked</h5>
 				}
 			</div>
 		</div>

@@ -40,12 +40,16 @@ function MainBar() {
 	}
 
 	const openThemePicker = () => {
-		dispatch(open(CHOOSE_THEME))
+		dispatch(open({
+			type: CHOOSE_THEME
+		}))
 		setIsExpanded(false)
 	}
 
 	const openAccountSettings = () => {
-		dispatch(open(ACCOUNT_SETTINGS))
+		dispatch(open({
+			type: ACCOUNT_SETTINGS
+		}))
 	}
 
 	const toggleMenu = () => {
@@ -59,11 +63,11 @@ function MainBar() {
 			<Logo />
 		</span>
 		<div className='account-nav'>
-			<Button text={`${firstName} ${lastName}`} type='general' style='primary' onClick={toggleMenu} icon={!isExpanded ? 'expand_more' : 'expand_less'} />
+			<Button text={`${firstName} ${lastName}`} type='general' buttonStyle='primary' onClick={toggleMenu} icon={!isExpanded ? 'expand_more' : 'expand_less'} />
 			{isExpanded ? <ul className='menu-container'>
-				<li><Button type='main' icon={'assignment_ind'} style='accent' text='Account' onClick={openAccountSettings}/></li>
-				<li><Button type='main'icon={themeIcon} style='accent' text='Theme' onClick={openThemePicker}/></li>
-				<li><Button type='main' icon={'logout'} style='accent' text='Logout' onClick={logout}/></li>
+				<li><Button type='main' icon={'assignment_ind'} buttonStyle='accent' text='Account' onClick={openAccountSettings}/></li>
+				<li><Button type='main'icon={themeIcon} buttonStyle='accent' text='Theme' onClick={openThemePicker}/></li>
+				<li><Button type='main' icon={'logout'} buttonStyle='accent' text='Logout' onClick={logout}/></li>
 			</ul> : null}
 		</div>
 	</div>)
