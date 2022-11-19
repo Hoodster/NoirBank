@@ -1,5 +1,6 @@
 @import '../../../variables.scss';
 @import '../../../functions.scss';
+@import '../../../material-icons.scss';
 
 .nb-button {
     @include clickableBase($border-radius);

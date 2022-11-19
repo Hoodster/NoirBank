@@ -1,5 +1,5 @@
 import React from 'react'
-import './radio.scss'
+import styles from './radio.module.scss'
 
 function Radio(props) {
 	const setRadioChecked = () => {
@@ -8,7 +8,7 @@ function Radio(props) {
 	}
 
 	return (
-		<div className='nb-radio' onClick={setRadioChecked}>
+		<div className={styles['nb-radio']} onClick={setRadioChecked}>
 			<input id={props.id} name={props.name} type={'radio'} value={props.value} defaultChecked={props.default} />
 			<label htmlFor={props.id}>{props.text}</label>
 		</div>

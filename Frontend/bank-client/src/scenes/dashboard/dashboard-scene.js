@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import MainBar from '../../components/mainbar/main-bar'
 
-import './dashboard-scene.scss'
+import styles from './dashboard-scene.module.scss'
 import { get } from '../../helpers/api'
 import { userAPI } from '../../helpers/endpoints'
 import { useDispatch } from 'react-redux'
@@ -27,7 +27,7 @@ function DashboardScene() {
 			})
 	}, [])
 
-	return (<div className='nb-dash'>
+	return (<div className={styles['nb-dash']}>
 		<MainBar />
 		{role === 'Admin' ? <AdminContainer /> : <CustomerContainer />}
 	</div>)

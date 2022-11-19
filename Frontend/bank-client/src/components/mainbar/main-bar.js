@@ -5,7 +5,7 @@ import Logo from '../../assets/logo/logo'
 import { ACCOUNT_SETTINGS, CHOOSE_THEME } from '../../modals/constants'
 import { open } from '../../redux/reducers/modal-reducer'
 import Button from '../inputs/button/button'
-import './main-bar.scss'
+import styles from './main-bar.module.scss'
 import { getFirstName, getLastName } from './selectors'
 
 function MainBar() {
@@ -58,13 +58,13 @@ function MainBar() {
 
 	const themeIcon = getThemeIcon()
 
-	return (<div className='nb-nav'>
+	return (<div className={styles['nb-nav']}>
 		<span onClick={goToMainSite}>
 			<Logo />
 		</span>
-		<div className='account-nav'>
+		<div className={styles['account-nav']}>
 			<Button text={`${firstName} ${lastName}`} type='general' buttonStyle='primary' onClick={toggleMenu} icon={!isExpanded ? 'expand_more' : 'expand_less'} />
-			{isExpanded ? <ul className='menu-container'>
+			{isExpanded ? <ul className={styles['menu-container']}>
 				<li><Button type='main' icon={'assignment_ind'} buttonStyle='accent' text='Account' onClick={openAccountSettings}/></li>
 				<li><Button type='main'icon={themeIcon} buttonStyle='accent' text='Theme' onClick={openThemePicker}/></li>
 				<li><Button type='main' icon={'logout'} buttonStyle='accent' text='Logout' onClick={logout}/></li>

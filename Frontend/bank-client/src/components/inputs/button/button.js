@@ -1,10 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import './button.scss'
+import styles from './button.module.scss'
+import clsx from 'clsx'
 
 function Button({type, buttonStyle, style, icon, text, onClick}) {
-	return <button onClick={onClick} style={style} className={`nb-button ${type} ${buttonStyle}`}>
-		{icon ? <span className="nb-ico">{icon}</span> : null}
+	return <button onClick={onClick} style={style} className={clsx(styles['nb-button'], styles[type], styles[buttonStyle])}>
+		{icon ? <span className={styles['nb-ico']}>{icon}</span> : null}
 		<span>{text}</span>
 	</button>
 }

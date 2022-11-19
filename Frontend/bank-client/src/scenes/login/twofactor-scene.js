@@ -6,6 +6,7 @@ import Button from '../../components/inputs/button/button'
 import { post } from '../../helpers/api'
 import { userAPI } from '../../helpers/endpoints'
 import { openNotification } from '../../redux/reducers/notification-reducer'
+import styles from './login-scene.module.scss'
 
 function TwoFactorScene() {
 	const navigate = useNavigate()
@@ -34,13 +35,13 @@ function TwoFactorScene() {
 	}
     
 	return (
-		<div className='login-container'>
+		<div className={styles['login-container']}>
 			<Logo size='md' />
-			<div className='login-inputs'>
+			<div className={styles['login-inputs']}>
 				<input placeholder='two factor auth token' onChange={(e) => setToken(e.target.value)}/>
 			</div>
 			<Button type='main' buttonStyle='primary' text='Confirm' onClick={() => checkToken(token)} />
-			<Link className='account-redirect' to='/registration'>Create new account</Link>
+			<Link className={styles['account-redirect']} to='/registration'>Create new account</Link>
 		</div>
 	)
 }

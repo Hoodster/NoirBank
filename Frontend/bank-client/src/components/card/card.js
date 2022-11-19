@@ -1,12 +1,13 @@
 import React from 'react'
-import './card.scss'
+import styles from './card.module.scss'
+import clsx from 'clsx'
 
 function Card(props) {
-	return <div className={`nb-card ${props.cardStyle}`}>
+	return <div className={clsx(styles['nb-card'], styles[props.cardStyle], styles[props.cardSize])}>
 		<span>{props.cardNo}</span>
-		<div className='nb-card-row-last'>
+		<div className={styles['nb-card-row-last']}>
 			<span>{props.expiration}</span>
-			<span className='nb-cardType'>{props.type}</span>
+			<span className={styles['nb-cardType']}>{props.type}</span>
 		</div>
 		<span> </span>
 	</div>

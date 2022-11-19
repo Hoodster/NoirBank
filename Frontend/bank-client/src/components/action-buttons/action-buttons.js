@@ -1,10 +1,9 @@
 import React from 'react'
 import Button from '../inputs/button/button'
-import './action-buttons.scss'
+import styles from './action-buttons.module.scss'
+import clsx from 'clsx'
 
 function ActionButtons(props) {
-	const additionalClass = props.className ? ' ' + props.className : ''
-
 	let primaryButtonProps = {
 		icon: ''
 	}
@@ -27,7 +26,7 @@ function ActionButtons(props) {
 	}
 
 	return (
-		<div className={'action-buttons' + additionalClass} position={props.position ? props.position : 'center'}>
+		<div className={clsx(styles['action-buttons'], styles[props.className])} position={props.position ? props.position : 'center'}>
 			{
 				addSecondaryButton()
 			}
