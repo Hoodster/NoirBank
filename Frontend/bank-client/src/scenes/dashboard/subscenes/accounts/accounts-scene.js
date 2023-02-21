@@ -20,7 +20,9 @@ function AccountsScene() {
 	}, [])
 
 	const createAccountModal = () => {
-		dispatch(open(CREATE_ACCOUNT))
+		dispatch(open({
+			type: CREATE_ACCOUNT
+		}))
 	}
 
 	const hasNoAccounts = bankAccounts.length === 0
@@ -29,7 +31,7 @@ function AccountsScene() {
 		title='My accounts'
 		emptyChildrenText='you have no accounts yet'
 		height='sm'
-		option={<Button style='accent' icon='add' type='general' onClick={createAccountModal} text='New account'></Button>}>
+		option={<Button buttonStyle='accent' icon='add' type='general' onClick={createAccountModal} text='New account'></Button>}>
 		{!hasNoAccounts ? <AccountsContainer accounts={bankAccounts} /> : null}
 	</DashboardSection>
 }

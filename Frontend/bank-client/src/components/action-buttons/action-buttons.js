@@ -1,10 +1,9 @@
 import React from 'react'
 import Button from '../inputs/button/button'
-import './action-buttons.scss'
+import styles from './action-buttons.module.scss'
+import clsx from 'clsx'
 
 function ActionButtons(props) {
-	const additionalClass = props.className ? ' ' + props.className : ''
-
 	let primaryButtonProps = {
 		icon: ''
 	}
@@ -22,16 +21,16 @@ function ActionButtons(props) {
 			if (props.secondaryActionButton.icon) {
 				secondaryButtonProps.icon = props.secondaryActionButton.icon
 			}
-			return (<Button type='mod' style='primary' text={props.secondaryActionButton.text} onClick={props.secondaryActionButton.action} {...secondaryButtonProps} />)
+			return (<Button type='mod' buttonStyle='primary' text={props.secondaryActionButton.text} onClick={props.secondaryActionButton.action} {...secondaryButtonProps} />)
 		}
 	}
 
 	return (
-		<div className={'action-buttons' + additionalClass} position={props.position ? props.position : 'center'}>
+		<div className={clsx(styles['action-buttons'], styles[props.className])} position={props.position ? props.position : 'center'}>
 			{
 				addSecondaryButton()
 			}
-			<Button type='mod' style='primary' text={props.primaryActionButton?.text} onClick={props.primaryActionButton?.action} {...primaryButtonProps} />
+			<Button type='mod' buttonStyle='primary' text={props.primaryActionButton?.text} onClick={props.primaryActionButton?.action} {...primaryButtonProps} />
 		</div>
 	)
 }

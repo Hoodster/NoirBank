@@ -11,7 +11,7 @@ import Button from '../../components/inputs/button/button'
 import { transactionAPI } from '../../helpers/endpoints'
 
 function BillingHistoryContainer() {
-	const transactions = getModalData().accounts
+	const transactions = getModalData()?.accounts
 	const headers = [
 		'Account name',
 		'Title',
@@ -26,7 +26,7 @@ function BillingHistoryContainer() {
 	}
 
 	return (
-		<TableContainer component={Paper}>
+		<TableContainer style={{'maxHeight': '400px'}} component={Paper}>
 			<Table>
 				<TableHead>
 					<TableRow>
@@ -47,7 +47,7 @@ function BillingHistoryContainer() {
 									<TableCell>{transaction.operationType}</TableCell>
 									<TableCell>{transaction.operationDate}</TableCell>
 									<TableCell>
-										<Button text='Generate PDF' type='general' style='accent' onClick={() => generateTransactionPDF(transaction.transactionID)}/>
+										<Button text='Generate PDF' type='general' buttonStyle='accent' onClick={() => generateTransactionPDF(transaction.transactionID)}/>
 									</TableCell>
 								</TableRow>
 							)

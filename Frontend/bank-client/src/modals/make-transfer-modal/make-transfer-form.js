@@ -20,7 +20,7 @@ function MakeTransferForm() {
 			amount,
 			title
 		}))
-	}, [senderAccountNumber, recipientAccountNumber, amount])
+	}, [senderAccountNumber, recipientAccountNumber, amount, title])
 	return (
 		<>
 			<h5 className='make-transfer-title'>From</h5>

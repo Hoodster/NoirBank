@@ -1,19 +1,21 @@
+/* eslint-disable no-unused-vars */
 import React from 'react'
-import './dashboard-section.scss'
+import styles from './dashboard-section.module.scss'
+import clsx from 'clsx'
 
 function DashboardSection(props) {
+	const emptyStyle = styles['container-empty']
+	const heightStyle = styles[props.height]
 	return (
-		<div className='nb-dash-section'>
-			<div className='titleSection'>
-				<span className="title">{props.title}</span>
+		<div className={styles['nb-dash-section']}>
+			<div className={styles.titleSection}>
+				<span className={styles.title}>{props.title}</span>
 				{props.option ? props.option : null}
 			</div>
-			<div className={`container
-			${!props.children ? ' container-empty' : ''}
-			${props.height ? props.height : ''}`}>
+			<div className={clsx(styles.container, emptyStyle , heightStyle)}>
 				{props.children
 					? props.children
-					: <span style={{ 'margin': '65px 0' }} className='emptyMessage'>{props.emptyChildrenText}</span>}
+					: <span style={{ 'margin': '65px 0' }} className={styles.emptyMessage}>{props.emptyChildrenText}</span>}
 			</div>
 		</div>
 	)

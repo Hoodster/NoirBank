@@ -25,6 +25,7 @@ $widthBase: map-get($card, 'width');
         color: white;
         margin: 5px 6px;
         user-select: none;
+        text-align: left;
     }
 
     span.nb-cardType {

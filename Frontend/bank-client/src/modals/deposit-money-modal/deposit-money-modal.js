@@ -1,44 +1,31 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import ModalBase from '../../components/modal/modal-base'
-import { post } from '../../helpers/api'
-import { bankAccountAPI } from '../../helpers/endpoints'
-import { close } from '../../redux/reducers/modal-reducer'
-import { openNotification } from '../../redux/reducers/notification-reducer'
+import { close, open } from '../../redux/reducers/modal-reducer'
 import DepositMoneyForm from './deposit-money-form'
 import { getAccountNumber, getAmount } from './selectors'
 
 import './deposit-money-form.scss'
+import { SELECT_DEPOSIT_METHOD } from '../constants'
 
 function DepositMoneyModal() {
 	const dispatch = useDispatch()
-
 	const accountNumber = getAccountNumber()
 	const amount = getAmount()
 
-	const depositMoney = () => {
-		const data = {
-			accountNumber,
-			amount
-		}
-
-		post(`${bankAccountAPI}/deposit`, data).then(() => {
-			dispatch(openNotification({
-				type: 'success',
-				message: 'Desposit successfully added'
-			}))
-			dispatch(close())
-		}).catch(() => {
-			dispatch(openNotification({
-				type: 'error',
-				message: 'An error has occured when depositing money.'
-			}))
-		})
+	const depositMoneyPaymentMethod = () => {
+		dispatch(open({
+			type: SELECT_DEPOSIT_METHOD,
+			data: {
+				accountNumber,
+				amount
+			}
+		}))
 	}
 
 	const primaryAction = {
-		action: () => depositMoney(),
-		text: 'Add new deposit'
+		action: () => depositMoneyPaymentMethod(),
+		text: 'Select payment method'
 	}
     
 	const secondaryAction = {
@@ -46,7 +33,7 @@ function DepositMoneyModal() {
 		text: 'Cancel'
 	}
 
-	return <ModalBase title='Deposit money to account' contentPosition='left' primaryAction={primaryAction} secondaryAction={secondaryAction}>
+	return <ModalBase title='Deposit money to account' contentPosition='center' primaryAction={primaryAction} secondaryAction={secondaryAction}>
 		<DepositMoneyForm/>
 	</ModalBase>
 }

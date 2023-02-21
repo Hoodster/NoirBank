@@ -5,7 +5,7 @@ import { Fragment } from 'react'
 import { wordNoNumPattern, docIDPattern, personalIDPattern, postalCodePattern } from '../../helpers/regex'
 import RegistrationSlider from './components/registration-slider/registration-slider'
 import Logo from '../../assets/logo/logo'
-import './registration-scene.scss'
+import styles from './registration-scene.module.scss'
 import { useDispatch } from 'react-redux'
 import { setFormValue, setFormAddressValue, reset } from '../../redux/reducers/register-reducer'
 import { getForm } from './selectors'
@@ -13,6 +13,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { customerAPI } from '../../helpers/endpoints'
 import { openNotification } from '../../redux/reducers/notification-reducer'
 import { post } from '../../helpers/api'
+import clsx from 'clsx'
 
 function RegistrationScene() {
 	const dispatch = useDispatch()
@@ -60,14 +61,14 @@ function RegistrationScene() {
 
 	function SummaryData({ property, value }) {
 		return (
-			<span className='meta'><span className='meta-property'>{`${property}: `}</span>{value}</span>
+			<span className={styles.meta}><span className='meta-property'>{`${property}: `}</span>{value}</span>
 		)
 	}
 
 	return (
-		<div className='nb-register-page'>
-			<Logo size='md' className='nb-register-logo center' />
-			<RegistrationSlider onSubmit={submitRegistration} className='nb-register-form center' slides={[
+		<div className={styles['nb-register-page']}>
+			<Logo size='md' className={clsx(styles['nb-register-logo'], styles.center)} />
+			<RegistrationSlider onSubmit={submitRegistration} className={clsx(styles['nb-register-form'], styles.center)} slides={[
 				{
 					index: 0,
 					title: 'Basic informations',
@@ -109,13 +110,13 @@ function RegistrationScene() {
 					title: 'Home address',
 					formSlice:
 						<Fragment>
-							<div className='field'>
+							<div className={styles.field}>
 								<input
 									name={RegInputs.rAddressStreet}
 									onChange={(e) => setAddressValue({ street: e.target.value })}
 									placeholder='street' />
 							</div>
-							<div className='field'>
+							<div className={styles.field}>
 								<input
 									name={RegInputs.rAddressBuilding}
 									onChange={(e) => setAddressValue({ building: e.target.value })}
@@ -126,7 +127,7 @@ function RegistrationScene() {
 									onChange={(e) => setAddressValue({ apartment: e.target.value })}
 									placeholder='apartment (opt)' style={{ width: '23%' }} />
 							</div>
-							<div className='field'>
+							<div className={styles.field}>
 								<input name={RegInputs.rAddressPostalCode}
 									onChange={(e) => setAddressValue({ postalCode: e.target.value })}
 									pattern={postalCodePattern}
@@ -160,19 +161,19 @@ function RegistrationScene() {
 					index: 4,
 					title: 'Summary',
 					formSlice:
-						<div className='summary summary-border'>
-							<div className='summary'>
+						<div className={clsx(styles.summary, styles['summary-border'])}>
+							<div className={styles.summary}>
 								<h4>Basic and contact informations</h4>
 								<SummaryData property='First name' value={form.firstName} />
 								<SummaryData property='Last name' value={form.lastName} />
 								<SummaryData property='e-mail' value={form.email} />
 							</div>
-							<div className='summary'>
+							<div className={styles.summary}>
 								<h4>Identification</h4>
 								<SummaryData property='Personal ID' value={form.personalID} />
 								<SummaryData property='Document ID' value={form.documentID} />
 							</div>
-							<div className='summary'>
+							<div className={styles.summary}>
 								<h4>Home address</h4>
 								<span className='meta'>{`${form.address.street} ${form.address.building}${form.address.apartment ? ' / ' + form.address.apartment : ''}`}</span>
 								<span className='meta'>{`${form.address.postalCode} ${form.address.city}`}</span>
@@ -181,7 +182,7 @@ function RegistrationScene() {
 						</div>
 				}
 			]} />
-			<Link className='account-redirect' to='/login'>I have an account</Link>
+			<Link className={styles['account-redirect']} to='/login'>I have an account</Link>
 		</div>
 	)
 }

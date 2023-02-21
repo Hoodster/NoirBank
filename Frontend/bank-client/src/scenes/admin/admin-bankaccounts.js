@@ -53,7 +53,7 @@ function AdminBankAccounts() {
 			<h3>Customer bank accounts</h3>
 			<div style={style}>
 				<input placeholder='Customer ID' onChange={(e) => setCustomerID(e.target.value)}></input>
-				<Button style='accent' type='general' text='Get customer accounts' onClick={() => getCustomerAccounts(customerID)}></Button>
+				<Button buttonStyle='accent' type='general' text='Get customer accounts' onClick={() => getCustomerAccounts(customerID)}></Button>
 			</div>
 			<TableContainer component={Paper}>
 				<Table>
@@ -77,7 +77,7 @@ function AdminBankAccounts() {
 											<TableCell>{account.type}</TableCell>
 											<TableCell>{account.status}</TableCell>
 											<TableCell>
-												<Button style='accent' type='general' text='Switch bank account status' onClick={() => switchLockAccount(account.accountNumber)}></Button>
+												<Button buttonStyle='accent' type='general' text='Switch bank account status' onClick={() => switchLockAccount(account.accountNumber)}></Button>
 											</TableCell>
 										</TableRow>
 									)

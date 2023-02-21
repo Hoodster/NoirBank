@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
+using System.Security.Cryptography.Xml;
 using System.Threading.Tasks;
 using NoirBank.Data.DTO;
 using NoirBank.Data.Entities;
@@ -27,33 +29,46 @@ namespace NoirBank.Repositories
 
             var isCustomerSender = senderAccount != null && senderAccount.CustomerID.Equals(currentUser.CustomerID);
 
+            await ProcessTransfer(isCustomerSender, transfer, recipientAccount, senderAccount);
+
+            if (recipientAccount != null && isCustomerSender)
+            {
+                await ProcessTransfer(false, transfer, recipientAccount, senderAccount);
+            }
+
+            await _dbContext.SaveChangesAsync();
+        }
+
+        private async Task ProcessTransfer(bool isCustomerSender, TransferDTO transfer, BankAccount recipientAccount, BankAccount senderAccount)
+        {
             var defaultTextTransferDirection = isCustomerSender ? $"to {transfer.RecipientAccountNumber}" : $"from {transfer.SenderAccountNumber}";
 
             var operation = new Operation
             {
-                Amount = double.Parse(transfer.Amount),
+                Amount = double.Parse(transfer.Amount, CultureInfo.InvariantCulture),
                 OperationDate = DateTime.UtcNow,
                 Title = transfer.Title != null
                 ? transfer.Title
                 : $"Transfer {defaultTextTransferDirection}",
                 TransactionTypeID = isCustomerSender ? TransactionTypesIDs.OUTCOME : TransactionTypesIDs.INCOME,
                 OperationTypeID = OperationTypesIDs.TRANSFER,
-                BankAccountID = isCustomerSender ? senderAccount.AccountID : recipientAccount.AccountID
+                BankAccountID = isCustomerSender ? senderAccount.AccountID : recipientAccount.AccountID,
+                RecipientAccountNumber = transfer.RecipientAccountNumber,
+                SenderAccountNumber = transfer.SenderAccountNumber
             };
 
             await _dbContext.Operations.AddAsync(operation);
 
             if (!isCustomerSender)
             {
-                recipientAccount.Balance = RoundValue(recipientAccount.Balance + double.Parse(transfer.Amount));
+                recipientAccount.Balance = RoundValue(recipientAccount.Balance + operation.Amount);
                 _dbContext.BankAccounts.Update(recipientAccount);
-            } else
+            }
+            else
             {
-                senderAccount.Balance = RoundValue(senderAccount.Balance - double.Parse(transfer.Amount));
+                senderAccount.Balance = RoundValue(senderAccount.Balance - operation.Amount);
                 _dbContext.BankAccounts.Update(senderAccount);
             }
-
-            await _dbContext.SaveChangesAsync();
         }
 
         private static double RoundValue(double val)

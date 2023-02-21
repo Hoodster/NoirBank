@@ -1,12 +1,12 @@
 import React from 'react'
-import './logo.scss'
+import styles from './logo.module.scss'
+import clsx from 'clsx'
 
 function Logo(props) {
-	const hasAnotherSize = props.size ? ' ' + props.size : ''
 	return (
-		<div className={`logo${props.className ? ' ' + props.className : ''}`}>
-			<span className={`noir${hasAnotherSize}`}>Noir</span>
-			<span className={`bank${hasAnotherSize}`}>Bank</span>
+		<div className={clsx(styles.logo, styles.className)}>
+			<span className={clsx(styles.noir, styles[props.size])}>Noir</span>
+			<span className={clsx(styles.bank, styles[props.size])}>Bank</span>
 		</div>
 	)
 }

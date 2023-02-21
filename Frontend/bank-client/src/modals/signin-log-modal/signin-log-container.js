@@ -9,10 +9,10 @@ import Paper from '@mui/material/Paper'
 import { getModalData } from './selectors'
 
 function SignInLogContainer() {
-	const logs = getModalData().logs
+	const logs = getModalData()?.logs
 
 	return (
-		<TableContainer component={Paper}>
+		<TableContainer style={{'maxHeight': '400px'}} component={Paper}>
 			<Table>
 				<TableHead>
 					<TableRow>

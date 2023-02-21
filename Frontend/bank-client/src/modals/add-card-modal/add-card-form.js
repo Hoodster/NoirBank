@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import CardPreview from '../../components/card/card-preview'
 import { setModalData } from '../../redux/reducers/modal-reducer'
-import './add-card-form.scss'
+import styles from './add-card-form.module.scss'
 import { getAccounts } from './selectors'
+import clsx from 'clsx'
 
 function AddCardForm() {
 	const dispatch = useDispatch()
@@ -35,28 +36,28 @@ function AddCardForm() {
 
 	return (
 		<>
-			<h5 className='add-card-title'>Card type</h5>
-			<select className='add-card-select' onChange={e => setCardType(e.target.value)}>
+			<h5 className={styles['add-card-title']}>Card type</h5>
+			<select className={styles['add-card-select']} onChange={e => setCardType(e.target.value)}>
 				<option value={'Debit'}>Debit</option>
 				<option value={'Credit'}>Credit</option>
 			</select>
-			<h5 className='add-card-title'>Assigned account</h5>
-			<select className='add-card-select' onChange={e => setAccount(e.target.value)}>
+			<h5 className={styles['add-card-title']}>Assigned account</h5>
+			<select className={styles['add-card-select']} onChange={e => setAccount(e.target.value)}>
 				{
 					accounts.filter(account => account.status !== 'Locked').map(account => <option key={account.accountNumberNoSpace} value={account.accountNumberNoSpace}>{account.name}</option>)
 				}
 			</select>
-			<h5 className='add-card-title'>Card design</h5>
-			<div className='card-patterns'>
+			<h5 className={styles['add-card-title']}>Card design</h5>
+			<div className={styles['card-patterns']}>
 				{
 					cards.map((card) => {
 						return (
-							<div key={card} className='card-radio-wrapper card-type'>
+							<div key={card} className={clsx(styles['card-radio-wrapper'], styles['card-type'])}>
 								<div onClick={() => setCardStyle(card)}>
-									<CardPreview cardStyle={`${card} card-sm`} />
+									<CardPreview cardStyle={card} cardSize={'card-sm'} />
 								</div>
 								<label htmlFor={card}>
-									<span data-isenabled={cardStyle === card} className='nb-ico'>checkmark</span>
+									<span data-isenabled={cardStyle === card} className={styles['nb-ico']}>checkmark</span>
 								</label>
 							</div>
 						)
