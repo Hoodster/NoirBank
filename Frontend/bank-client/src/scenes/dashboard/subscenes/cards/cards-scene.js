@@ -22,7 +22,7 @@ function CardsScene() {
 	}, [])
 
 	const addCardModal = () => {
-		dispatch(open(ADD_CARD))
+		dispatch(open({type: ADD_CARD}))
 	}
 
 	const hasNoCards = cards.length === 0
@@ -32,7 +32,7 @@ function CardsScene() {
 			title='My cards'
 			emptyChildrenText='you have no cards yet'
 			height='sm'
-			option={<Button style='accent' type='general' icon='add' onClick={addCardModal} text='New card'></Button>}>
+			option={<Button buttonStyle='accent' type='general' icon='add' onClick={addCardModal} text='New card'></Button>}>
 			{!hasNoCards ? <CardsContainer cards={cards} /> : null}
 		</DashboardSection>
 	)

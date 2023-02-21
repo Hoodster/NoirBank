@@ -1,3 +1,4 @@
+@import '../../material-icons.scss';
 
 .add-card-title {
 	align-self: flex-start;
@@ -34,15 +35,6 @@
 		}
 	}
 }
-
-.category-input:checked span {
-	background:red; /* put your image here*/
-	 height: 50px;
-	  width: 50px;
-	  position: absolute;
-	 top:0;
-	 left:0;
-	}
 
 .card-patterns {
 	display: flex;

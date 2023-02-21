@@ -1,20 +1,22 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import './button.scss'
+import styles from './button.module.scss'
+import clsx from 'clsx'
 
-function Button({type, style, icon, text, onClick}) {
-	return <button onClick={onClick} className={`nb-button ${type} ${style}`}>
-		{icon ? <span className="nb-ico">{icon}</span> : null}
+function Button({type, buttonStyle, style, icon, text, onClick}) {
+	return <button onClick={onClick} style={style} className={clsx(styles['nb-button'], styles[type], styles[buttonStyle])}>
+		{icon ? <span className={styles['nb-ico']}>{icon}</span> : null}
 		<span>{text}</span>
 	</button>
 }
 
 Button.propTypes = {
 	type: PropTypes.oneOf(['main', 'general', 'modal']).isRequired,
-	style: PropTypes.oneOf(['primary', 'accent', 'accent-inverted']).isRequired,
+	buttonStyle: PropTypes.oneOf(['primary', 'accent', 'accent-inverted']).isRequired,
 	text: PropTypes.string.isRequired,
 	icon: PropTypes.string,
-	onClick: PropTypes.func
+	onClick: PropTypes.func,
+	style: PropTypes.object
 }
 
 export default Button

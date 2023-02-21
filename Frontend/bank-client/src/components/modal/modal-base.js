@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { close } from '../../redux/reducers/modal-reducer'
 import ActionButtons from '../action-buttons/action-buttons'
-import './modal-base.scss'
+import styles from './modal-base.module.scss'
 
 function ModalBase(props) {
 	const dispatch = useDispatch()
@@ -12,11 +12,11 @@ function ModalBase(props) {
 	}
 
 	return (
-		<div className='modal-container'>
-			<div className='modal-background' onClick={closeModal} />
-			<div className='modal'>
-				<h4 className='modal-title'>{props.title}</h4>
-				<div className='content' position={props.contentPosition ? props.contentPosition : 'left'}>
+		<div className={styles['modal-container']}>
+			<div className={styles['modal-background']} onClick={closeModal} />
+			<div className={styles.modal}>
+				<h4 className={styles['modal-title']}>{props.title}</h4>
+				<div className={styles.content} position={props.contentPosition ? props.contentPosition : 'left'}>
 					{props.children}
 				</div>
 				<ActionButtons
