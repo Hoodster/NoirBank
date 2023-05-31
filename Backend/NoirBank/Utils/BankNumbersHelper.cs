@@ -10,13 +10,6 @@ namespace NoirBank.Utils
         private const int _pNumberCode = 25;
         private const int _lNumberCode = 21;
 
-        private readonly Random _random;
-
-        public BankNumbersHelper()
-        {
-            _random = new Random();
-        }
-
         public static string GenerateBankAccountNumber()
         {
             var accountNumberBase = $"{_bankDepartment}{GenerateDigitsPart()}{GenerateDigitsPart()}{GenerateDigitsPart()}{GenerateDigitsPart()}";

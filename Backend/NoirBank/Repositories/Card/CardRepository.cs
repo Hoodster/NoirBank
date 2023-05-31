@@ -26,16 +26,9 @@ namespace NoirBank.Repositories
             var accountID = _databaseContext.BankAccounts
                 .Select(account => new { account.AccountID, account.AccountNumber })
                 .FirstOrDefault(account => account.AccountNumber.Equals(card.Account)).AccountID;
+            var newCardNumber = BankNumbersHelper.GenerateBankCardNumber();
+            var newCard = new Card(newCardNumber, card.Cover, TypesHelper.MapCardTypes(card.Type), accountID);
 
-            var newCard = new Card
-            {
-                CardNumber = BankNumbersHelper.GenerateBankCardNumber(),
-                Cover = card.Cover,
-                CardTypeID = TypesHelper.MapCardTypes(card.Type),
-                ExpirationDate = DateTime.UtcNow.AddYears(6),
-                CVV = new Random().Next(100, 999),
-                AccountID = accountID
-            };
             var result = await _databaseContext.AddAsync(newCard);
             await _databaseContext.SaveChangesAsync();
             return PrepareBasicCardInfo(result.Entity, card.Type);
@@ -59,14 +52,8 @@ namespace NoirBank.Repositories
         private static BasicCard PrepareBasicCardInfo(Card card, string cardType = null)
         {
             var shadowNumber = BankNumbersHelper.ShadowCardNumber(card.CardNumber);
-            return new BasicCard
-            {
-                HiddenNumber = BankNumbersHelper.FormatCardNumber(shadowNumber),
-                ExpirationMonth = card.ExpirationDate.ToString("MM"),
-                ExpirationYear = card.ExpirationDate.ToString("yy"),
-                Type = cardType != null ? cardType : card.CardType.Type,
-                Cover = card.Cover
-            };
+            var formattedShadowNumber = BankNumbersHelper.FormatCardNumber(shadowNumber);
+            return new BasicCard(card, formattedShadowNumber, cardType);
         }
     }
 }

@@ -33,15 +33,10 @@ namespace NoirBank.Repositories
         {
             var user = await _authenticationService.GetCurrentUserAsync();
             var bankAccountName = !accountDTO.Name.IsNullOrEmpty() ? accountDTO.Name : $"{accountDTO.Type.ToString().ToLower()} account";
-            var bankAccount = new BankAccount
-            {
-                Balance = 0.0,
-                AccountTypeID = TypesHelper.MapAccountTypes(accountDTO.Type),
-                Name = bankAccountName,
-                AccountNumber = BankNumbersHelper.GenerateBankAccountNumber(),
-                CustomerID = user.CustomerID,
-                IsLocked = false
-            };
+            var accountNumber = BankNumbersHelper.GenerateBankAccountNumber();
+            var typeID = TypesHelper.MapAccountTypes(accountDTO.Type);
+
+            var bankAccount = new BankAccount(bankAccountName, accountNumber, typeID, user.CustomerID.Value);
 
             var result = await _databaseContext.BankAccounts.AddAsync(bankAccount);
             await _databaseContext.SaveChangesAsync();

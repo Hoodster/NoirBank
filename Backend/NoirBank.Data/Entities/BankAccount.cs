@@ -26,9 +26,18 @@ namespace NoirBank.Data.Entities
 		public IList<Card> Cards { get; set; }
 		public IList<Operation> Operations { get; set; }
 
-		public BankAccount()
+        public BankAccount() { }
+
+		public BankAccount(string name, string accountNumber, Guid accountTypeID, Guid customerID)
 		{
+            Balance = 0.0;
+            AccountTypeID = accountTypeID;
+            Name = name;
+            AccountNumber = accountNumber;
+            CustomerID = customerID;
+            IsLocked = false;
 		}
-	}
+
+    }
 }
 

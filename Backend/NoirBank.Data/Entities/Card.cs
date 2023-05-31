@@ -19,6 +19,19 @@ namespace NoirBank.Data.Entities
 
 		public Guid AccountID { get; set; }
 		public virtual BankAccount Account { get; set; }
+
+		public Card() { }
+
+		public Card(string number, string cover, Guid cardTypeID, Guid accountID)
+		{
+			CardNumber = number;
+			Cover = cover;
+			CardTypeID = cardTypeID;
+			ExpirationDate = DateTime.UtcNow.AddYears(6);
+			CVV = new Random().Next(100, 999);
+			AccountID = accountID;
+        }
+
 	}
 }
 
