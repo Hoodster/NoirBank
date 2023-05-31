@@ -2,15 +2,15 @@
     display: inline-flex;
     gap: 5px;
 
-    &[position = left] {
+    &.left {
         align-self: baseline;
     }
 
-    &[position = center] {
+    &.center {
         align-self: center;
     }
 
-    &[position = right] {
+    &.right {
         align-self: flex-end;
     }
 }

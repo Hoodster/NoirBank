@@ -26,7 +26,7 @@ function ActionButtons(props) {
 	}
 
 	return (
-		<div className={clsx(styles['action-buttons'], styles[props.className], props.position ?? 'center')}>
+		<div className={clsx(styles['action-buttons'], styles[props.className], styles[props.position ?? 'center'])}>
 			{
 				addSecondaryButton()
 			}

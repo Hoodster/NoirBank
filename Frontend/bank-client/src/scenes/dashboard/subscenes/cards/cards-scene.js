@@ -10,11 +10,13 @@ import { open } from '../../../../redux/reducers/modal-reducer'
 import { addCards } from '../../../../redux/reducers/user-reducer'
 
 import CardsContainer from './components/cards-container/cards-container'
-import { getCards } from './selectors'
+import { getAccounts, getCards } from './selectors'
+import { openNotification } from '../../../../redux/reducers/notification-reducer'
 
 function CardsScene() {
 	const dispatch = useDispatch()
 	const cards = getCards()
+	const accounts = getAccounts()
 
 	useEffect(() => {
 		get(`${cardAPI}/all`)
@@ -22,7 +24,14 @@ function CardsScene() {
 	}, [])
 
 	const addCardModal = () => {
-		dispatch(open({type: ADD_CARD}))
+		if (accounts.length > 0) {
+			dispatch(open({type: ADD_CARD}))
+		} else {
+			dispatch(openNotification({
+				type: 'error', 
+				message: 'You can\'t add payment card until you open any account.'
+			}))
+		}
 	}
 
 	const hasNoCards = cards.length === 0

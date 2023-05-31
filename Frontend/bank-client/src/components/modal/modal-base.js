@@ -17,7 +17,7 @@ function ModalBase(props) {
 			<div className={styles['modal-background']} onClick={closeModal} />
 			<div className={styles.modal}>
 				<h4 className={styles['modal-title']}>{props.title}</h4>
-				<div className={clsx(styles.content, props.contentPosition ?? 'left')}>
+				<div className={clsx(styles.content, styles[props.contentPosition ?? 'left'])}>
 					{props.children}
 				</div>
 				<ActionButtons

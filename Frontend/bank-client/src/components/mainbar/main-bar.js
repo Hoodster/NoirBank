@@ -7,6 +7,7 @@ import { open } from '../../redux/reducers/modal-reducer'
 import Button from '../inputs/button/button'
 import styles from './main-bar.module.scss'
 import { getFirstName, getLastName } from './selectors'
+const pjson = require('../../../package.json')
 
 function MainBar() {
 	const navigate = useNavigate()
@@ -68,6 +69,7 @@ function MainBar() {
 				<li><Button type='main' icon={'assignment_ind'} buttonStyle='accent' text='Account' onClick={openAccountSettings}/></li>
 				<li><Button type='main'icon={themeIcon} buttonStyle='accent' text='Theme' onClick={openThemePicker}/></li>
 				<li><Button type='main' icon={'logout'} buttonStyle='accent' text='Logout' onClick={logout}/></li>
+				<li><span className={styles['version']}>{pjson.version}</span></li>
 			</ul> : null}
 		</div>
 	</div>)
