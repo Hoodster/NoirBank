@@ -10,7 +10,7 @@ function DashboardSection(props) {
 		<div className={styles['nb-dash-section']}>
 			<div className={styles.titleSection}>
 				<span className={styles.title}>{props.title}</span>
-				{props.option ? props.option : null}
+				{props.option ?? null}
 			</div>
 			<div className={clsx(styles.container, emptyStyle , heightStyle)}>
 				{props.children
